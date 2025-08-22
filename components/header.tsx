@@ -1,143 +1,265 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Menu, X, Phone, Mail, User, Shield } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Menu,
+  Phone,
+  Mail,
+  MapPin,
+  Building2,
+  Users,
+  Search,
+  Info,
+  FileText,
+  User,
+  Shield,
+  ChevronDown,
+  MessageCircle,
+  Home,
+  Calculator,
+} from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+const navigation = [
+  { name: "Properties", href: "/search", icon: Search },
+  { name: "About", href: "/about", icon: Info },
+  { name: "Buying", href: "/buying", icon: Home },
+  { name: "Selling", href: "/selling", icon: Building2 },
+  { name: "Rent Mgmt", href: "/property-management", icon: Building2 },
+  { name: "Home Value", href: "/home-value", icon: Calculator },
+  { name: "Communities", href: "/communities", icon: MapPin },
+  { name: "Blog", href: "/blog", icon: FileText },
+];
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const pathname = usePathname()
-
-  const navigationItems = [
-    { name: "Search", href: "/search" },
-    { name: "Selling Your Home", href: "/selling" },
-    { name: "Buying a Home", href: "/buying" },
-    { name: "Local Communities", href: "/communities" },
-    { name: "Rent/Property Mgmt", href: "/property-management" },
-    { name: "About Us", href: "/about" },
-    { name: "Blog", href: "/blog" },
-    { name: "My Home Value", href: "/home-value" },
-  ]
+  const pathname = usePathname();
 
   const isActive = (href: string) => {
-    if (href === "/" && pathname === "/") return true
-    if (href !== "/" && pathname.startsWith(href)) return true
-    return false
-  }
+    if (href === "/" && pathname === "/") return true;
+    if (href !== "/" && pathname.startsWith(href)) return true;
+    return false;
+  };
+
+  // Función para detectar si estamos en páginas de login específicas
+  const isLoginActive = () => {
+    return (
+      pathname === "/agent/login" ||
+      pathname === "/admin/login" ||
+      pathname.startsWith("/admin/") ||
+      pathname.startsWith("/agent/")
+    );
+  };
 
   return (
-    <header className="bg-background border-b border-border sticky top-0 z-50">
-      {/* Top contact bar */}
-      <div className="bg-primary text-primary-foreground">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-2 text-sm">
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
-                <span>323.350.3137</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4" />
-                <span>patronrealestateservices@gmail.com</span>
-              </div>
-            </div>
-            <div className="hidden sm:flex items-center gap-4">
-              <Link
-                href="/agent/login"
-                className="flex items-center gap-1 hover:text-primary-foreground/80 transition-colors"
-              >
-                <User className="h-4 w-4" />
-                <span>Agent Login</span>
-              </Link>
-              <Link
-                href="/admin/login"
-                className="flex items-center gap-1 hover:text-primary-foreground/80 transition-colors"
-              >
-                <Shield className="h-4 w-4" />
-                <span>Admin Login</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main navigation */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg border-b border-gray-200">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
-              <span className="font-serif text-2xl font-bold text-primary">Patron Real Estate</span>
-            </Link>
-          </div>
+          <Link href="/" className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+              <Building2 className="w-6 h-6 text-white" />
+            </div>
+            <div className="hidden sm:block">
+              <div className="text-xl font-grotesk font-bold text-gray-900 leading-tight">
+                Real Estate
+              </div>
+            </div>
+          </Link>
 
-          {/* Desktop navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {navigationItems.map((item) => (
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-1">
+            {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`transition-colors duration-200 font-medium px-3 py-2 rounded-md ${
+                className={`font-medium transition-all duration-200 flex items-center space-x-2 px-4 py-2 rounded-lg ${
                   isActive(item.href)
                     ? "text-primary bg-primary/10 border-b-2 border-primary"
-                    : "text-foreground hover:text-primary hover:bg-primary/5"
+                    : "text-gray-700 hover:text-primary hover:bg-gray-50"
                 }`}
               >
-                {item.name}
+                <item.icon className="w-4 h-4" />
+                <span>{item.name}</span>
               </Link>
             ))}
           </nav>
 
-          {/* Mobile menu button */}
-          <div className="lg:hidden">
-            <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-card border-t border-border">
-              {navigationItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`block px-3 py-2 rounded-md transition-colors duration-200 ${
-                    isActive(item.href)
-                      ? "text-primary bg-primary/10 border-l-4 border-primary font-medium"
-                      : "text-foreground hover:text-primary hover:bg-muted"
+          {/* Right Side - Login & Contact */}
+          <div className="hidden lg:flex items-center space-x-4">
+            {/* Login Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className={`text-gray-600 hover:text-primary ${
+                    isLoginActive() ? "text-primary bg-primary/10" : ""
                   }`}
-                  onClick={() => setIsMenuOpen(false)}
                 >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="border-t border-border pt-2 mt-2">
-                <Link
-                  href="/agent/login"
-                  className="flex items-center gap-2 px-3 py-2 text-foreground hover:text-primary hover:bg-muted rounded-md transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
+                  <User className="w-4 h-4 mr-1" />
+                  Login
+                  <ChevronDown className="w-3 h-3 ml-1" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-40" sideOffset={8}>
+                <DropdownMenuItem asChild>
+                  <Link href="/agent/login" className="flex items-center">
+                    <User className="w-4 h-4 mr-2" />
+                    Agent Login
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/admin/login" className="flex items-center">
+                    <Shield className="w-4 h-4 mr-2" />
+                    Admin Login
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Contact Us Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  size="sm"
+                  className="bg-primary hover:bg-primary/90 text-white"
                 >
-                  <User className="h-4 w-4" />
-                  Agent Login
-                </Link>
-                <Link
-                  href="/admin/login"
-                  className="flex items-center gap-2 px-3 py-2 text-foreground hover:text-primary hover:bg-muted rounded-md transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Shield className="h-4 w-4" />
-                  Admin Login
-                </Link>
-              </div>
-            </div>
+                  <MessageCircle className="w-4 h-4 mr-1" />
+                  Contact Us
+                  <ChevronDown className="w-3 h-3 ml-1" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48" sideOffset={8}>
+                <DropdownMenuItem asChild>
+                  <Link href="tel:+13055550123" className="flex items-center">
+                    <Phone className="w-4 h-4 mr-2" />
+                    +1 (305) 555-0123
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="mailto:info@patron.com"
+                    className="flex items-center"
+                  >
+                    <Mail className="w-4 h-4 mr-2" />
+                    info@patron.com
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/agents" className="flex items-center">
+                    <Users className="w-4 h-4 mr-2" />
+                    Meet Our Agents
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
-        )}
+
+          {/* Mobile Menu */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="sm" className="lg:hidden">
+                <Menu className="w-6 h-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-80">
+              <div className="py-6">
+                {/* Mobile Logo */}
+                <div className="flex items-center space-x-3 mb-8">
+                  <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                    <Building2 className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-xl font-grotesk font-bold">
+                      Real Estate
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mobile Navigation */}
+                <nav className="space-y-2 mb-8">
+                  {navigation.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={`flex items-center space-x-3 font-medium transition-colors duration-200 p-3 rounded-lg ${
+                        isActive(item.href)
+                          ? "text-primary bg-primary/10 border-l-4 border-primary"
+                          : "text-gray-700 hover:text-primary hover:bg-gray-50"
+                      }`}
+                    >
+                      <item.icon className="w-5 h-5" />
+                      <span>{item.name}</span>
+                    </Link>
+                  ))}
+                </nav>
+
+                {/* Mobile Contact Info */}
+                <div className="space-y-3 mb-6 p-4 bg-gray-50 rounded-lg">
+                  <div className="flex items-center space-x-3 text-sm text-gray-600">
+                    <Phone className="w-4 h-4 text-primary" />
+                    <span>+1 (305) 555-0123</span>
+                  </div>
+                  <div className="flex items-center space-x-3 text-sm text-gray-600">
+                    <Mail className="w-4 h-4 text-primary" />
+                    <span>info@patron.com</span>
+                  </div>
+                  <div className="flex items-center space-x-3 text-sm text-gray-600">
+                    <MapPin className="w-4 h-4 text-primary" />
+                    <span>Miami, FL</span>
+                  </div>
+                </div>
+
+                {/* Mobile Login Links */}
+                <div className="space-y-2 mb-6">
+                  <Button
+                    variant="outline"
+                    className={`w-full justify-start ${
+                      isLoginActive() ? "text-primary bg-primary/10" : ""
+                    }`}
+                    asChild
+                  >
+                    <Link href="/agent/login">
+                      <User className="w-4 h-4 mr-2" />
+                      Agent Login
+                    </Link>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className={`w-full justify-start ${
+                      isLoginActive() ? "text-primary bg-primary/10" : ""
+                    }`}
+                    asChild
+                  >
+                    <Link href="/admin/login">
+                      <Shield className="w-4 h-4 mr-2" />
+                      Admin Login
+                    </Link>
+                  </Button>
+                </div>
+
+                {/* Mobile CTA */}
+                <div className="space-y-3">
+                  <Button className="w-full" asChild>
+                    <Link href="/search">Search Properties</Link>
+                  </Button>
+                  <Button variant="outline" className="w-full" asChild>
+                    <Link href="/about">About Us</Link>
+                  </Button>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
-  )
+  );
 }

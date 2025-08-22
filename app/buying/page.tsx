@@ -1,106 +1,97 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { BuyingProcess } from "@/components/buying-process"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Search, Shield, Clock, Heart } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Home, Search, Users, FileText, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function BuyingPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-primary text-primary-foreground py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="font-serif text-4xl md:text-5xl font-bold mb-6">Find Your Dream Home</h1>
-            <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto">
-              Let our expert team guide you through every step of the home buying process
-            </p>
-            <Button size="lg" variant="secondary" className="text-lg px-8 py-3">
-              Start Your Search
-            </Button>
-          </div>
-        </section>
+    <div className="min-h-screen bg-gray-50 pt-20">
+      <div className="container mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-grotesk font-bold text-gray-900 mb-4">
+            Buying a Home in
+            <span className="block text-primary">Miami</span>
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+            Your complete guide to buying real estate in Miami. From first-time
+            buyers to luxury property investors.
+          </p>
+        </div>
 
-        {/* Buying Process */}
-        <BuyingProcess />
-
-        {/* Why Choose Us */}
-        <section className="py-16 bg-muted/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Why Buyers Choose Patron Real Estate
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                We make the home buying process smooth, transparent, and stress-free
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <Card className="bg-white shadow-lg border border-gray-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Search className="w-6 h-6 text-primary" />
+                Property Search
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-4">
+                Use our advanced search tools to find properties that match your
+                criteria and budget.
               </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card className="text-center">
-                <CardContent className="p-6">
-                  <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Search className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="font-serif text-xl font-semibold mb-2">Exclusive Access</h3>
-                  <p className="text-muted-foreground">First access to new listings and off-market properties</p>
-                </CardContent>
-              </Card>
-
-              <Card className="text-center">
-                <CardContent className="p-6">
-                  <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Shield className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="font-serif text-xl font-semibold mb-2">Expert Protection</h3>
-                  <p className="text-muted-foreground">Thorough inspections and contract protection</p>
-                </CardContent>
-              </Card>
-
-              <Card className="text-center">
-                <CardContent className="p-6">
-                  <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Clock className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="font-serif text-xl font-semibold mb-2">Faster Closings</h3>
-                  <p className="text-muted-foreground">Average closing time: 25 days vs 35 day average</p>
-                </CardContent>
-              </Card>
-
-              <Card className="text-center">
-                <CardContent className="p-6">
-                  <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Heart className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="font-serif text-xl font-semibold mb-2">Personal Service</h3>
-                  <p className="text-muted-foreground">Dedicated agent support throughout your journey</p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="font-serif text-3xl font-bold text-foreground mb-4">Ready to Start Your Home Search?</h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Get pre-qualified and start viewing homes that match your criteria
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8 py-3">
-                Browse Properties
+              <Button asChild className="w-full">
+                <Link href="/search">
+                  Search Properties
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-3 bg-transparent">
-                Get Pre-Qualified
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white shadow-lg border border-gray-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Users className="w-6 h-6 text-primary" />
+                Expert Agents
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-4">
+                Work with our experienced agents who know the Miami market
+                inside and out.
+              </p>
+              <Button variant="outline" asChild className="w-full">
+                <Link href="/about">
+                  Meet Our Agents
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
               </Button>
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white shadow-lg border border-gray-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <FileText className="w-6 h-6 text-primary" />
+                Buying Guide
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-4">
+                Comprehensive resources and guides to help you through the
+                buying process.
+              </p>
+              <Button variant="outline" asChild className="w-full">
+                <Link href="/blog">
+                  Read Our Guide
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center">
+          <Button size="lg" asChild>
+            <Link href="/search">Start Your Property Search</Link>
+          </Button>
+        </div>
+      </div>
     </div>
-  )
+  );
 }

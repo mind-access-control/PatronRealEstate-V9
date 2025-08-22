@@ -1,94 +1,214 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Bed, Bath, Square, MapPin, Heart } from "lucide-react"
-import { cn } from "@/lib/utils"
+"use client";
+
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Heart, MapPin, Bed, Bath, Square, Star, Eye } from "lucide-react";
+import {
+  Property,
+  formatPrice,
+  getPropertyStatusColor,
+  getPropertyStatusText,
+} from "@/lib/dummy-data";
+import { useState } from "react";
+import Image from "next/image";
 
 interface PropertyCardProps {
-  id: string
-  title: string
-  price: string
-  location: string
-  bedrooms: number
-  bathrooms: number
-  sqft: number
-  imageUrl: string
-  status: "For Sale" | "For Rent" | "Sold" | "Pending"
-  featured?: boolean
-  className?: string
+  property: Property;
+  showActions?: boolean;
+  className?: string;
 }
 
 export function PropertyCard({
-  id,
-  title,
-  price,
-  location,
-  bedrooms,
-  bathrooms,
-  sqft,
-  imageUrl,
-  status,
-  featured = false,
-  className,
+  property,
+  showActions = true,
+  className = "",
 }: PropertyCardProps) {
-  const statusColors = {
-    "For Sale": "bg-emerald-500",
-    "For Rent": "bg-blue-500",
-    Sold: "bg-gray-500",
-    Pending: "bg-yellow-500",
-  }
+  const [isLiked, setIsLiked] = useState(false);
+  const [imageIndex, setImageIndex] = useState(0);
+
+  const nextImage = () => {
+    setImageIndex((prev) => (prev + 1) % property.images.length);
+  };
+
+  const prevImage = () => {
+    setImageIndex(
+      (prev) => (prev - 1 + property.images.length) % property.images.length
+    );
+  };
 
   return (
-    <Card className={cn("group hover:shadow-lg transition-shadow duration-300 overflow-hidden", className)}>
-      <div className="relative">
-        <img
-          src={imageUrl || "/placeholder.svg"}
-          alt={title}
-          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-        <div className="absolute top-3 left-3 flex gap-2">
-          <Badge className={`${statusColors[status]} text-white`}>{status}</Badge>
-          {featured && <Badge variant="secondary">Featured</Badge>}
-        </div>
-        <Button variant="ghost" size="sm" className="absolute top-3 right-3 bg-white/80 hover:bg-white">
-          <Heart className="h-4 w-4" />
-        </Button>
-      </div>
+    <Card
+      className={`group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 ${className}`}
+    >
+      {/* Header con imagen */}
+      <CardHeader className="p-0 relative">
+        <div className="relative h-64 md:h-72 overflow-hidden">
+          {/* Imagen principal */}
+          <Image
+            src={property.images[imageIndex]}
+            alt={property.title}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
 
-      <CardContent className="p-4">
-        <div className="space-y-3">
-          <div>
-            <h3 className="font-serif text-lg font-semibold text-foreground line-clamp-1">{title}</h3>
-            <p className="text-2xl font-bold text-primary">{price}</p>
+          {/* Overlay con información */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+
+          {/* Badge de estado */}
+          <div className="absolute top-4 left-4">
+            <Badge
+              className={`${getPropertyStatusColor(
+                property.status
+              )} font-semibold shadow-lg`}
+            >
+              {getPropertyStatusText(property.status)}
+            </Badge>
           </div>
 
-          <div className="flex items-center text-muted-foreground text-sm">
-            <MapPin className="h-4 w-4 mr-1" />
-            <span className="line-clamp-1">{location}</span>
-          </div>
+          {/* Botón de like */}
+          {showActions && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="absolute top-4 right-4 bg-white/90 hover:bg-white text-gray-800 border-0 shadow-lg"
+              onClick={() => setIsLiked(!isLiked)}
+            >
+              <Heart
+                className={`w-5 h-5 ${
+                  isLiked ? "fill-red-500 text-red-500" : ""
+                }`}
+              />
+            </Button>
+          )}
 
-          <div className="flex items-center justify-between text-sm text-muted-foreground">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1">
-                <Bed className="h-4 w-4" />
-                <span>{bedrooms} bed</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Bath className="h-4 w-4" />
-                <span>{bathrooms} bath</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Square className="h-4 w-4" />
-                <span>{sqft.toLocaleString()} sqft</span>
+          {/* Navegación de imágenes */}
+          {property.images.length > 1 && (
+            <>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 border-0 opacity-0 group-hover:opacity-100 transition-opacity shadow-lg"
+                onClick={prevImage}
+              >
+                ←
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 border-0 opacity-0 group-hover:opacity-100 transition-opacity shadow-lg"
+                onClick={nextImage}
+              >
+                →
+              </Button>
+            </>
+          )}
+
+          {/* Indicadores de imagen */}
+          {property.images.length > 1 && (
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              {property.images.map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                    index === imageIndex ? "bg-white" : "bg-white/50"
+                  }`}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Precio */}
+          <div className="absolute bottom-4 right-4">
+            <div className="bg-white rounded-lg px-3 py-2 shadow-lg">
+              <div className="text-lg font-bold text-gray-900">
+                {formatPrice(property.price)}
               </div>
             </div>
           </div>
+        </div>
+      </CardHeader>
 
-          <Button className="w-full bg-transparent" variant="outline">
-            View Details
-          </Button>
+      {/* Contenido */}
+      <CardContent className="p-6">
+        {/* Título y ubicación */}
+        <div className="mb-4">
+          <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+            {property.title}
+          </h3>
+          <div className="flex items-center text-gray-600">
+            <MapPin className="w-4 h-4 mr-2 text-primary" />
+            <span className="text-sm">
+              {property.address}, {property.city}, {property.state}{" "}
+              {property.zipCode}
+            </span>
+          </div>
+        </div>
+
+        {/* Características principales */}
+        <div className="grid grid-cols-3 gap-4 mb-4">
+          <div className="flex items-center text-gray-600">
+            <Bed className="w-4 h-4 mr-2 text-primary" />
+            <span className="text-sm font-medium">
+              {property.bedrooms} beds
+            </span>
+          </div>
+          <div className="flex items-center text-gray-600">
+            <Bath className="w-4 h-4 mr-2 text-primary" />
+            <span className="text-sm font-medium">
+              {property.bathrooms} baths
+            </span>
+          </div>
+          <div className="flex items-center text-gray-600">
+            <Square className="w-4 h-4 mr-2 text-primary" />
+            <span className="text-sm font-medium">
+              {property.sqft.toLocaleString()} sqft
+            </span>
+          </div>
+        </div>
+
+        {/* Descripción */}
+        <p className="text-gray-600 text-sm line-clamp-2 mb-4">
+          {property.description}
+        </p>
+
+        {/* Características destacadas */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {property.features.slice(0, 3).map((feature, index) => (
+            <Badge key={index} variant="secondary" className="text-xs">
+              {feature}
+            </Badge>
+          ))}
+          {property.features.length > 3 && (
+            <Badge variant="outline" className="text-xs">
+              +{property.features.length - 3} more
+            </Badge>
+          )}
         </div>
       </CardContent>
+
+      {/* Footer con acciones */}
+      {showActions && (
+        <CardFooter className="p-6 pt-0">
+          <div className="flex w-full gap-3">
+            <Button
+              variant="outline"
+              className="flex-1 hover:bg-primary hover:text-white transition-colors border-gray-300"
+            >
+              <Eye className="w-4 h-4 mr-2" />
+              View Details
+            </Button>
+            <Button className="flex-1 bg-primary hover:bg-primary/90">
+              Contact Agent
+            </Button>
+          </div>
+        </CardFooter>
+      )}
     </Card>
-  )
+  );
 }
