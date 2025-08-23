@@ -32,26 +32,32 @@ export function AgentSection() {
               key={agent.id}
               className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <CardHeader className="p-0">
-                <div className="relative h-64 overflow-hidden rounded-t-lg">
+              <CardHeader className="p-0 -mt-6">
+                <div className="relative h-72 overflow-hidden rounded-t-lg bg-gray-200">
                   <Image
                     src={agent.avatar}
                     alt={agent.name}
                     fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority={true}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
                   {/* Información del agente */}
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <h3 className="text-xl font-bold mb-2">{agent.name}</h3>
+                  <div className="absolute bottom-4 left-4 right-4 text-white z-10">
+                    <h3 className="text-xl font-bold mb-2 drop-shadow-lg">
+                      {agent.name}
+                    </h3>
                     <div className="flex items-center mb-2">
-                      <Star className="w-4 h-4 text-yellow-400 mr-1 fill-current" />
-                      <span className="text-sm font-medium">
+                      <Star className="w-4 h-4 text-yellow-400 mr-1 fill-current drop-shadow-lg" />
+                      <span className="text-sm font-medium drop-shadow-lg">
                         {agent.rating} ({agent.reviews} reviews)
                       </span>
                     </div>
-                    <div className="text-sm text-white/90">{agent.office}</div>
+                    <div className="text-sm text-white/90 drop-shadow-lg">
+                      {agent.office}
+                    </div>
                   </div>
                 </div>
               </CardHeader>
@@ -113,11 +119,20 @@ export function AgentSection() {
                   <Button
                     variant="outline"
                     className="flex-1 hover:bg-primary hover:text-white transition-colors"
+                    onClick={() => window.open(`tel:${agent.phone}`, "_self")}
                   >
                     <Phone className="w-4 h-4 mr-2" />
                     Call Now
                   </Button>
-                  <Button className="flex-1 bg-primary hover:bg-primary/90">
+                  <Button
+                    className="flex-1 bg-primary hover:bg-primary/90"
+                    onClick={() =>
+                      window.open(
+                        `mailto:${agent.email}?subject=Interested in Real Estate Services&body=Hi ${agent.name}, I would like to learn more about your real estate services.`,
+                        "_self"
+                      )
+                    }
+                  >
                     <Mail className="w-4 h-4 mr-2" />
                     Email
                   </Button>
@@ -135,7 +150,7 @@ export function AgentSection() {
             className="border-primary text-primary hover:bg-primary hover:text-white font-semibold px-8 py-3"
             asChild
           >
-            <Link href="/about">
+            <Link href="/agents">
               Meet All Our Agents
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>

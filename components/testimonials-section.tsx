@@ -3,6 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Quote } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const testimonials = [
   {
@@ -10,7 +11,7 @@ const testimonials = [
     name: "Maria Rodriguez",
     role: "Home Buyer",
     avatar:
-      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face",
     content:
       "Patron Real Estate made buying our first home in Miami an incredible experience. Sarah was patient, knowledgeable, and helped us find the perfect place within our budget.",
     rating: 5,
@@ -21,7 +22,7 @@ const testimonials = [
     name: "David Chen",
     role: "Property Investor",
     avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
     content:
       "Michael's expertise in downtown Miami condos is unmatched. He helped me build a profitable investment portfolio with properties that have excellent rental yields.",
     rating: 5,
@@ -32,7 +33,7 @@ const testimonials = [
     name: "Jennifer Williams",
     role: "Home Seller",
     avatar:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
     content:
       "Emily helped us sell our family home in Coral Gables quickly and for above asking price. Her knowledge of the local market and marketing strategy was outstanding.",
     rating: 5,
@@ -43,7 +44,7 @@ const testimonials = [
     name: "Carlos Mendez",
     role: "Luxury Home Buyer",
     avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
     content:
       "The level of service we received was exceptional. Sarah understood exactly what we were looking for and found us a stunning waterfront villa that exceeded our expectations.",
     rating: 5,
@@ -54,7 +55,7 @@ const testimonials = [
     name: "Lisa Thompson",
     role: "First-time Buyer",
     avatar:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face",
+      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
     content:
       "As a first-time buyer, I was nervous about the process. Michael guided me through every step and made sure I understood everything. Highly recommend!",
     rating: 5,
@@ -65,7 +66,7 @@ const testimonials = [
     name: "Robert Johnson",
     role: "Relocation Client",
     avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
     content:
       "Moving from New York to Miami was a big change, but Emily made it seamless. She found us the perfect family home in a great school district.",
     rating: 5,
@@ -74,6 +75,16 @@ const testimonials = [
 ];
 
 export function TestimonialsSection() {
+  const router = useRouter();
+
+  const handleGetStarted = () => {
+    router.push("/contact");
+  };
+
+  const handleReadMoreReviews = () => {
+    router.push("/blog");
+  };
+
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
@@ -119,12 +130,28 @@ export function TestimonialsSection() {
 
                 {/* Author info */}
                 <div className="flex items-center">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4 bg-gray-200">
                     <Image
                       src={testimonial.avatar}
                       alt={testimonial.name}
                       fill
                       className="object-cover"
+                      sizes="48px"
+                      onError={(e) => {
+                        // Fallback a un avatar por defecto si la imagen falla
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = "none";
+                        const parent = target.parentElement;
+                        if (parent) {
+                          parent.innerHTML = `
+                            <div class="w-full h-full bg-primary/20 rounded-full flex items-center justify-center">
+                              <span class="text-primary font-semibold text-lg">${testimonial.name.charAt(
+                                0
+                              )}</span>
+                            </div>
+                          `;
+                        }
+                      }}
                     />
                   </div>
                   <div>
@@ -155,10 +182,16 @@ export function TestimonialsSection() {
               homes with us.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-primary hover:bg-gray-100 font-semibold px-8 py-3 rounded-xl transition-colors">
+              <button
+                onClick={handleGetStarted}
+                className="bg-white text-primary hover:bg-gray-100 font-semibold px-8 py-3 rounded-xl transition-colors cursor-pointer"
+              >
                 Get Started Today
               </button>
-              <button className="border-white/30 text-white hover:bg-white hover:text-primary font-semibold px-8 py-3 rounded-xl border-2 transition-colors">
+              <button
+                onClick={handleReadMoreReviews}
+                className="border-white/30 text-white hover:bg-white hover:text-primary font-semibold px-8 py-3 rounded-xl border-2 transition-colors cursor-pointer"
+              >
                 Read More Reviews
               </button>
             </div>

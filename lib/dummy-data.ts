@@ -270,7 +270,7 @@ export const dummyAgents: Agent[] = [
     email: "sarah.johnson@patron.com",
     phone: "+1 (305) 555-0101",
     avatar:
-      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face",
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face",
     bio: "Top-producing luxury real estate specialist with 15+ years of experience in Miami Beach and surrounding areas.",
     specialties: ["Luxury Homes", "Waterfront Properties", "New Construction"],
     experience: 15,
@@ -287,7 +287,7 @@ export const dummyAgents: Agent[] = [
     email: "michael.rodriguez@patron.com",
     phone: "+1 (305) 555-0102",
     avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
     bio: "Downtown Miami condo expert specializing in high-rise living and investment properties.",
     specialties: ["Condos", "Investment Properties", "Downtown Miami"],
     experience: 12,
@@ -304,7 +304,7 @@ export const dummyAgents: Agent[] = [
     email: "emily.chen@patron.com",
     phone: "+1 (305) 555-0103",
     avatar:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face",
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
     bio: "Family home specialist in Coral Gables and Pinecrest, helping families find their perfect home.",
     specialties: ["Family Homes", "School Districts", "Coral Gables"],
     experience: 8,

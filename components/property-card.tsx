@@ -8,7 +8,16 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Heart, MapPin, Bed, Bath, Square, Star, Eye } from "lucide-react";
+import {
+  Heart,
+  MapPin,
+  Bed,
+  Bath,
+  Square,
+  Star,
+  Eye,
+  MessageCircle,
+} from "lucide-react";
 import {
   Property,
   formatPrice,
@@ -17,6 +26,7 @@ import {
 } from "@/lib/dummy-data";
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface PropertyCardProps {
   property: Property;
@@ -31,6 +41,7 @@ export function PropertyCard({
 }: PropertyCardProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
+  const router = useRouter();
 
   const nextImage = () => {
     setImageIndex((prev) => (prev + 1) % property.images.length);
@@ -40,6 +51,14 @@ export function PropertyCard({
     setImageIndex(
       (prev) => (prev - 1 + property.images.length) % property.images.length
     );
+  };
+
+  const handleViewDetails = () => {
+    router.push(`/property/${property.id}`);
+  };
+
+  const handleContactAgent = () => {
+    router.push(`/contact?property=${property.id}`);
   };
 
   return (
@@ -198,12 +217,17 @@ export function PropertyCard({
           <div className="flex w-full gap-3">
             <Button
               variant="outline"
-              className="flex-1 hover:bg-primary hover:text-white transition-colors border-gray-300"
+              className="flex-1 hover:bg-primary hover:text-white transition-colors border-gray-300 cursor-pointer"
+              onClick={handleViewDetails}
             >
               <Eye className="w-4 h-4 mr-2" />
               View Details
             </Button>
-            <Button className="flex-1 bg-primary hover:bg-primary/90">
+            <Button
+              className="flex-1 bg-primary hover:bg-primary/90 cursor-pointer"
+              onClick={handleContactAgent}
+            >
+              <MessageCircle className="w-4 h-4 mr-2" />
               Contact Agent
             </Button>
           </div>
