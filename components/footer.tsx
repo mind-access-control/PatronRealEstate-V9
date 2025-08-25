@@ -87,7 +87,7 @@ export function Footer() {
                 <Phone className="w-4 h-4 text-primary" />
                 <a
                   href="tel:+13055550123"
-                  className="hover:text-primary transition-colors duration-200 cursor-pointer"
+                  className="hover:text-white hover:bg-gray-800 px-2 py-1 rounded transition-all duration-200 cursor-pointer"
                 >
                   +1 (305) 555-0123
                 </a>
@@ -96,7 +96,7 @@ export function Footer() {
                 <Mail className="w-4 h-4 text-primary" />
                 <a
                   href="mailto:info@patron.com"
-                  className="hover:text-primary transition-colors duration-200 cursor-pointer"
+                  className="hover:text-white hover:bg-gray-800 px-2 py-1 rounded transition-all duration-200 cursor-pointer"
                 >
                   info@patron.com
                 </a>
@@ -131,7 +131,8 @@ export function Footer() {
                   Stay Updated
                 </h4>
                 <p className="text-xs text-gray-400 mb-3">
-                  Subscribe to our newsletter for the latest market insights, property updates, and exclusive offers.
+                  Subscribe to our newsletter for the latest market insights,
+                  property updates, and exclusive offers.
                 </p>
                 <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
                   <Input
@@ -160,7 +161,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 cursor-pointer block"
+                    className="text-gray-300 hover:text-white hover:bg-gray-800 px-2 py-1 rounded transition-all duration-200 cursor-pointer block"
                   >
                     {link.name}
                   </Link>
@@ -177,7 +178,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 cursor-pointer block"
+                    className="text-gray-300 hover:text-white hover:bg-gray-800 px-2 py-1 rounded transition-all duration-200 cursor-pointer block"
                   >
                     {link.name}
                   </Link>
@@ -198,19 +199,19 @@ export function Footer() {
             <div className="flex space-x-6 text-sm text-gray-400">
               <Link
                 href="/privacy-policy"
-                className="hover:text-white transition-colors cursor-pointer"
+                className="hover:text-white hover:bg-gray-800 px-2 py-1 rounded transition-all duration-200 cursor-pointer"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms-of-service"
-                className="hover:text-white transition-colors cursor-pointer"
+                className="hover:text-white hover:bg-gray-800 px-2 py-1 rounded transition-all duration-200 cursor-pointer"
               >
                 Terms of Service
               </Link>
               <Link
                 href="/cookie-policy"
-                className="hover:text-white transition-colors cursor-pointer"
+                className="hover:text-white hover:bg-gray-800 px-2 py-1 rounded transition-all duration-200 cursor-pointer"
               >
                 Cookie Policy
               </Link>

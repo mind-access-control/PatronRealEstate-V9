@@ -25,12 +25,12 @@ export default function PropertyManagementPage() {
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Professional property management services for landlords and property
-            investors in Miami.
+            investors.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           <Card className="bg-white shadow-lg border border-gray-200">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -39,13 +39,10 @@ export default function PropertyManagementPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600">
                 Comprehensive background checks, credit reports, and rental
                 history verification for all potential tenants.
               </p>
-              <Button variant="outline" asChild className="w-full">
-                <Link href="/about">Learn More</Link>
-              </Button>
             </CardContent>
           </Card>
 
@@ -57,13 +54,10 @@ export default function PropertyManagementPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600">
                 Automated rent collection, late fee management, and detailed
                 financial reporting for property owners.
               </p>
-              <Button variant="outline" asChild className="w-full">
-                <Link href="/about">Learn More</Link>
-              </Button>
             </CardContent>
           </Card>
 
@@ -75,13 +69,10 @@ export default function PropertyManagementPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600">
                 24/7 emergency maintenance response and regular property
                 inspections to maintain property value.
               </p>
-              <Button variant="outline" asChild className="w-full">
-                <Link href="/about">Learn More</Link>
-              </Button>
             </CardContent>
           </Card>
 
@@ -93,13 +84,10 @@ export default function PropertyManagementPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600">
                 Professional tenant communication, lease renewals, and conflict
                 resolution services.
               </p>
-              <Button variant="outline" asChild className="w-full">
-                <Link href="/about">Learn More</Link>
-              </Button>
             </CardContent>
           </Card>
 
@@ -111,13 +99,10 @@ export default function PropertyManagementPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600">
                 Stay compliant with all local, state, and federal rental
                 property regulations and requirements.
               </p>
-              <Button variant="outline" asChild className="w-full">
-                <Link href="/about">Learn More</Link>
-              </Button>
             </CardContent>
           </Card>
 
@@ -129,41 +114,34 @@ export default function PropertyManagementPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600">
                 Regular market analysis to ensure competitive rental rates and
                 maximize property income.
               </p>
-              <Button variant="outline" asChild className="w-full">
-                <Link href="/about">Learn More</Link>
-              </Button>
             </CardContent>
           </Card>
         </div>
 
-        {/* CTA Section */}
+        {/* Main CTA Section */}
         <Card className="bg-gradient-to-br from-primary to-primary/80 text-white shadow-xl border-0">
           <CardContent className="p-8 text-center">
             <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>
             <p className="text-lg mb-6 opacity-90">
               Let us handle your property management needs so you can focus on
-              what matters most.
+              what matters most. Contact us to discuss your specific
+              requirements.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
                 variant="secondary"
                 className="bg-white text-primary hover:bg-gray-100"
+                asChild
               >
-                <Plus className="w-5 h-5 mr-2" />
-                Add Property
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/30 text-white hover:bg-white hover:text-primary"
-              >
-                <Users className="w-5 h-5 mr-2" />
-                Contact Manager
+                <Link href="/contact">
+                  <Plus className="w-5 h-5 mr-2" />
+                  Get Started
+                </Link>
               </Button>
             </div>
           </CardContent>

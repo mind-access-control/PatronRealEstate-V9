@@ -1,7 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import {
   Menu,
   Phone,
@@ -171,6 +176,9 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-80">
+              <SheetTitle className="sr-only">
+                Mobile Navigation Menu
+              </SheetTitle>
               <div className="py-6">
                 {/* Mobile Logo */}
                 <div className="flex items-center space-x-3 mb-8">

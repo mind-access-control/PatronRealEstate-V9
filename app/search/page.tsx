@@ -22,10 +22,13 @@ import {
   Bath,
   Filter,
   DollarSign,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [buyOrRent, setBuyOrRent] = useState("all"); // Nuevo filtro: Buy vs Rent
   const [propertyType, setPropertyType] = useState("all");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
@@ -33,15 +36,26 @@ export default function SearchPage() {
   const [minBathrooms, setMinBathrooms] = useState("0");
   const [status, setStatus] = useState("all");
 
+  // Estado para paginación
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
+
   // Filtrar propiedades basado en los criterios de búsqueda
   const filteredProperties = useMemo(() => {
     return dummyProperties.filter((property) => {
-      // Búsqueda por texto
+      // Búsqueda por texto - usar city en lugar de location
       const matchesSearch =
         searchQuery === "" ||
         property.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        property.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        property.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
         property.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+      // Filtro por Buy vs Rent
+      const matchesBuyOrRent =
+        buyOrRent === "all" ||
+        (buyOrRent === "buy" &&
+          (property.status === "for-sale" || property.status === "pending")) ||
+        (buyOrRent === "rent" && property.status === "for-rent");
 
       // Filtro por tipo de propiedad
       const matchesType =
@@ -60,11 +74,18 @@ export default function SearchPage() {
       const matchesBathrooms =
         minBathrooms === "0" || property.bathrooms >= parseInt(minBathrooms);
 
-      // Filtro por estado
-      const matchesStatus = status === "all" || property.status === status;
+      // Filtro por estado (ahora más específico)
+      const matchesStatus =
+        status === "all" ||
+        (buyOrRent === "all" && property.status === status) ||
+        (buyOrRent === "buy" &&
+          (status === "all" || property.status === status)) ||
+        (buyOrRent === "rent" &&
+          (status === "all" || property.status === status));
 
       return (
         matchesSearch &&
+        matchesBuyOrRent &&
         matchesType &&
         matchesPrice &&
         matchesBedrooms &&
@@ -74,6 +95,7 @@ export default function SearchPage() {
     });
   }, [
     searchQuery,
+    buyOrRent,
     propertyType,
     minPrice,
     maxPrice,
@@ -82,14 +104,88 @@ export default function SearchPage() {
     status,
   ]);
 
+  // Calcular propiedades paginadas
+  const paginatedProperties = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredProperties.slice(startIndex, endIndex);
+  }, [filteredProperties, currentPage, itemsPerPage]);
+
+  // Calcular total de páginas
+  const totalPages = Math.ceil(filteredProperties.length / itemsPerPage);
+
+  // Resetear a la primera página cuando cambien los filtros
+  const resetPagination = () => {
+    setCurrentPage(1);
+  };
+
   const clearFilters = () => {
     setSearchQuery("");
+    setBuyOrRent("all");
     setPropertyType("all");
     setMinPrice("");
     setMaxPrice("");
     setMinBedrooms("0");
     setMinBathrooms("0");
     setStatus("all");
+    resetPagination();
+  };
+
+  // Función para cambiar de página
+  const goToPage = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  // Función para ir a la página anterior
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  // Función para ir a la página siguiente
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  // Generar array de páginas para mostrar
+  const getPageNumbers = () => {
+    const pages = [];
+    const maxVisiblePages = 5;
+
+    if (totalPages <= maxVisiblePages) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      if (currentPage <= 3) {
+        for (let i = 1; i <= 4; i++) {
+          pages.push(i);
+        }
+        pages.push("...");
+        pages.push(totalPages);
+      } else if (currentPage >= totalPages - 2) {
+        pages.push(1);
+        pages.push("...");
+        for (let i = totalPages - 3; i <= totalPages; i++) {
+          pages.push(i);
+        }
+      } else {
+        pages.push(1);
+        pages.push("...");
+        for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+          pages.push(i);
+        }
+        pages.push("...");
+        pages.push(totalPages);
+      }
+    }
+
+    return pages;
   };
 
   return (
@@ -123,16 +219,72 @@ export default function SearchPage() {
                 type="text"
                 placeholder="Enter city, neighborhood, or address..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  resetPagination();
+                }}
                 className="pl-10 text-lg"
               />
+            </div>
+
+            {/* Filtro principal: Buy vs Rent */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="md:col-span-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <DollarSign className="w-4 h-4 text-gray-600" />
+                  <span className="text-sm font-medium text-gray-700">
+                    I want to:
+                  </span>
+                </div>
+                <div className="flex gap-2">
+                  <Button
+                    variant={buyOrRent === "all" ? "default" : "outline"}
+                    onClick={() => {
+                      setBuyOrRent("all");
+                      setStatus("all");
+                      resetPagination();
+                    }}
+                    className="flex-1 cursor-pointer"
+                  >
+                    Browse All
+                  </Button>
+                  <Button
+                    variant={buyOrRent === "buy" ? "default" : "outline"}
+                    onClick={() => {
+                      setBuyOrRent("buy");
+                      setStatus("all");
+                      resetPagination();
+                    }}
+                    className="flex-1 cursor-pointer"
+                  >
+                    Buy
+                  </Button>
+                  <Button
+                    variant={buyOrRent === "rent" ? "default" : "outline"}
+                    onClick={() => {
+                      setBuyOrRent("rent");
+                      setStatus("all");
+                      resetPagination();
+                    }}
+                    className="flex-1 cursor-pointer"
+                  >
+                    Rent
+                  </Button>
+                </div>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Tipo de propiedad */}
               <div className="relative">
                 <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <Select value={propertyType} onValueChange={setPropertyType}>
+                <Select
+                  value={propertyType}
+                  onValueChange={(value) => {
+                    setPropertyType(value);
+                    resetPagination();
+                  }}
+                >
                   <SelectTrigger className="pl-10">
                     <SelectValue placeholder="Property Type" />
                   </SelectTrigger>
@@ -151,9 +303,12 @@ export default function SearchPage() {
                 <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input
                   type="number"
-                  placeholder="Min Price"
+                  placeholder={buyOrRent === "rent" ? "Min Rent" : "Min Price"}
                   value={minPrice}
-                  onChange={(e) => setMinPrice(e.target.value)}
+                  onChange={(e) => {
+                    setMinPrice(e.target.value);
+                    resetPagination();
+                  }}
                   className="pl-10"
                 />
               </div>
@@ -163,9 +318,12 @@ export default function SearchPage() {
                 <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input
                   type="number"
-                  placeholder="Max Price"
+                  placeholder={buyOrRent === "rent" ? "Max Rent" : "Max Price"}
                   value={maxPrice}
-                  onChange={(e) => setMaxPrice(e.target.value)}
+                  onChange={(e) => {
+                    setMaxPrice(e.target.value);
+                    resetPagination();
+                  }}
                   className="pl-10"
                 />
               </div>
@@ -175,7 +333,13 @@ export default function SearchPage() {
               {/* Habitaciones mínimas */}
               <div className="relative">
                 <Bed className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <Select value={minBedrooms} onValueChange={setMinBedrooms}>
+                <Select
+                  value={minBedrooms}
+                  onValueChange={(value) => {
+                    setMinBedrooms(value);
+                    resetPagination();
+                  }}
+                >
                   <SelectTrigger className="pl-10">
                     <SelectValue placeholder="Min Bedrooms" />
                   </SelectTrigger>
@@ -193,7 +357,13 @@ export default function SearchPage() {
               {/* Baños mínimos */}
               <div className="relative">
                 <Bath className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <Select value={minBathrooms} onValueChange={setMinBathrooms}>
+                <Select
+                  value={minBathrooms}
+                  onValueChange={(value) => {
+                    setMinBathrooms(value);
+                    resetPagination();
+                  }}
+                >
                   <SelectTrigger className="pl-10">
                     <SelectValue placeholder="Min Bathrooms" />
                   </SelectTrigger>
@@ -207,34 +377,63 @@ export default function SearchPage() {
                 </Select>
               </div>
 
-              {/* Estado */}
-              <Select value={status} onValueChange={setStatus}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="for-sale">For Sale</SelectItem>
-                  <SelectItem value="for-rent">For Rent</SelectItem>
-                  <SelectItem value="sold">Sold</SelectItem>
-                  <SelectItem value="pending">Pending</SelectItem>
-                </SelectContent>
-              </Select>
+              {/* Estado - Solo mostrar si no se ha seleccionado Buy o Rent específico */}
+              {buyOrRent === "all" && (
+                <Select
+                  value={status}
+                  onValueChange={(value) => {
+                    setStatus(value);
+                    resetPagination();
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Status</SelectItem>
+                    <SelectItem value="for-sale">For Sale</SelectItem>
+                    <SelectItem value="for-rent">For Rent</SelectItem>
+                    <SelectItem value="sold">Sold</SelectItem>
+                    <SelectItem value="pending">Pending</SelectItem>
+                  </SelectContent>
+                </Select>
+              )}
+
+              {/* Mostrar estado específico cuando se selecciona Buy o Rent */}
+              {buyOrRent === "buy" && (
+                <div className="flex items-center justify-center h-10 px-3 bg-gray-50 rounded-md border">
+                  <span className="text-sm text-gray-600">
+                    Buying Properties
+                  </span>
+                </div>
+              )}
+
+              {buyOrRent === "rent" && (
+                <div className="flex items-center justify-center h-10 px-3 bg-gray-50 rounded-md border">
+                  <span className="text-sm text-gray-600">
+                    Rental Properties
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Botones de acción */}
             <div className="flex flex-col sm:flex-row gap-3 justify-between items-center">
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Filter className="w-4 h-4" />
-                <span>{filteredProperties.length} properties found</span>
+                <span>
+                  {filteredProperties.length}{" "}
+                  {buyOrRent === "buy"
+                    ? "properties for sale"
+                    : buyOrRent === "rent"
+                    ? "rental properties"
+                    : "properties"}{" "}
+                  found
+                </span>
               </div>
               <div className="flex gap-3">
                 <Button variant="outline" onClick={clearFilters}>
                   Clear Filters
-                </Button>
-                <Button>
-                  <Search className="w-4 h-4 mr-2" />
-                  Search Properties
                 </Button>
               </div>
             </div>
@@ -246,7 +445,7 @@ export default function SearchPage() {
           <>
             {/* Grid de propiedades */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProperties.map((property) => (
+              {paginatedProperties.map((property) => (
                 <PropertyCard
                   key={property.id}
                   property={property}
@@ -256,22 +455,84 @@ export default function SearchPage() {
             </div>
 
             {/* Paginación */}
-            <div className="flex justify-center mt-12">
-              <div className="flex items-center space-x-2">
-                <Button variant="outline" size="sm" disabled>
-                  Previous
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-primary text-white"
-                >
-                  1
-                </Button>
-                <Button variant="outline" size="sm">
-                  Next
-                </Button>
+            <div className="flex flex-col sm:flex-row justify-between items-center mt-12 gap-4">
+              {/* Información de paginación */}
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-gray-600">Show:</span>
+                  <Select
+                    value={itemsPerPage.toString()}
+                    onValueChange={(value) => {
+                      setItemsPerPage(parseInt(value));
+                      setCurrentPage(1);
+                    }}
+                  >
+                    <SelectTrigger className="w-20">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="6">6</SelectItem>
+                      <SelectItem value="9">9</SelectItem>
+                      <SelectItem value="12">12</SelectItem>
+                      <SelectItem value="15">15</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <span className="text-sm text-gray-600">per page</span>
+                </div>
+
+                <div className="text-sm text-gray-600">
+                  Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
+                  {Math.min(
+                    currentPage * itemsPerPage,
+                    filteredProperties.length
+                  )}{" "}
+                  of {filteredProperties.length} properties
+                </div>
               </div>
+
+              {/* Controles de paginación */}
+              {totalPages > 1 && (
+                <div className="flex items-center space-x-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={goToPreviousPage}
+                    disabled={currentPage === 1}
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                    Previous
+                  </Button>
+
+                  {getPageNumbers().map((page, index) => (
+                    <div key={index}>
+                      {page === "..." ? (
+                        <span className="px-3 py-2 text-gray-500">...</span>
+                      ) : (
+                        <Button
+                          variant={currentPage === page ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => goToPage(page as number)}
+                          className={
+                            currentPage === page ? "bg-primary text-white" : ""
+                          }
+                        >
+                          {page}
+                        </Button>
+                      )}
+                    </div>
+                  ))}
+
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={goToNextPage}
+                    disabled={currentPage === totalPages}
+                  >
+                    Next
+                    <ChevronRight className="w-4 h-4" />
+                  </Button>
+                </div>
+              )}
             </div>
           </>
         ) : (
@@ -281,7 +542,11 @@ export default function SearchPage() {
               No properties found
             </h3>
             <p className="text-gray-600 mb-6">
-              Try adjusting your search criteria or browse all our properties.
+              {buyOrRent === "buy"
+                ? "Try adjusting your search criteria for properties to buy."
+                : buyOrRent === "rent"
+                ? "Try adjusting your search criteria for rental properties."
+                : "Try adjusting your search criteria or browse all our properties."}
             </p>
             <Button onClick={clearFilters} variant="outline">
               Clear All Filters
