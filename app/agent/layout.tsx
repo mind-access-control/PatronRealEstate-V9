@@ -53,6 +53,11 @@ export default function AgentLayout({
     auth.logout();
   };
 
+  // Don't show agent layout on login page
+  if (pathname === "/agent/login") {
+    return <>{children}</>;
+  }
+
   return (
     <div className="min-h-screen bg-muted/30">
       {/* Mobile sidebar overlay */}

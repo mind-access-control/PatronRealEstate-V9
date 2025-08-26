@@ -11,7 +11,7 @@ interface ConditionalLayoutProps {
 export function ConditionalLayout({ children }: ConditionalLayoutProps) {
   const pathname = usePathname();
 
-  // Check for admin and agent pages that should NOT show public header/footer
+  // Check for admin and agent dashboard pages that should NOT show public header/footer
   const isAdminDashboardPage =
     pathname &&
     (pathname === "/admin" ||
@@ -36,7 +36,7 @@ export function ConditionalLayout({ children }: ConditionalLayoutProps) {
     return <>{children}</>;
   }
 
-  // Show public header/footer on all other pages
+  // Show public header/footer on all other pages (including login pages)
   return (
     <>
       <Header />

@@ -48,6 +48,11 @@ export default function AdminLayout({
     auth.logout();
   };
 
+  // Don't show admin layout on login page
+  if (pathname === "/admin/login") {
+    return <>{children}</>;
+  }
+
   return (
     <div className="min-h-screen bg-muted/30">
       {/* Mobile sidebar overlay */}
@@ -85,7 +90,7 @@ export default function AdminLayout({
                 <Menu className="h-5 w-5" />
               </Button>
               <div className="hidden md:flex items-center gap-3 max-w-md bg-muted/50 rounded-lg px-3 py-2">
-                <Search className="h-4 h-4 text-muted-foreground" />
+                <Search className="h-4 w-4 text-muted-foreground" />
                 <input
                   type="text"
                   placeholder="Search..."
@@ -189,7 +194,7 @@ export default function AdminLayout({
             href="/"
             className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Home className="h-4 h-4" />
+            <Home className="h-4 w-4" />
             Back to Website
           </Link>
         </div>
