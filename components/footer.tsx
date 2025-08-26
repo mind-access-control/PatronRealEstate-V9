@@ -70,15 +70,13 @@ export function Footer() {
                 <div className="text-xl font-grotesk font-bold">
                   Patron Real Estate
                 </div>
-                <div className="text-sm text-gray-400">
-                  Miami's Premier Real Estate
-                </div>
+                <div className="text-sm text-gray-400">Premier Real Estate</div>
               </div>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
               For over 15 years, we've been helping families find their perfect
-              homes in Miami. Our commitment to excellence and personalized
-              service sets us apart in the real estate industry.
+              homes. Our commitment to excellence and personalized service sets
+              us apart in the real estate industry.
             </p>
 
             {/* Contact Info */}

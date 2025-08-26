@@ -20,9 +20,9 @@ export function FeaturedListings() {
             <span className="block text-primary">Featured Properties</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Explore our handpicked selection of premium properties in Miami's
-            most desirable locations. From luxury waterfront homes to modern
-            downtown condos, find your perfect match.
+            Explore our handpicked selection of premium properties in most
+            desirable locations. From luxury waterfront homes to modern downtown
+            condos, find your perfect match.
           </p>
         </div>
 
@@ -44,9 +44,9 @@ export function FeaturedListings() {
               Ready to Find Your Dream Home?
             </h3>
             <p className="text-lg text-white/90 mb-8 leading-relaxed">
-              Our expert agents are here to help you navigate the Miami real
-              estate market and find the perfect property that matches your
-              lifestyle and budget.
+              Our expert agents are here to help you navigate the real estate
+              market and find the perfect property that matches your lifestyle
+              and budget.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button

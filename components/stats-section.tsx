@@ -23,7 +23,7 @@ const stats = [
     icon: Award,
     value: "15+",
     label: "Years Experience",
-    description: "Serving Miami since 2009",
+    description: "Serving since 2009",
     highlight: "Proven Track Record",
   },
   {
@@ -64,8 +64,7 @@ export function StatsSection() {
             Our Track Record Speaks for Itself
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We've helped thousands of families find their perfect homes in
-            Miami.
+            We've helped thousands of families find their perfect homes.
             <span className="text-blue-600 font-semibold">
               {" "}
               Join them today!
