@@ -1,18 +1,21 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Calendar, Clock, User } from "lucide-react"
+"use client";
+
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Calendar, Clock, User } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface BlogCardProps {
-  id: string
-  title: string
-  excerpt: string
-  author: string
-  date: string
-  category: string
-  imageUrl: string
-  readTime: string
-  featured?: boolean
+  id: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  date: string;
+  category: string;
+  imageUrl: string;
+  readTime: string;
+  featured?: boolean;
 }
 
 export function BlogCard({
@@ -26,18 +29,23 @@ export function BlogCard({
   readTime,
   featured = false,
 }: BlogCardProps) {
+  const router = useRouter();
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
-  })
+  });
 
   if (featured) {
     return (
       <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
         <div className="md:flex">
           <div className="md:w-1/2">
-            <img src={imageUrl || "/placeholder.svg"} alt={title} className="w-full h-64 md:h-full object-cover" />
+            <img
+              src={imageUrl || "/placeholder.svg"}
+              alt={title}
+              className="w-full h-64 md:h-full object-cover"
+            />
           </div>
           <div className="md:w-1/2">
             <CardContent className="p-8 h-full flex flex-col justify-between">
@@ -46,8 +54,12 @@ export function BlogCard({
                   <Badge variant="default">{category}</Badge>
                   <Badge variant="secondary">Featured</Badge>
                 </div>
-                <h2 className="font-serif text-2xl font-bold text-foreground mb-4 line-clamp-2">{title}</h2>
-                <p className="text-muted-foreground mb-6 line-clamp-3">{excerpt}</p>
+                <h2 className="font-serif text-2xl font-bold text-foreground mb-4 line-clamp-2">
+                  {title}
+                </h2>
+                <p className="text-muted-foreground mb-6 line-clamp-3">
+                  {excerpt}
+                </p>
               </div>
               <div>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
@@ -64,13 +76,18 @@ export function BlogCard({
                     <span>{readTime}</span>
                   </div>
                 </div>
-                <Button className="w-full">Read Full Article</Button>
+                <Button
+                  className="w-full cursor-pointer"
+                  onClick={() => router.push(`/blog/${id}`)}
+                >
+                  Read Full Article
+                </Button>
               </div>
             </CardContent>
           </div>
         </div>
       </Card>
-    )
+    );
   }
 
   return (
@@ -103,11 +120,15 @@ export function BlogCard({
               <span>{readTime}</span>
             </div>
           </div>
-          <Button variant="outline" className="w-full bg-transparent">
+          <Button
+            variant="outline"
+            className="w-full bg-transparent cursor-pointer"
+            onClick={() => router.push(`/blog/${id}`)}
+          >
             Read More
           </Button>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
