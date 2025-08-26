@@ -1,17 +1,18 @@
-import { AdminLayout } from "@/components/admin/admin-layout"
-import { LeadManagement } from "@/components/admin/lead-management"
+import { LeadManagement } from "@/components/admin/lead-management";
 
 export default function AdminLeadsPage() {
   return (
-    <AdminLayout>
-      <div className="space-y-8">
-        <div>
-          <h1 className="font-serif text-3xl font-bold text-foreground">Lead Management</h1>
-          <p className="text-muted-foreground">Manage contact form submissions and client inquiries.</p>
-        </div>
-
-        <LeadManagement />
+    <div className="space-y-8">
+      <div>
+        <h1 className="font-serif text-3xl font-bold text-foreground">
+          Lead Management
+        </h1>
+        <p className="text-muted-foreground">
+          Manage contact form submissions and client inquiries.
+        </p>
       </div>
-    </AdminLayout>
-  )
+
+      <LeadManagement />
+    </div>
+  );
 }

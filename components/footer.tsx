@@ -101,7 +101,7 @@ export function Footer() {
               </div>
               <div className="flex items-center space-x-3 text-gray-300">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span>123 Miami Ave, Miami, FL 33101</span>
+                <span>123 Miami Ave, , FL 33101</span>
               </div>
             </div>
 

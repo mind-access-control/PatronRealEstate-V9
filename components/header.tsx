@@ -85,7 +85,7 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`font-medium transition-all duration-200 flex items-center space-x-2 px-4 py-2 rounded-lg ${
+                className={`font-medium transition-all duration-200 flex items-center space-x-2 px-4 py-2 rounded-lg cursor-pointer ${
                   isActive(item.href)
                     ? "text-primary bg-primary/10 border-b-2 border-primary"
                     : "text-gray-700 hover:text-primary hover:bg-gray-50"
@@ -105,7 +105,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className={`text-gray-600 hover:text-primary ${
+                  className={`text-gray-600 hover:text-primary cursor-pointer ${
                     isLoginActive() ? "text-primary bg-primary/10" : ""
                   }`}
                 >
@@ -116,13 +116,19 @@ export function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-40" sideOffset={8}>
                 <DropdownMenuItem asChild>
-                  <Link href="/agent/login" className="flex items-center">
+                  <Link
+                    href="/agent/login"
+                    className="flex items-center cursor-pointer"
+                  >
                     <User className="w-4 h-4 mr-2" />
                     Agent Login
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/admin/login" className="flex items-center">
+                  <Link
+                    href="/admin/login"
+                    className="flex items-center cursor-pointer"
+                  >
                     <Shield className="w-4 h-4 mr-2" />
                     Admin Login
                   </Link>
@@ -135,7 +141,7 @@ export function Header() {
               <DropdownMenuTrigger asChild>
                 <Button
                   size="sm"
-                  className="bg-primary hover:bg-primary/90 text-white"
+                  className="bg-primary hover:bg-primary/90 text-white cursor-pointer"
                 >
                   <MessageCircle className="w-4 h-4 mr-1" />
                   Contact Us
@@ -144,7 +150,10 @@ export function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48" sideOffset={8}>
                 <DropdownMenuItem asChild>
-                  <Link href="tel:+13055550123" className="flex items-center">
+                  <Link
+                    href="tel:+13055550123"
+                    className="flex items-center cursor-pointer"
+                  >
                     <Phone className="w-4 h-4 mr-2" />
                     +1 (305) 555-0123
                   </Link>
@@ -152,14 +161,17 @@ export function Header() {
                 <DropdownMenuItem asChild>
                   <Link
                     href="mailto:info@patron.com"
-                    className="flex items-center"
+                    className="flex items-center cursor-pointer"
                   >
                     <Mail className="w-4 h-4 mr-2" />
                     info@patron.com
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/agents" className="flex items-center">
+                  <Link
+                    href="/agents"
+                    className="flex items-center cursor-pointer"
+                  >
                     <Users className="w-4 h-4 mr-2" />
                     Meet Our Agents
                   </Link>
@@ -175,11 +187,11 @@ export function Header() {
                 <Menu className="w-6 h-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-80">
+            <SheetContent side="right" className="w-80 h-full max-h-screen">
               <SheetTitle className="sr-only">
                 Mobile Navigation Menu
               </SheetTitle>
-              <div className="py-6">
+              <div className="py-6 h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
                 {/* Mobile Logo */}
                 <div className="flex items-center space-x-3 mb-8">
                   <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
@@ -194,43 +206,65 @@ export function Header() {
 
                 {/* Mobile Navigation */}
                 <nav className="space-y-2 mb-8">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className={`flex items-center space-x-3 font-medium transition-colors duration-200 p-3 rounded-lg ${
-                        isActive(item.href)
-                          ? "text-primary bg-primary/10 border-l-4 border-primary"
-                          : "text-gray-700 hover:text-primary hover:bg-gray-50"
-                      }`}
-                    >
-                      <item.icon className="w-5 h-5" />
-                      <span>{item.name}</span>
-                    </Link>
-                  ))}
+                  <h4 className="font-semibold text-gray-800 mb-3 text-sm uppercase tracking-wide px-1">
+                    Navigation
+                  </h4>
+                  <div className="space-y-2">
+                    {navigation.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className={`flex items-center space-x-3 font-medium transition-colors duration-200 p-3 rounded-lg cursor-pointer ${
+                          isActive(item.href)
+                            ? "text-primary bg-primary/10 border-l-4 border-primary"
+                            : "text-gray-700 hover:text-primary hover:bg-gray-50"
+                        }`}
+                      >
+                        <item.icon className="w-5 h-5 flex-shrink-0" />
+                        <span>{item.name}</span>
+                      </Link>
+                    ))}
+                  </div>
                 </nav>
 
                 {/* Mobile Contact Info */}
-                <div className="space-y-3 mb-6 p-4 bg-gray-50 rounded-lg">
-                  <div className="flex items-center space-x-3 text-sm text-gray-600">
-                    <Phone className="w-4 h-4 text-primary" />
-                    <span>+1 (305) 555-0123</span>
-                  </div>
-                  <div className="flex items-center space-x-3 text-sm text-gray-600">
-                    <Mail className="w-4 h-4 text-primary" />
-                    <span>info@patron.com</span>
-                  </div>
-                  <div className="flex items-center space-x-3 text-sm text-gray-600">
-                    <MapPin className="w-4 h-4 text-primary" />
-                    <span>Miami, FL</span>
+                <div className="space-y-3 mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                  <h4 className="font-semibold text-gray-800 mb-3 text-sm uppercase tracking-wide">
+                    Contact Information
+                  </h4>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3 text-sm text-gray-700">
+                      <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="font-medium">+1 (305) 555-0123</span>
+                    </div>
+                    <div className="flex items-center space-x-3 text-sm text-gray-700">
+                      <Mail className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="font-medium">info@patron.com</span>
+                    </div>
+                    <div className="flex items-center space-x-3 text-sm text-gray-700">
+                      <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="font-medium">Miami, FL</span>
+                    </div>
+                    <div className="pt-2 border-t border-gray-200">
+                      <Link
+                        href="/agents"
+                        className="flex items-center space-x-3 text-sm text-primary hover:text-primary/80 font-medium transition-colors"
+                      >
+                        <Users className="w-4 h-4 flex-shrink-0" />
+                        <span>Meet Our Agents</span>
+                      </Link>
+                    </div>
                   </div>
                 </div>
 
                 {/* Mobile Login Links */}
                 <div className="space-y-2 mb-6">
+                  <h4 className="font-semibold text-gray-800 mb-3 text-sm uppercase tracking-wide px-1">
+                    Login Options
+                  </h4>
                   <Button
                     variant="outline"
-                    className={`w-full justify-start ${
+                    className={`w-full justify-start cursor-pointer ${
                       isLoginActive() ? "text-primary bg-primary/10" : ""
                     }`}
                     asChild
@@ -242,7 +276,7 @@ export function Header() {
                   </Button>
                   <Button
                     variant="outline"
-                    className={`w-full justify-start ${
+                    className={`w-full justify-start cursor-pointer ${
                       isLoginActive() ? "text-primary bg-primary/10" : ""
                     }`}
                     asChild
@@ -255,11 +289,18 @@ export function Header() {
                 </div>
 
                 {/* Mobile CTA */}
-                <div className="space-y-3">
-                  <Button className="w-full" asChild>
+                <div className="space-y-3 pb-6">
+                  <h4 className="font-semibold text-gray-800 mb-3 text-sm uppercase tracking-wide px-1">
+                    Quick Actions
+                  </h4>
+                  <Button className="w-full cursor-pointer" asChild>
                     <Link href="/search">Search Properties</Link>
                   </Button>
-                  <Button variant="outline" className="w-full" asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full cursor-pointer"
+                    asChild
+                  >
                     <Link href="/about">About Us</Link>
                   </Button>
                 </div>

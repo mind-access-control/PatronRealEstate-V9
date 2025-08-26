@@ -4,6 +4,7 @@ import { Space_Grotesk, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { ConditionalLayout } from "@/components/conditional-layout";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -35,9 +36,7 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${dmSans.variable} antialiased`}
     >
       <body className="font-sans bg-background text-foreground">
-        <Header />
-        {children}
-        <Footer />
+        <ConditionalLayout>{children}</ConditionalLayout>
       </body>
     </html>
   );

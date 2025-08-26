@@ -250,12 +250,12 @@ export default function CommunitiesPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary to-primary/80 text-white py-20">
+      <section className="bg-gradient-to-r from-primary to-primary/80 text-white py-12 md:py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+          <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 px-2">
             Discover Your Perfect Community
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto px-2">
             Explore the best neighborhoods with our interactive map and detailed
             community insights
           </p>
@@ -272,13 +272,15 @@ export default function CommunitiesPage() {
 
             {/* Price Range Filters */}
             <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-3">Price Range</h3>
-              <div className="flex flex-wrap gap-2">
+              <h3 className="text-base md:text-lg font-semibold mb-3">
+                Price Range
+              </h3>
+              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                 {priceRanges.map((range) => (
                   <button
                     key={range.value}
                     onClick={() => setSelectedPriceRange(range.value)}
-                    className={`px-4 py-2 rounded-full font-medium transition-all cursor-pointer ${
+                    className={`px-3 md:px-4 py-2 rounded-full font-medium transition-all cursor-pointer text-sm md:text-base ${
                       selectedPriceRange === range.value
                         ? "ring-2 ring-primary ring-offset-2"
                         : "hover:scale-105"
@@ -292,13 +294,15 @@ export default function CommunitiesPage() {
 
             {/* Amenities Filters */}
             <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-3">Key Amenities</h3>
-              <div className="flex flex-wrap gap-2">
+              <h3 className="text-base md:text-lg font-semibold mb-3">
+                Key Amenities
+              </h3>
+              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                 {amenities.map((amenity) => (
                   <button
                     key={amenity.value}
                     onClick={() => setSelectedAmenity(amenity.value)}
-                    className={`px-4 py-2 rounded-full font-medium transition-all cursor-pointer ${
+                    className={`px-3 md:px-4 py-2 rounded-full font-medium transition-all cursor-pointer text-sm md:text-base ${
                       selectedAmenity === amenity.value
                         ? "ring-2 ring-primary ring-offset-2"
                         : "hover:scale-105"
@@ -312,13 +316,15 @@ export default function CommunitiesPage() {
 
             {/* Population Filters */}
             <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-3">Community Size</h3>
-              <div className="flex flex-wrap gap-2">
+              <h3 className="text-base md:text-lg font-semibold mb-3">
+                Community Size
+              </h3>
+              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                 {populationRanges.map((range) => (
                   <button
                     key={range.value}
                     onClick={() => setSelectedPopulation(range.value)}
-                    className={`px-4 py-2 rounded-full font-medium transition-all cursor-pointer ${
+                    className={`px-3 md:px-4 py-2 rounded-full font-medium transition-all cursor-pointer text-sm md:text-base ${
                       selectedPopulation === range.value
                         ? "ring-2 ring-primary ring-offset-2"
                         : "hover:scale-105"
@@ -383,33 +389,36 @@ export default function CommunitiesPage() {
       </section>
 
       {/* Results Summary */}
-      <section className="py-6 bg-white border-b">
+      <section className="py-4 md:py-6 bg-white border-b">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="flex items-center justify-between">
-              <h3 className="text-xl font-semibold">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <h3 className="text-lg md:text-xl font-semibold text-center md:text-left">
                 {filteredCommunities.length} of {communities.length} Communities
                 Found
               </h3>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2 justify-center md:justify-end">
                 <Button
                   onClick={() => setActiveTab("map")}
                   variant={activeTab === "map" ? "default" : "outline"}
-                  className="cursor-pointer"
+                  size="sm"
+                  className="cursor-pointer text-xs md:text-sm px-3 md:px-4"
                 >
                   Interactive Map
                 </Button>
                 <Button
                   onClick={() => setActiveTab("list")}
                   variant={activeTab === "list" ? "default" : "outline"}
-                  className="cursor-pointer"
+                  size="sm"
+                  className="cursor-pointer text-xs md:text-sm px-3 md:px-4"
                 >
                   Community List
                 </Button>
                 <Button
                   onClick={() => setActiveTab("trends")}
                   variant={activeTab === "trends" ? "default" : "outline"}
-                  className="cursor-pointer"
+                  size="sm"
+                  className="cursor-pointer text-xs md:text-sm px-3 md:px-4"
                 >
                   Market Trends
                 </Button>
@@ -420,12 +429,12 @@ export default function CommunitiesPage() {
       </section>
 
       {/* Content Tabs */}
-      <section className="py-8">
+      <section className="py-6 md:py-8">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {activeTab === "map" && (
               <div>
-                <h2 className="text-2xl font-bold mb-6">
+                <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">
                   Interactive Community Map
                 </h2>
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -439,26 +448,28 @@ export default function CommunitiesPage() {
                 </div>
 
                 {/* Quick Community Overview */}
-                <div className="mt-8">
-                  <h3 className="text-xl font-semibold mb-4">
+                <div className="mt-6 md:mt-8">
+                  <h3 className="text-lg md:text-xl font-semibold mb-4">
                     Quick Community Overview
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
                     {filteredCommunities.slice(0, 3).map((community) => (
                       <Card
                         key={community.id}
-                        className="p-4 hover:shadow-lg transition-shadow cursor-pointer hover:scale-105 transition-transform"
+                        className="p-3 md:p-4 hover:shadow-lg transition-shadow cursor-pointer hover:scale-105 transition-transform"
                         onClick={() => handleCommunitySelect(community.id)}
                       >
                         <div className="flex items-center space-x-3">
-                          <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                            <span className="text-primary font-bold text-lg">
+                          <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span className="text-primary font-bold text-base md:text-lg">
                               {community.name.charAt(0)}
                             </span>
                           </div>
-                          <div>
-                            <h4 className="font-semibold">{community.name}</h4>
-                            <p className="text-sm text-muted-foreground">
+                          <div className="min-w-0 flex-1">
+                            <h4 className="font-semibold text-sm md:text-base truncate">
+                              {community.name}
+                            </h4>
+                            <p className="text-xs md:text-sm text-muted-foreground">
                               {community.population.toLocaleString()} residents
                             </p>
                           </div>
@@ -478,8 +489,10 @@ export default function CommunitiesPage() {
 
             {activeTab === "list" && (
               <div>
-                <h2 className="text-2xl font-bold mb-6">Community List</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">
+                  Community List
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                   {filteredCommunities.map((community) => (
                     <Card
                       key={community.id}
@@ -631,12 +644,12 @@ export default function CommunitiesPage() {
 
             {activeTab === "trends" && (
               <div>
-                <h2 className="text-2xl font-bold mb-6">
+                <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">
                   Market Trends & Insights
                 </h2>
 
                 {/* Market Overview Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
                   <Card className="p-6 text-center">
                     <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <TrendingUp className="w-6 h-6 text-green-600" />
@@ -683,7 +696,7 @@ export default function CommunitiesPage() {
                 </div>
 
                 {/* Price Trends by Community */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6 md:mb-8">
                   <Card className="p-6">
                     <h3 className="text-xl font-semibold mb-4 flex items-center">
                       <TrendingUp className="w-5 h-5 mr-2 text-primary" />
@@ -796,7 +809,7 @@ export default function CommunitiesPage() {
                     <Star className="w-5 h-5 mr-2 text-primary" />
                     Key Market Insights
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <div className="space-y-4">
                       <div className="flex items-start space-x-3">
                         <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>

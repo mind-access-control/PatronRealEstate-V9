@@ -198,8 +198,8 @@ export default function SearchPage() {
             <span className="block text-primary">Properties</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Find your perfect home in Miami with our advanced search tools and
-            extensive property database.
+            Find your perfect home with our advanced search tools and extensive
+            property database.
           </p>
         </div>
 
@@ -435,6 +435,130 @@ export default function SearchPage() {
                 <Button variant="outline" onClick={clearFilters}>
                   Clear Filters
                 </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* MLS Integration Section */}
+        <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 shadow-lg border border-blue-200 mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-blue-900">
+              <MapPin className="w-6 h-6 text-blue-600" />
+              MLS Listings
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-blue-800 text-sm leading-relaxed">
+                Access the comprehensive Multiple Listing Service (MLS) database
+                for additional property listings across the region. MLS provides
+                real-time data from multiple real estate sources.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* English MLS */}
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-blue-900 text-sm">
+                    English
+                  </h4>
+                  <div className="space-y-2">
+                    <Button
+                      variant="outline"
+                      className="w-full border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 cursor-pointer"
+                      onClick={() =>
+                        window.open(
+                          "https://www.crmls.org/servlet/lDisplayListings?LA=EN",
+                          "_blank"
+                        )
+                      }
+                    >
+                      <MapPin className="w-4 h-4 mr-2" />
+                      Search MLS Listings
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full border-blue-200 text-blue-600 hover:bg-blue-50 hover:border-blue-300 text-xs cursor-pointer"
+                      onClick={() =>
+                        window.open(
+                          "https://www.crmls.org/servlet/lDisplayListings?AGENT=G84001&LA=EN",
+                          "_blank"
+                        )
+                      }
+                    >
+                      Agent Listings
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full border-blue-200 text-blue-600 hover:bg-blue-50 hover:border-blue-300 text-xs cursor-pointer"
+                      onClick={() =>
+                        window.open(
+                          "https://www.crmls.org/servlet/lDisplayListings?OFFICE=G8485&LA=EN",
+                          "_blank"
+                        )
+                      }
+                    >
+                      Office Listings
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Spanish MLS */}
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-blue-900 text-sm">
+                    Español
+                  </h4>
+                  <div className="space-y-2">
+                    <Button
+                      variant="outline"
+                      className="w-full border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 cursor-pointer"
+                      onClick={() =>
+                        window.open(
+                          "https://www.crmls.org/servlet/lDisplayListings?LA=SP",
+                          "_blank"
+                        )
+                      }
+                    >
+                      <MapPin className="w-4 h-4 mr-2" />
+                      Buscar Listados MLS
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full border-blue-200 text-blue-600 hover:bg-blue-50 hover:border-blue-300 text-xs cursor-pointer"
+                      onClick={() =>
+                        window.open(
+                          "https://www.crmls.org/servlet/lDisplayListings?AGENT=G84001&LA=SP",
+                          "_blank"
+                        )
+                      }
+                    >
+                      Listados del Agente
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full border-blue-200 text-blue-600 hover:bg-blue-50 hover:border-blue-300 text-xs cursor-pointer"
+                      onClick={() =>
+                        window.open(
+                          "https://www.crmls.org/servlet/lDisplayListings?OFFICE=G8485&LA=SP",
+                          "_blank"
+                        )
+                      }
+                    >
+                      Listados de la Oficina
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-2 border-t border-blue-200">
+                <p className="text-xs text-blue-600">
+                  💡 MLS listings open in new tabs and provide additional
+                  property options beyond our local database.
+                </p>
               </div>
             </div>
           </CardContent>
