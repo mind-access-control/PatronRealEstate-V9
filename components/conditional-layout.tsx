@@ -16,6 +16,7 @@ export function ConditionalLayout({ children }: ConditionalLayoutProps) {
     pathname &&
     (pathname === "/admin" ||
       pathname === "/admin/properties" ||
+      pathname === "/admin/videos" ||
       pathname === "/admin/agents" ||
       pathname === "/admin/leads" ||
       pathname === "/admin/settings");

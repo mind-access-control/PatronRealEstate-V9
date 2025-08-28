@@ -1,0 +1,11 @@
+{
+  "css.validate": false,
+  "css.lint.unknownAtRules": "ignore",
+  "css.lint.unknownProperties": "ignore",
+  "css.lint.unknownVendorSpecificProperties": "ignore",
+  "css.lint.validProperties": [],
+  "css.customData": [".vscode/css_custom_data.json"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+}

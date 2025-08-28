@@ -140,3 +140,30 @@
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
+/* Global cursor rules for interactive elements - ADDED ONLY THIS SECTION */
+@layer base {
+  button,
+  [role="button"],
+  a,
+  [role="link"],
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  select,
+  summary,
+  [tabindex]:not([tabindex="-1"]),
+  .cursor-pointer {
+    cursor: pointer !important;
+  }
+
+  /* Ensure all clickable elements have pointer cursor */
+  [onclick],
+  [onclick]:hover,
+  button:hover,
+  a:hover,
+  [role="button"]:hover,
+  [role="link"]:hover {
+    cursor: pointer !important;
+  }
+}

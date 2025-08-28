@@ -25,12 +25,14 @@ import {
   X,
   Bell,
   Search,
+  Video,
 } from "lucide-react";
 import { auth } from "@/lib/auth";
 
 const navigationItems = [
   { name: "Dashboard", href: "/admin", icon: BarChart3 },
   { name: "Properties", href: "/admin/properties", icon: Building },
+  { name: "Videos", href: "/admin/videos", icon: Video },
   { name: "Agents", href: "/admin/agents", icon: Users },
   { name: "Leads", href: "/admin/leads", icon: MessageSquare },
   { name: "Settings", href: "/admin/settings", icon: Settings },
