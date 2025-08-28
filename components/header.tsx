@@ -23,6 +23,7 @@ import {
   MessageCircle,
   Home,
   Calculator,
+  Video,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -42,6 +43,7 @@ const navigation = [
   { name: "Home Value", href: "/home-value", icon: Calculator },
   { name: "Communities", href: "/communities", icon: MapPin },
   { name: "Blog", href: "/blog", icon: FileText },
+  { name: "Videos", href: "/videos", icon: Video },
 ];
 
 export function Header() {
@@ -80,18 +82,18 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          <nav className="hidden lg:flex items-center space-x-0.5">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`font-medium transition-all duration-200 flex items-center space-x-2 px-4 py-2 rounded-lg cursor-pointer ${
+                className={`font-medium transition-all duration-200 flex items-center space-x-1.5 px-2.5 py-2 rounded-lg cursor-pointer text-sm ${
                   isActive(item.href)
                     ? "text-primary bg-primary/10 border-b-2 border-primary"
                     : "text-gray-700 hover:text-primary hover:bg-gray-50"
                 }`}
               >
-                <item.icon className="w-4 h-4" />
+                <item.icon className="w-3.5 h-3.5" />
                 <span>{item.name}</span>
               </Link>
             ))}
