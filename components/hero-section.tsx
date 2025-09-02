@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Search, MapPin, Home, Building2, Users } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { PatronLogo } from "./patron-logo";
 
 export function HeroSection() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -48,10 +49,19 @@ export function HeroSection() {
       {/* Contenido principal */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <div className="max-w-4xl mx-auto">
+          {/* Patrón Logo */}
+          <div className="mb-8 flex justify-center">
+            <PatronLogo
+              size="large"
+              showLink={false}
+              className="drop-shadow-2xl"
+            />
+          </div>
+
           {/* Título principal más genérico y atractivo */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-grotesk font-bold mb-6 leading-tight drop-shadow-2xl">
             Find Your Dream
-            <span className="block text-amber-400 bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent drop-shadow-2xl">
+            <span className="block bg-gradient-to-r from-green-500 to-green-400 bg-clip-text text-transparent drop-shadow-2xl">
               Home Today
             </span>
           </h1>
@@ -114,7 +124,7 @@ export function HeroSection() {
               variant="outline"
               size="lg"
               onClick={handleViewAllProperties}
-              className="border-2 border-white/80 text-white hover:bg-white hover:text-gray-900 transition-all duration-200 font-semibold cursor-pointer bg-white/10 backdrop-blur-sm hover:bg-white hover:border-white"
+              className="border-2 border-white/80 text-white hover:bg-white hover:text-gray-900 transition-all duration-200 font-semibold cursor-pointer bg-white/10 backdrop-blur-sm"
             >
               <Building2 className="w-5 h-5 mr-2" />
               View All Properties
@@ -123,7 +133,7 @@ export function HeroSection() {
               variant="outline"
               size="lg"
               onClick={handleMeetOurAgents}
-              className="border-2 border-white/80 text-white hover:bg-white hover:text-gray-900 transition-all duration-200 font-semibold cursor-pointer bg-white/10 backdrop-blur-sm hover:bg-white hover:border-white"
+              className="border-2 border-white/80 text-white hover:bg-white hover:text-gray-900 transition-all duration-200 font-semibold cursor-pointer bg-white/10 backdrop-blur-sm"
             >
               <Users className="w-5 h-5 mr-2" />
               Meet Our Agents

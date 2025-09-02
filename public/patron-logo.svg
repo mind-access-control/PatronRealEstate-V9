@@ -1,0 +1,91 @@
+<svg width="500" height="150" viewBox="0 0 500 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Green arc -->
+  <path d="M35 90 Q105 20 175 90" stroke="#32CD32" stroke-width="8" fill="none" stroke-linecap="round"/>
+  
+  <!-- Mountains -->
+  <path d="M45 90 L70 55 L95 90 Z" fill="#4A4A4A"/>
+  <path d="M80 90 L105 45 L130 90 Z" fill="#4A4A4A"/>
+  
+  <!-- Houses with triangular roofs -->
+  <path d="M40 90 L50 90 L50 75 L40 75 Z" fill="#4A4A4A"/>
+  <path d="M40 75 L50 75 L45 66 Z" fill="#4A4A4A"/>
+  <rect x="42" y="78" width="1.5" height="1.5" fill="white"/>
+  <rect x="46" y="78" width="1.5" height="1.5" fill="white"/>
+  
+  <path d="M55 90 L65 90 L65 75 L55 75 Z" fill="#4A4A4A"/>
+  <path d="M55 75 L65 75 L60 66 Z" fill="#4A4A4A"/>
+  <rect x="57" y="78" width="1.5" height="1.5" fill="white"/>
+  <rect x="61" y="78" width="1.5" height="1.5" fill="white"/>
+  
+  <path d="M70 90 L80 90 L80 75 L70 75 Z" fill="#4A4A4A"/>
+  <path d="M70 75 L80 75 L75 66 Z" fill="#4A4A4A"/>
+  <rect x="72" y="78" width="1.5" height="1.5" fill="white"/>
+  <rect x="76" y="78" width="1.5" height="1.5" fill="white"/>
+  
+  <path d="M85 90 L95 90 L95 75 L85 75 Z" fill="#4A4A4A"/>
+  <path d="M85 75 L95 75 L90 66 Z" fill="#4A4A4A"/>
+  <rect x="87" y="78" width="1.5" height="1.5" fill="white"/>
+  <rect x="91" y="78" width="1.5" height="1.5" fill="white"/>
+  
+  <path d="M100 90 L110 90 L110 75 L100 75 Z" fill="#4A4A4A"/>
+  <path d="M100 75 L110 75 L105 66 Z" fill="#4A4A4A"/>
+  <rect x="102" y="78" width="1.5" height="1.5" fill="white"/>
+  <rect x="106" y="78" width="1.5" height="1.5" fill="white"/>
+  
+  <path d="M115 90 L125 90 L125 75 L115 75 Z" fill="#4A4A4A"/>
+  <path d="M115 75 L125 75 L120 66 Z" fill="#4A4A4A"/>
+  <rect x="117" y="78" width="1.5" height="1.5" fill="white"/>
+  <rect x="121" y="78" width="1.5" height="1.5" fill="white"/>
+  
+  <path d="M130 90 L140 90 L140 75 L130 75 Z" fill="#4A4A4A"/>
+  <path d="M130 75 L140 75 L135 66 Z" fill="#4A4A4A"/>
+  <rect x="132" y="78" width="1.5" height="1.5" fill="white"/>
+  <rect x="136" y="78" width="1.5" height="1.5" fill="white"/>
+  
+  <path d="M145 90 L155 90 L155 75 L145 75 Z" fill="#4A4A4A"/>
+  <path d="M145 75 L155 75 L150 66 Z" fill="#4A4A4A"/>
+  <rect x="147" y="78" width="1.5" height="1.5" fill="white"/>
+  <rect x="151" y="78" width="1.5" height="1.5" fill="white"/>
+  
+  <path d="M160 90 L170 90 L170 75 L160 75 Z" fill="#4A4A4A"/>
+  <path d="M160 75 L170 75 L165 66 Z" fill="#4A4A4A"/>
+  <rect x="162" y="78" width="1.5" height="1.5" fill="white"/>
+  <rect x="166" y="78" width="1.5" height="1.5" fill="white"/>
+  
+  <path d="M175 90 L185 90 L185 75 L175 75 Z" fill="#4A4A4A"/>
+  <path d="M175 75 L185 75 L180 66 Z" fill="#4A4A4A"/>
+  <rect x="177" y="78" width="1.5" height="1.5" fill="white"/>
+  <rect x="181" y="78" width="1.5" height="1.5" fill="white"/>
+  
+  <path d="M190 90 L200 90 L200 75 L190 75 Z" fill="#4A4A4A"/>
+  <path d="M190 75 L200 75 L195 66 Z" fill="#4A4A4A"/>
+  <rect x="192" y="78" width="1.5" height="1.5" fill="white"/>
+  <rect x="196" y="78" width="1.5" height="1.5" fill="white"/>
+  
+  <path d="M205 90 L215 90 L215 75 L205 75 Z" fill="#4A4A4A"/>
+  <path d="M205 75 L215 75 L210 66 Z" fill="#4A4A4A"/>
+  <rect x="207" y="78" width="1.5" height="1.5" fill="white"/>
+  <rect x="211" y="78" width="1.5" height="1.5" fill="white"/>
+  
+  <path d="M220 90 L230 90 L230 75 L220 75 Z" fill="#4A4A4A"/>
+  <path d="M220 75 L230 75 L225 66 Z" fill="#4A4A4A"/>
+  <rect x="222" y="78" width="1.5" height="1.5" fill="white"/>
+  <rect x="226" y="78" width="1.5" height="1.5" fill="white"/>
+  
+  <!-- Patrón text in cursive -->
+  <text x="250" y="95" font-family="'Brush Script MT', cursive" font-size="56" font-weight="700" fill="#32CD32" text-anchor="middle">
+    Patrón
+  </text>
+  
+  <!-- REAL ESTATE text -->
+  <text x="250" y="120" font-family="Arial, sans-serif" font-size="20" font-weight="600" fill="#4A4A4A" letter-spacing="1.5" text-anchor="middle">
+    REAL ESTATE
+  </text>
+  
+  <!-- RIGHT FOR YOU with lines -->
+  <line x1="180" y1="130" x2="220" y2="130" stroke="#666666" stroke-width="1"/>
+  <text x="250" y="145" font-family="Arial, sans-serif" font-size="14" font-weight="500" fill="#666666" letter-spacing="1" text-anchor="middle">
+    RIGHT FOR YOU
+  </text>
+  <line x1="280" y1="130" x2="320" y2="130" stroke="#666666" stroke-width="1"/>
+</svg>

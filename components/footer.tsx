@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-  Building2,
   Phone,
   Mail,
   MapPin,
@@ -11,32 +10,29 @@ import {
   Twitter,
   Instagram,
   Linkedin,
-  Youtube,
 } from "lucide-react";
 import Link from "next/link";
+import { PatronLogo } from "./patron-logo";
 
 const footerLinks = {
-  company: [
-    { name: "About Us", href: "/about" },
-    { name: "Our Team", href: "/agents" },
-  ],
   services: [
-    { name: "Buy a Home", href: "/buying" },
-    { name: "Sell a Home", href: "/selling" },
-    { name: "Property Management", href: "/property-management" },
-    { name: "Home Valuation", href: "/home-value" },
+    { name: "Buyers", href: "/buying" },
+    { name: "Sellers", href: "/selling" },
+    { name: "My Home Value", href: "/home-value" },
+    { name: "Rent/Property Mgmt", href: "/property-management" },
   ],
-  resources: [
+  company: [
+    { name: "Local Communities", href: "/communities" },
     { name: "Blog", href: "/blog" },
-    { name: "Market Reports", href: "/blog" },
-    { name: "Buying Guide", href: "/buying" },
-    { name: "Selling Guide", href: "/selling" },
+    { name: "FabFriday", href: "/videos" },
+    { name: "Testimonials", href: "/testimonials" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
   ],
-  support: [
-    { name: "Contact Us", href: "/contact" },
-    { name: "Help Center", href: "/about" },
+  legal: [
     { name: "Privacy Policy", href: "/privacy-policy" },
     { name: "Terms of Service", href: "/terms-of-service" },
+    { name: "Cookie Policy", href: "/cookie-policy" },
   ],
 };
 
@@ -45,121 +41,77 @@ const socialLinks = [
   { name: "Twitter", href: "https://twitter.com", icon: Twitter },
   { name: "Instagram", href: "https://instagram.com", icon: Instagram },
   { name: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
-  { name: "YouTube", href: "https://youtube.com", icon: Youtube },
 ];
 
 export function Footer() {
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Aquí puedes agregar la lógica para suscribir al newsletter
-    console.log("Newsletter subscription submitted");
-  };
-
   return (
     <footer className="bg-gray-900 text-white">
       {/* Main Footer Content */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <Building2 className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <div className="text-xl font-grotesk font-bold">
-                  Patron Real Estate
-                </div>
-                <div className="text-sm text-gray-400">Premier Real Estate</div>
-              </div>
+            <div className="mb-4">
+              <PatronLogo size="medium" showLink={false} />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              For over 15 years, we've been helping families find their perfect
-              homes. Our commitment to excellence and personalized service sets
-              us apart in the real estate industry.
+              Your Real Estate Resource. DRE 02178767
             </p>
 
             {/* Contact Info */}
             <div className="space-y-3 mb-6">
               <div className="flex items-center space-x-3 text-gray-300">
-                <Phone className="w-4 h-4 text-primary" />
+                <Phone className="w-4 h-4 text-green-500" />
                 <a
                   href="tel:+13055550123"
-                  className="hover:text-white hover:bg-gray-800 px-2 py-1 rounded transition-all duration-200 cursor-pointer"
+                  className="hover:text-white transition-colors duration-200"
                 >
-                  +1 (305) 555-0123
+                  (305) 555-0123
                 </a>
               </div>
               <div className="flex items-center space-x-3 text-gray-300">
-                <Mail className="w-4 h-4 text-primary" />
+                <Mail className="w-4 h-4 text-green-500" />
                 <a
-                  href="mailto:info@patron.com"
-                  className="hover:text-white hover:bg-gray-800 px-2 py-1 rounded transition-all duration-200 cursor-pointer"
+                  href="mailto:info@patronrealestate.com"
+                  className="hover:text-white transition-colors duration-200"
                 >
-                  info@patron.com
+                  info@patronrealestate.com
                 </a>
               </div>
               <div className="flex items-center space-x-3 text-gray-300">
-                <MapPin className="w-4 h-4 text-primary" />
-                <span>123 Miami Ave, , FL 33101</span>
+                <MapPin className="w-4 h-4 text-green-500" />
+                <span>Miami, FL</span>
               </div>
             </div>
 
-            {/* Social Links and Newsletter */}
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-              {/* Social Links */}
-              <div className="flex space-x-4">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center transition-colors duration-200 cursor-pointer"
-                    aria-label={social.name}
-                  >
-                    <social.icon className="w-5 h-5" />
-                  </a>
-                ))}
-              </div>
-
-              {/* Newsletter Signup */}
-              <div className="lg:w-80">
-                <h4 className="text-sm font-semibold mb-3 text-gray-300">
-                  Stay Updated
-                </h4>
-                <p className="text-xs text-gray-400 mb-3">
-                  Subscribe to our newsletter for the latest market insights,
-                  property updates, and exclusive offers.
-                </p>
-                <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
-                  <Input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 text-sm h-9"
-                    required
-                  />
-                  <Button
-                    type="submit"
-                    size="sm"
-                    className="bg-primary hover:bg-primary/90 h-9 px-3 cursor-pointer"
-                  >
-                    Subscribe
-                  </Button>
-                </form>
-              </div>
+            {/* Social Links */}
+            <div className="flex space-x-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-lg flex items-center justify-center transition-colors duration-200"
+                  aria-label={social.name}
+                >
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Company Links */}
+          {/* Services Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
+            <h3 className="text-lg font-semibold mb-4 text-green-500">
+              Services
+            </h3>
             <ul className="space-y-2">
-              {footerLinks.company.map((link) => (
+              {footerLinks.services.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-white hover:bg-gray-800 px-2 py-1 rounded transition-all duration-200 cursor-pointer block"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 block"
                   >
                     {link.name}
                   </Link>
@@ -168,15 +120,17 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services Links */}
+          {/* Company Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <h3 className="text-lg font-semibold mb-4 text-green-500">
+              Company
+            </h3>
             <ul className="space-y-2">
-              {footerLinks.services.map((link) => (
+              {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-white hover:bg-gray-800 px-2 py-1 rounded transition-all duration-200 cursor-pointer block"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 block"
                   >
                     {link.name}
                   </Link>
@@ -192,27 +146,18 @@ export function Footer() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-400 text-sm">
-              © 2025 Patron Real Estate Services. All rights reserved.
+              © 2025 Patron Real Estate. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm text-gray-400">
-              <Link
-                href="/privacy-policy"
-                className="hover:text-white hover:bg-gray-800 px-2 py-1 rounded transition-all duration-200 cursor-pointer"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms-of-service"
-                className="hover:text-white hover:bg-gray-800 px-2 py-1 rounded transition-all duration-200 cursor-pointer"
-              >
-                Terms of Service
-              </Link>
-              <Link
-                href="/cookie-policy"
-                className="hover:text-white hover:bg-gray-800 px-2 py-1 rounded transition-all duration-200 cursor-pointer"
-              >
-                Cookie Policy
-              </Link>
+              {footerLinks.legal.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="hover:text-white transition-colors duration-200"
+                >
+                  {link.name}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

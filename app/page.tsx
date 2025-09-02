@@ -1,17 +1,15 @@
-import { HeroSection } from "@/components/hero-section";
-import { FeaturedListings } from "@/components/featured-listings";
-import { AgentSection } from "@/components/agent-section";
-import { StatsSection } from "@/components/stats-section";
-import { TestimonialsSection } from "@/components/testimonials-section";
+import { SimpleHeroSection } from "@/components/simple-hero-section";
+import { ServicesSection } from "@/components/services-section";
+import { ReviewsSection } from "@/components/reviews-section";
+import { ContactFormSection } from "@/components/contact-form-section";
 
 export default function HomePage() {
   return (
     <main className="flex-1">
-      <HeroSection />
-      <StatsSection />
-      <FeaturedListings />
-      <AgentSection />
-      <TestimonialsSection />
+      <SimpleHeroSection />
+      <ServicesSection />
+      <ReviewsSection />
+      <ContactFormSection />
     </main>
   );
 }

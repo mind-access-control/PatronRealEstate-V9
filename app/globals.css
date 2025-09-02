@@ -4,51 +4,51 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color tokens for professional real estate branding */
+  /* Patrón Real Estate brand colors - Lime Green & Dark Gray theme */
   --background: oklch(1 0 0); /* Pure white */
   --foreground: oklch(0.145 0 0); /* Dark gray for text */
-  --card: oklch(1 0 0); /* Light gray for cards */
+  --card: oklch(1 0 0); /* White for cards */
   --card-foreground: oklch(0.145 0 0); /* Darker text on cards */
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0); /* Emerald-600 for trust and growth */
+  --primary: oklch(0.7 0.25 120); /* Patrón Lime Green - primary brand color */
   --primary-foreground: oklch(0.985 0 0); /* White text on primary */
-  --secondary: oklch(0.97 0 0); /* Emerald-500 accent */
-  --secondary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.95 0.02 120); /* Light green accent */
+  --secondary-foreground: oklch(0.7 0.25 120);
   --muted: oklch(0.97 0 0); /* Light gray for muted elements */
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0); /* Emerald-500 for highlights */
-  --accent-foreground: oklch(0.205 0 0);
+  --accent: oklch(0.8 0.15 120); /* Medium green for highlights */
+  --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.577 0.245 27.325); /* Red for errors */
-  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
   --border: oklch(0.922 0 0); /* Light border */
   --input: oklch(0.922 0 0); /* Light input background */
-  --ring: oklch(0.708 0 0); /* Primary color ring */
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --ring: oklch(0.7 0.25 120); /* Primary color ring */
+  --chart-1: oklch(0.7 0.25 120); /* Patrón Lime Green */
+  --chart-2: oklch(0.8 0.15 120); /* Medium Green */
+  --chart-3: oklch(0.9 0.08 120); /* Light Green */
+  --chart-4: oklch(0.6 0.3 120); /* Dark Green */
+  --chart-5: oklch(0.95 0.05 120); /* Very Light Green */
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary: oklch(0.7 0.25 120);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-accent: oklch(0.95 0.02 120);
+  --sidebar-accent-foreground: oklch(0.7 0.25 120);
   --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-ring: oklch(0.7 0.25 120);
 }
 
 .dark {
   --background: oklch(0.145 0 0); /* Very dark background */
   --foreground: oklch(0.985 0 0); /* Light text */
-  --card: oklch(0.145 0 0);
+  --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
+  --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0); /* Brighter emerald in dark mode */
-  --primary-foreground: oklch(0.205 0 0);
+  --primary: oklch(0.8 0.15 120); /* Brighter green in dark mode */
+  --primary-foreground: oklch(0.145 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
@@ -60,14 +60,14 @@
   --border: oklch(0.269 0 0);
   --input: oklch(0.269 0 0);
   --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
+  --chart-1: oklch(0.8 0.15 120); /* Patrón Lime Green */
+  --chart-2: oklch(0.9 0.08 120); /* Medium Green */
+  --chart-3: oklch(0.95 0.05 120); /* Light Green */
+  --chart-4: oklch(0.7 0.25 120); /* Dark Green */
+  --chart-5: oklch(0.98 0.02 120); /* Very Light Green */
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary: oklch(0.8 0.15 120);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
