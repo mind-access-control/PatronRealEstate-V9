@@ -30,8 +30,8 @@ import {
 import { PatronLogo } from "./patron-logo";
 
 const navigation = [
-  { name: "Buyers", href: "/buying", icon: Home },
   { name: "Sellers", href: "/selling", icon: Building2 },
+  { name: "Buyers", href: "/buying", icon: Home },
   { name: "My Home Value", href: "/home-value", icon: Calculator },
   { name: "Rent/Property Mgmt", href: "/property-management", icon: Building2 },
   { name: "Local Communities", href: "/communities", icon: MapPin },
