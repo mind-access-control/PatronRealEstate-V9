@@ -19,9 +19,12 @@ export function PatronLogo({
   };
 
   const logoSrc = {
-    small: "/patron-logo-simple.svg",
-    medium: "/patron-logo-simple.svg",
-    large: "/patron-logo-large.svg",
+    small:
+      "https://patronrealestateservices.com/wp-content/uploads/2022/04/Patron-Real-Estate-logo-update33.png",
+    medium:
+      "https://patronrealestateservices.com/wp-content/uploads/2022/04/Patron-Real-Estate-logo-update33.png",
+    large:
+      "https://patronrealestateservices.com/wp-content/uploads/2022/04/Patron-Real-Estate-logo-update33.png",
   };
 
   const logoWidth = {

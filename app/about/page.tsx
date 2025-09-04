@@ -12,92 +12,113 @@ import {
   Shield,
   Star,
   TrendingUp,
-  Globe,
+  GraduationCap,
+  Home,
+  Wrench,
+  Handshake,
 } from "lucide-react";
 import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-grotesk font-bold text-gray-900 mb-6">
-            About
-            <span className="block text-primary">Patron Real Estate</span>
-          </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            We are a premier real estate company dedicated to transforming the
-            way people find, buy, and sell properties. With over 15 years of
-            excellence, we've built our reputation on trust, innovation, and
-            unwavering commitment to our clients.
-          </p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-lime-50 to-white py-16 md:py-20 mt-8">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+              About
+              <span className="block text-lime-600">
+                Patron Real Estate Inc.
+              </span>
+            </h1>
+            <div className="w-24 h-1 bg-lime-500 mx-auto mb-6"></div>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Meet Fabiola Patron, broker/owner of Patron REI, with 20 years of
+              real estate expertise serving the Greater Los Angeles area. We
+              focus on putting the customer first with the highest degree of
+              integrity and standards.
+            </p>
+          </div>
         </div>
+      </section>
 
-        {/* Our Story Section */}
-        <Card className="bg-white shadow-lg border border-gray-200 mb-16">
+      <div className="container mx-auto px-4 py-12">
+        {/* Fabiola's Story Section */}
+        <Card className="bg-white shadow-lg border-2 border-lime-200 mb-12">
           <CardHeader className="text-center">
-            <CardTitle className="flex items-center justify-center gap-3 text-3xl">
-              <Building2 className="w-8 h-8 text-primary" />
-              Our Story
+            <CardTitle className="flex items-center justify-center gap-3 text-2xl md:text-3xl">
+              <Building2 className="w-6 h-6 md:w-8 md:h-8 text-lime-600" />
+              Meet Fabiola Patron
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                    From Humble Beginnings to Industry Leadership
+                    Broker/Owner of Patron Real Estate Inc.
                   </h3>
                   <p className="text-gray-600 leading-relaxed mb-4">
-                    Founded in 2009, Patron Real Estate began as a small family
-                    business with a big dream: to revolutionize the real estate
-                    experience. What started with just three agents has grown
-                    into a powerhouse team of over 50 licensed professionals.
+                    Hello, I am excited to introduce Patron Real Estate Inc. to
+                    you! My name is Fabiola Patron, the broker/owner of Patron
+                    REI. My journey in real estate started 20 years ago with
+                    Century 21 where I spent 13 years serving Eagle Rock CA and
+                    the surrounding North East LA communities.
                   </p>
                   <p className="text-gray-600 leading-relaxed mb-4">
-                    Our journey has been marked by continuous innovation,
-                    embracing cutting-edge technology while maintaining the
-                    personal touch that sets us apart. We've weathered market
-                    changes, embraced new opportunities, and consistently
-                    delivered exceptional results.
+                    I then went to another Century 21 office in Arcadia where I
+                    served the foothill communities and most recently was at
+                    Keller Williams Realty in La Canada, where I continued to
+                    serve the foothill communities.
+                  </p>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    I have a Bachelors in business from Pepperdine University
+                    and a passion for real estate. I have gained invaluable
+                    knowledge and a great understanding of how the real estate
+                    industry works throughout my career.
                   </p>
                   <p className="text-gray-600 leading-relaxed">
-                    Today, we're proud to have helped thousands of families find
-                    their perfect homes, guided investors to profitable
-                    opportunities, and built lasting relationships that extend
-                    far beyond the transaction.
+                    Patron REI will continue to focus on putting the customer
+                    first! and hold ourselves to the highest degree of integrity
+                    and standards. At Patron REI, you will experience
+                    transparency, clear communication and the results we strive
+                    to provide to our customers and partners.
                   </p>
                 </div>
-                <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 rounded-lg">
-                  <div className="grid grid-cols-2 gap-6">
+                <div className="bg-gradient-to-br from-lime-50 to-lime-100 p-6 rounded-lg border-2 border-lime-200">
+                  <div className="grid grid-cols-2 gap-4">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-primary mb-2">
-                        15+
+                      <div className="text-2xl md:text-3xl font-bold text-lime-600 mb-2">
+                        20+
                       </div>
                       <div className="text-sm text-gray-600">
-                        Years of Excellence
+                        Years of Experience
                       </div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-primary mb-2">
-                        500+
+                      <div className="text-2xl md:text-3xl font-bold text-lime-600 mb-2">
+                        13
                       </div>
                       <div className="text-sm text-gray-600">
-                        Properties Sold
+                        Years at Century 21
                       </div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-primary mb-2">
-                        1000+
+                      <div className="text-2xl md:text-3xl font-bold text-lime-600 mb-2">
+                        BA
                       </div>
-                      <div className="text-sm text-gray-600">Happy Clients</div>
+                      <div className="text-sm text-gray-600">
+                        Business Degree
+                      </div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-primary mb-2">
-                        50+
+                      <div className="text-2xl md:text-3xl font-bold text-lime-600 mb-2">
+                        <GraduationCap className="w-6 h-6 md:w-8 md:h-8 mx-auto" />
                       </div>
-                      <div className="text-sm text-gray-600">Expert Agents</div>
+                      <div className="text-sm text-gray-600">
+                        Pepperdine University
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -106,187 +127,225 @@ export default function AboutPage() {
           </CardContent>
         </Card>
 
-        {/* Mission & Vision Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          <Card className="bg-white shadow-lg border border-gray-200 h-full">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3">
-                <Target className="w-6 h-6 text-primary" />
-                Our Mission
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                To provide exceptional real estate services that exceed
-                expectations, while building lasting relationships based on
-                trust, integrity, and personalized attention.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                We believe that everyone deserves to find their perfect home,
-                and we're committed to making that journey as smooth and
-                rewarding as possible. Our mission drives every decision we make
-                and every action we take.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white shadow-lg border border-gray-200 h-full">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3">
-                <Globe className="w-6 h-6 text-primary" />
-                Our Vision
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                To be the most trusted and innovative real estate company,
-                setting industry standards for excellence, customer service, and
-                technological advancement.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                We envision a future where finding the perfect property is
-                effortless, where technology enhances human connection, and
-                where every client becomes a lifelong advocate for our services.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Core Values Section */}
-        <Card className="bg-white shadow-lg border border-gray-200 mb-16">
+        {/* Mission Statement Section */}
+        <Card className="bg-white shadow-lg border-2 border-lime-200 mb-12">
           <CardHeader className="text-center">
-            <CardTitle className="flex items-center justify-center gap-3 text-3xl">
-              <Heart className="w-8 h-8 text-primary" />
-              Our Core Values
+            <CardTitle className="flex items-center justify-center gap-3 text-2xl md:text-3xl">
+              <Target className="w-6 h-6 md:w-8 md:h-8 text-lime-600" />
+              Our Mission
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="max-w-4xl mx-auto text-center">
+              <p className="text-gray-600 leading-relaxed text-lg mb-6">
+                <strong>Putting the Customer First</strong> with the highest
+                degree of integrity and standards. At Patron REI, you will
+                experience transparency, clear communication and the results we
+                strive to provide to our customers and partners.
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Please feel free to reach out anytime with any questions – My
+                team would love to partner with you on any and all your real
+                estate needs.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Services Section */}
+        <Card className="bg-white shadow-lg border-2 border-lime-200 mb-12">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center gap-3 text-2xl md:text-3xl">
+              <Home className="w-6 h-6 md:w-8 md:h-8 text-lime-600" />
+              Our Services
             </CardTitle>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              These fundamental principles guide everything we do and shape the
-              relationships we build with our clients and community.
+              Comprehensive real estate services tailored to meet all your
+              property needs.
             </p>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg">
-                <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-8 h-8 text-white" />
+              <div className="text-center p-6 bg-gradient-to-br from-lime-50 to-lime-100 rounded-lg border-2 border-lime-200">
+                <div className="w-14 h-14 bg-lime-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Home className="w-7 h-7 text-white" />
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-2">Integrity</h4>
+                <h4 className="font-semibold text-gray-900 mb-2">Selling</h4>
                 <p className="text-sm text-gray-600">
-                  We conduct business with honesty, transparency, and ethical
-                  practices in every transaction.
+                  Expert guidance through the entire selling process with proven
+                  strategies.
                 </p>
               </div>
 
-              <div className="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-lg">
-                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Star className="w-8 h-8 text-white" />
+              <div className="text-center p-6 bg-gradient-to-br from-lime-50 to-lime-100 rounded-lg border-2 border-lime-200">
+                <div className="w-14 h-14 bg-lime-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Building2 className="w-7 h-7 text-white" />
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-2">Excellence</h4>
+                <h4 className="font-semibold text-gray-900 mb-2">Buying</h4>
                 <p className="text-sm text-gray-600">
-                  We strive for the highest quality in every service, detail,
-                  and client interaction.
+                  Find your perfect home with our comprehensive buying services.
                 </p>
               </div>
 
-              <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg">
-                <div className="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-white" />
+              <div className="text-center p-6 bg-gradient-to-br from-lime-50 to-lime-100 rounded-lg border-2 border-lime-200">
+                <div className="w-14 h-14 bg-lime-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="w-7 h-7 text-white" />
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-2">
-                  Client-First
-                </h4>
+                <h4 className="font-semibold text-gray-900 mb-2">Investing</h4>
                 <p className="text-sm text-gray-600">
-                  Our clients' success and satisfaction are our top priorities
-                  in every decision we make.
+                  Strategic investment opportunities with expert market
+                  analysis.
                 </p>
               </div>
 
-              <div className="text-center p-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg">
-                <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="w-8 h-8 text-white" />
+              <div className="text-center p-6 bg-gradient-to-br from-lime-50 to-lime-100 rounded-lg border-2 border-lime-200">
+                <div className="w-14 h-14 bg-lime-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-7 h-7 text-white" />
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-2">Innovation</h4>
+                <h4 className="font-semibold text-gray-900 mb-2">Renting</h4>
                 <p className="text-sm text-gray-600">
-                  We embrace new technologies and methods to provide better,
-                  more efficient services.
+                  Professional rental services for both tenants and property
+                  owners.
                 </p>
+              </div>
+            </div>
+
+            <div className="mt-8 text-center">
+              <div className="inline-flex items-center gap-2 bg-lime-50 text-lime-800 px-4 py-2 rounded-lg border-2 border-lime-200">
+                <Wrench className="w-5 h-5" />
+                <span className="font-medium">
+                  Property Management (coming soon)
+                </span>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Team Section */}
-        <Card className="bg-white shadow-lg border border-gray-200 mb-16">
+        {/* Resources Section */}
+        <Card className="bg-white shadow-lg border-2 border-lime-200 mb-12">
           <CardHeader className="text-center">
-            <CardTitle className="flex items-center justify-center gap-3 text-3xl">
-              <Users className="w-8 h-8 text-primary" />
-              Our Team
+            <CardTitle className="flex items-center justify-center gap-3 text-2xl md:text-3xl">
+              <Wrench className="w-6 h-6 md:w-8 md:h-8 text-lime-600" />
+              Additional Resources
             </CardTitle>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              Meet the dedicated professionals who make Patron Real Estate the
-              trusted choice for all your real estate needs.
+              We have numerous resources available to you when it comes to
+              anything related to your home.
             </p>
           </CardHeader>
           <CardContent>
             <div className="max-w-4xl mx-auto">
-              <p className="text-gray-600 leading-relaxed mb-8 text-center">
-                Our team of 50+ licensed real estate professionals brings years
-                of experience, deep market knowledge, and unwavering dedication
-                to help you navigate the real estate market successfully. Each
-                team member is carefully selected for their expertise,
-                professionalism, and commitment to exceptional service.
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Award className="w-10 h-10 text-primary" />
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div className="text-center p-4 bg-lime-50 rounded-lg border-2 border-lime-200">
+                  <div className="w-12 h-12 bg-lime-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Wrench className="w-6 h-6 text-white" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-2">
-                    Expertise
-                  </h4>
-                  <p className="text-sm text-gray-600">
-                    Our agents average 8+ years of experience with specialized
-                    knowledge in various property types and market segments.
-                  </p>
+                  <span className="text-sm font-medium text-gray-700">
+                    Handymen
+                  </span>
                 </div>
-
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Shield className="w-10 h-10 text-primary" />
+                <div className="text-center p-4 bg-lime-50 rounded-lg border-2 border-lime-200">
+                  <div className="w-12 h-12 bg-lime-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Building2 className="w-6 h-6 text-white" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-2">
-                    Licensed & Certified
-                  </h4>
-                  <p className="text-sm text-gray-600">
-                    All our agents are fully licensed, continuously educated,
-                    and certified in the latest real estate practices and
-                    technologies.
-                  </p>
+                  <span className="text-sm font-medium text-gray-700">
+                    Contractors
+                  </span>
                 </div>
-
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Heart className="w-10 h-10 text-primary" />
+                <div className="text-center p-4 bg-lime-50 rounded-lg border-2 border-lime-200">
+                  <div className="w-12 h-12 bg-lime-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Award className="w-6 h-6 text-white" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-2">
-                    Personal Touch
-                  </h4>
-                  <p className="text-sm text-gray-600">
-                    We believe in building lasting relationships, not just
-                    closing transactions. Your success is our success.
-                  </p>
+                  <span className="text-sm font-medium text-gray-700">
+                    Electrical
+                  </span>
                 </div>
+                <div className="text-center p-4 bg-lime-50 rounded-lg border-2 border-lime-200">
+                  <div className="w-12 h-12 bg-lime-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Star className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">
+                    Painters
+                  </span>
+                </div>
+                <div className="text-center p-4 bg-lime-50 rounded-lg border-2 border-lime-200">
+                  <div className="w-12 h-12 bg-lime-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Heart className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">
+                    Landscaping
+                  </span>
+                </div>
+                <div className="text-center p-4 bg-lime-50 rounded-lg border-2 border-lime-200">
+                  <div className="w-12 h-12 bg-lime-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Shield className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">
+                    Pest Control
+                  </span>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Core Values Section */}
+        <Card className="bg-white shadow-lg border-2 border-lime-200 mb-12">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center gap-3 text-2xl md:text-3xl">
+              <Heart className="w-6 h-6 md:w-8 md:h-8 text-lime-600" />
+              Our Core Values
+            </CardTitle>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              The fundamental principles that guide everything we do and shape
+              our relationships.
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="text-center p-6 bg-gradient-to-br from-lime-50 to-lime-100 rounded-lg border-2 border-lime-200">
+                <div className="w-14 h-14 bg-lime-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-7 h-7 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">
+                  Customer First
+                </h4>
+                <p className="text-sm text-gray-600">
+                  Your needs and satisfaction are our top priority in every
+                  decision we make.
+                </p>
+              </div>
+
+              <div className="text-center p-6 bg-gradient-to-br from-lime-50 to-lime-100 rounded-lg border-2 border-lime-200">
+                <div className="w-14 h-14 bg-lime-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-7 h-7 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">Integrity</h4>
+                <p className="text-sm text-gray-600">
+                  We conduct business with honesty, transparency, and the
+                  highest ethical standards.
+                </p>
+              </div>
+
+              <div className="text-center p-6 bg-gradient-to-br from-lime-50 to-lime-100 rounded-lg border-2 border-lime-200">
+                <div className="w-14 h-14 bg-lime-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Star className="w-7 h-7 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2">Excellence</h4>
+                <p className="text-sm text-gray-600">
+                  We strive for the highest quality in every service and client
+                  interaction.
+                </p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Contact Section */}
-        <Card className="bg-white shadow-lg border border-gray-200 mb-12">
+        <Card className="bg-white shadow-lg border-2 border-lime-200 mb-12">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <MapPin className="w-6 h-6 text-primary" />
+              <Handshake className="w-6 h-6 text-lime-600" />
               Get in Touch
             </CardTitle>
           </CardHeader>
@@ -298,62 +357,42 @@ export default function AboutPage() {
                 </h4>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
-                    <Phone className="w-5 h-5 text-primary" />
-                    <span className="text-gray-600">+1 (305) 555-0123</span>
+                    <Phone className="w-5 h-5 text-lime-600" />
+                    <span className="text-gray-600">323.350.3137</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Mail className="w-5 h-5 text-primary" />
-                    <span className="text-gray-600">info@patron.com</span>
+                    <Mail className="w-5 h-5 text-lime-600" />
+                    <span className="text-gray-600">
+                      patronrealestateservices@gmail.com
+                    </span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <MapPin className="w-5 h-5 text-primary" />
-                    <span className="text-gray-600">Main Office</span>
+                    <MapPin className="w-5 h-5 text-lime-600" />
+                    <span className="text-gray-600">
+                      Serving Greater Los Angeles
+                    </span>
                   </div>
                 </div>
               </div>
               <div className="space-y-4">
                 <h4 className="font-semibold text-gray-900 mb-4">
-                  Office Hours
+                  Ready to Connect?
                 </h4>
-                <div className="text-gray-600 space-y-2">
-                  <div>Monday - Friday: 9:00 AM - 6:00 PM</div>
-                  <div>Saturday: 10:00 AM - 4:00 PM</div>
-                  <div>Sunday: By Appointment</div>
-                </div>
-                <p className="text-sm text-gray-500 mt-4">
-                  We're always available for urgent inquiries and after-hours
-                  support for our valued clients.
+                <p className="text-gray-600 leading-relaxed">
+                  If you need additional or specific information, please{" "}
+                  <Link
+                    href="/contact"
+                    className="text-lime-600 hover:text-lime-700 underline font-medium"
+                  >
+                    click here
+                  </Link>{" "}
+                  to get in contact with a Patron team member. We look forward
+                  to connecting with you!
                 </p>
               </div>
             </div>
           </CardContent>
         </Card>
-
-        {/* CTA Section */}
-        <div className="text-center">
-          <div className="bg-gradient-to-r from-primary to-primary/80 text-white p-8 rounded-lg">
-            <h3 className="text-2xl font-bold mb-4">
-              Ready to Find Your Perfect Property?
-            </h3>
-            <p className="text-lg mb-6 opacity-90">
-              Let our experienced team guide you through your real estate
-              journey.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" asChild>
-                <Link href="/search">Search Properties</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-transparent border-white text-white hover:bg-white hover:text-primary"
-                asChild
-              >
-                <Link href="/contact">Contact Us</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

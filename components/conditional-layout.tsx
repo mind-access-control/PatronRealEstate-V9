@@ -12,25 +12,9 @@ export function ConditionalLayout({ children }: ConditionalLayoutProps) {
   const pathname = usePathname();
 
   // Check for admin and agent dashboard pages that should NOT show public header/footer
-  const isAdminDashboardPage =
-    pathname &&
-    (pathname === "/admin" ||
-      pathname === "/admin/properties" ||
-      pathname === "/admin/videos" ||
-      pathname === "/admin/agents" ||
-      pathname === "/admin/leads" ||
-      pathname === "/admin/settings");
+  const isAdminDashboardPage = pathname && pathname.startsWith("/admin/");
 
-  const isAgentDashboardPage =
-    pathname &&
-    (pathname === "/agent" ||
-      pathname === "/agent/listings" ||
-      pathname === "/agent/leads" ||
-      pathname === "/agent/calendar" ||
-      pathname === "/agent/messages" ||
-      pathname === "/agent/analytics" ||
-      pathname === "/agent/profile" ||
-      pathname === "/agent/settings");
+  const isAgentDashboardPage = pathname && pathname.startsWith("/agent/");
 
   // Don't show public header/footer on admin or agent dashboard pages
   if (isAdminDashboardPage || isAgentDashboardPage) {

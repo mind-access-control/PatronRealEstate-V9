@@ -30,7 +30,7 @@ const services = [
     icon: TrendingUp,
     title: "Invest",
     description: "Build wealth through real estate investment",
-    link: "/property-management",
+    link: "/home-value",
     color: "from-purple-500 to-purple-600",
   },
   {

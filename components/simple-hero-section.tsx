@@ -12,11 +12,8 @@ export function SimpleHeroSection() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
-    } else {
-      router.push("/search");
-    }
+    // Redirigir a la página de Buyers
+    router.push("/buying");
   };
 
   return (
@@ -55,23 +52,35 @@ export function SimpleHeroSection() {
               Services
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
-              <span className="bg-green-600 text-white px-4 py-2 rounded-full font-medium shadow-lg hover:bg-green-700 transition-colors">
+              <button
+                onClick={() => router.push("/buying")}
+                className="bg-white text-gray-800 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-lime-500 hover:text-white transition-all duration-200 cursor-pointer border-2 border-gray-200"
+              >
                 Buy
-              </span>
-              <span className="bg-green-600 text-white px-4 py-2 rounded-full font-medium shadow-lg hover:bg-green-700 transition-colors">
+              </button>
+              <button
+                onClick={() => router.push("/selling")}
+                className="bg-white text-gray-800 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-lime-500 hover:text-white transition-all duration-200 cursor-pointer border-2 border-gray-200"
+              >
                 Sell
-              </span>
-              <span className="bg-green-600 text-white px-4 py-2 rounded-full font-medium shadow-lg hover:bg-green-700 transition-colors">
+              </button>
+              <button
+                onClick={() => router.push("/home-value")}
+                className="bg-white text-gray-800 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-lime-500 hover:text-white transition-all duration-200 cursor-pointer border-2 border-gray-200"
+              >
                 Invest
-              </span>
-              <span className="bg-green-600 text-white px-4 py-2 rounded-full font-medium shadow-lg hover:bg-green-700 transition-colors">
+              </button>
+              <button
+                onClick={() => router.push("/property-management")}
+                className="bg-white text-gray-800 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-lime-500 hover:text-white transition-all duration-200 cursor-pointer border-2 border-gray-200"
+              >
                 Manage
-              </span>
+              </button>
             </div>
           </div>
 
           {/* Barra de búsqueda simplificada */}
-          <div className="bg-white/98 backdrop-blur-md rounded-xl p-4 md:p-6 shadow-2xl border border-white/50 mb-6">
+          <div className="bg-white rounded-xl p-4 md:p-6 shadow-2xl border-2 border-white/80 mb-6">
             <form
               onSubmit={handleSearch}
               className="flex flex-col md:flex-row gap-3"
@@ -83,13 +92,13 @@ export function SimpleHeroSection() {
                   placeholder="Search properties..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-white text-gray-900 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 placeholder:text-gray-500"
+                  className="w-full pl-10 pr-4 py-3 bg-white text-gray-800 rounded-lg border-2 border-gray-300 focus:ring-2 focus:ring-lime-500 focus:border-lime-500 transition-all duration-200 placeholder:text-gray-500 shadow-sm"
                 />
               </div>
               <Button
                 type="submit"
                 size="lg"
-                className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200"
+                className="bg-lime-500 hover:bg-lime-600 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200 shadow-xl border-2 border-lime-400"
               >
                 <Search className="w-5 h-5 mr-2" />
                 Search

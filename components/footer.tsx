@@ -55,32 +55,52 @@ export function Footer() {
               <PatronLogo size="medium" showLink={false} />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Your Real Estate Resource. DRE 02178767
+              Fabiola Patron - Serving Greater Los Angeles with 20+ years of
+              experience. Licensed Broker & Owner. DRE #02178767
             </p>
 
             {/* Contact Info */}
             <div className="space-y-3 mb-6">
               <div className="flex items-center space-x-3 text-gray-300">
-                <Phone className="w-4 h-4 text-green-500" />
+                <Phone className="w-4 h-4 text-lime-500" />
                 <a
-                  href="tel:+13055550123"
-                  className="hover:text-white transition-colors duration-200"
+                  href="tel:3233503137"
+                  className="hover:text-lime-400 transition-colors duration-200"
                 >
-                  (305) 555-0123
+                  (323) 350-3137
                 </a>
               </div>
               <div className="flex items-center space-x-3 text-gray-300">
-                <Mail className="w-4 h-4 text-green-500" />
+                <Phone className="w-4 h-4 text-lime-500" />
                 <a
-                  href="mailto:info@patronrealestate.com"
-                  className="hover:text-white transition-colors duration-200"
+                  href="tel:8183534349"
+                  className="hover:text-lime-400 transition-colors duration-200"
                 >
-                  info@patronrealestate.com
+                  (818) 353-4349
                 </a>
               </div>
               <div className="flex items-center space-x-3 text-gray-300">
-                <MapPin className="w-4 h-4 text-green-500" />
-                <span>Miami, FL</span>
+                <Mail className="w-4 h-4 text-lime-500" />
+                <a
+                  href="mailto:patronrealestateservices@gmail.com"
+                  className="hover:text-lime-400 transition-colors duration-200"
+                >
+                  patronrealestateservices@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center space-x-3 text-gray-300">
+                <MapPin className="w-4 h-4 text-lime-500" />
+                <span>10209 Tujunga Canyon Blvd #164, Tujunga, CA 91042</span>
+              </div>
+              <div className="flex items-center space-x-3 text-gray-300">
+                <a
+                  href="https://www.patronrealestateservices.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-lime-400 transition-colors duration-200"
+                >
+                  www.patronrealestateservices.com
+                </a>
               </div>
             </div>
 
@@ -92,7 +112,7 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-lg flex items-center justify-center transition-colors duration-200"
+                  className="w-10 h-10 bg-gray-800 hover:bg-lime-500 rounded-lg flex items-center justify-center transition-colors duration-200"
                   aria-label={social.name}
                 >
                   <social.icon className="w-5 h-5" />
@@ -103,7 +123,7 @@ export function Footer() {
 
           {/* Services Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-green-500">
+            <h3 className="text-lg font-semibold mb-4 text-lime-500">
               Services
             </h3>
             <ul className="space-y-2">
@@ -111,7 +131,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 block"
+                    className="text-gray-300 hover:text-lime-400 transition-colors duration-200 block"
                   >
                     {link.name}
                   </Link>
@@ -122,7 +142,7 @@ export function Footer() {
 
           {/* Company Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-green-500">
+            <h3 className="text-lg font-semibold mb-4 text-lime-500">
               Company
             </h3>
             <ul className="space-y-2">
@@ -130,7 +150,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 block"
+                    className="text-gray-300 hover:text-lime-400 transition-colors duration-200 block"
                   >
                     {link.name}
                   </Link>
@@ -153,7 +173,7 @@ export function Footer() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="hover:text-white transition-colors duration-200"
+                  className="hover:text-lime-400 transition-colors duration-200"
                 >
                   {link.name}
                 </Link>

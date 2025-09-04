@@ -4,17 +4,17 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Patrón Real Estate brand colors - Lime Green & Dark Gray theme */
+  /* Patrón Real Estate brand colors - Based on logo */
   --background: oklch(1 0 0); /* Pure white */
   --foreground: oklch(0.145 0 0); /* Dark gray for text */
   --card: oklch(1 0 0); /* White for cards */
   --card-foreground: oklch(0.145 0 0); /* Darker text on cards */
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.7 0.25 120); /* Patrón Lime Green - primary brand color */
+  --primary: oklch(0.65 0.25 120); /* Patrón Lime Green - main brand color */
   --primary-foreground: oklch(0.985 0 0); /* White text on primary */
   --secondary: oklch(0.95 0.02 120); /* Light green accent */
-  --secondary-foreground: oklch(0.7 0.25 120);
+  --secondary-foreground: oklch(0.65 0.25 120);
   --muted: oklch(0.97 0 0); /* Light gray for muted elements */
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.8 0.15 120); /* Medium green for highlights */
@@ -23,21 +23,21 @@
   --destructive-foreground: oklch(0.985 0 0);
   --border: oklch(0.922 0 0); /* Light border */
   --input: oklch(0.922 0 0); /* Light input background */
-  --ring: oklch(0.7 0.25 120); /* Primary color ring */
-  --chart-1: oklch(0.7 0.25 120); /* Patrón Lime Green */
+  --ring: oklch(0.65 0.25 120); /* Primary color ring */
+  --chart-1: oklch(0.65 0.25 120); /* Patrón Lime Green */
   --chart-2: oklch(0.8 0.15 120); /* Medium Green */
   --chart-3: oklch(0.9 0.08 120); /* Light Green */
-  --chart-4: oklch(0.6 0.3 120); /* Dark Green */
+  --chart-4: oklch(0.5 0.3 120); /* Dark Green */
   --chart-5: oklch(0.95 0.05 120); /* Very Light Green */
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.7 0.25 120);
+  --sidebar-primary: oklch(0.65 0.25 120);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.95 0.02 120);
-  --sidebar-accent-foreground: oklch(0.7 0.25 120);
+  --sidebar-accent-foreground: oklch(0.65 0.25 120);
   --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.7 0.25 120);
+  --sidebar-ring: oklch(0.65 0.25 120);
 }
 
 .dark {
@@ -47,7 +47,7 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.8 0.15 120); /* Brighter green in dark mode */
+  --primary: oklch(0.75 0.2 120); /* Brighter lime green in dark mode */
   --primary-foreground: oklch(0.145 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -60,14 +60,14 @@
   --border: oklch(0.269 0 0);
   --input: oklch(0.269 0 0);
   --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.8 0.15 120); /* Patrón Lime Green */
-  --chart-2: oklch(0.9 0.08 120); /* Medium Green */
+  --chart-1: oklch(0.75 0.2 120); /* Patrón Lime Green */
+  --chart-2: oklch(0.85 0.12 120); /* Medium Green */
   --chart-3: oklch(0.95 0.05 120); /* Light Green */
-  --chart-4: oklch(0.7 0.25 120); /* Dark Green */
+  --chart-4: oklch(0.6 0.25 120); /* Dark Green */
   --chart-5: oklch(0.98 0.02 120); /* Very Light Green */
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.8 0.15 120);
+  --sidebar-primary: oklch(0.75 0.2 120);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);

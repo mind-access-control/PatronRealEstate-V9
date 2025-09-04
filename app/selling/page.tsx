@@ -88,7 +88,7 @@ export default function SellingPage() {
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-grotesk font-bold text-gray-900 mb-6">
             Are you ready to sell your
-            <span className="block text-green-600">home?</span>
+            <span className="block text-lime-500">home?</span>
           </h1>
         </div>
 
@@ -98,8 +98,8 @@ export default function SellingPage() {
             {/* Left Column - Get Your Free Home Valuation */}
             <Card className="bg-white shadow-xl border border-gray-200">
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Home className="w-8 h-8 text-green-600" />
+                <div className="w-16 h-16 bg-lime-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Home className="w-8 h-8 text-lime-600" />
                 </div>
                 <CardTitle className="text-2xl font-bold text-gray-900 mb-2">
                   Get Your Free Home Valuation
@@ -113,7 +113,7 @@ export default function SellingPage() {
                 <div id="homebot_homeowner_selling" className="min-h-[200px] relative z-0 mb-6">
                   {!widgetLoaded && !widgetError && (
                     <div className="flex flex-col items-center justify-center h-[200px] text-gray-500">
-                      <Loader2 className="w-8 h-8 animate-spin text-green-600 mb-3" />
+                      <Loader2 className="w-8 h-8 animate-spin text-lime-600 mb-3" />
                       <p className="text-base">Loading Homebot Widget...</p>
                       <p className="text-xs text-gray-400 mt-1">
                         Please wait while we load the valuation tool
@@ -135,7 +135,7 @@ export default function SellingPage() {
                         size="sm"
                         variant="outline"
                         asChild
-                        className="border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
+                        className="border-lime-600 text-lime-600 hover:bg-lime-600 hover:text-white"
                       >
                         <a
                           href="https://hmbt.co/aypqLM"
@@ -159,7 +159,7 @@ export default function SellingPage() {
                     size="lg"
                     variant="outline"
                     asChild
-                    className="border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
+                    className="border-lime-600 text-lime-600 hover:bg-lime-600 hover:text-white"
                   >
                     <a
                       href="https://hmbt.co/aypqLM"
@@ -205,14 +205,14 @@ export default function SellingPage() {
                     The following pages will provide you some of the basic steps you are expected to encounter when starting 
                     the home selling process. As mentioned, every situation is different. If you need additional or specific 
                     information on this topic, please{" "}
-                    <Link href="/contact" className="text-green-600 hover:text-green-700 underline font-medium">
+                    <Link href="/contact" className="text-lime-600 hover:text-lime-700 underline font-medium">
                       click here
                     </Link>{" "}
                     to get in contact with a Patron team member.
                   </p>
 
-                  <div className="text-center p-4 bg-green-100 rounded-lg mt-6">
-                    <h3 className="text-lg font-bold text-green-800">Put your trust in Patron REI!</h3>
+                  <div className="text-center p-4 border-2 border-lime-500 rounded-lg mt-6">
+                    <h3 className="text-lg font-bold text-lime-600">Put your trust in Patron REI!</h3>
                   </div>
                 </div>
               </CardContent>
@@ -239,9 +239,9 @@ export default function SellingPage() {
               <div className="space-y-8">
                 {/* Time Frame Section */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <Clock className="w-6 h-6 text-green-600" />
-                  </div>
+                                  <div className="w-12 h-12 bg-lime-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <Clock className="w-6 h-6 text-lime-600" />
+                </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-3">What is your time-frame?</h4>
                     <p className="text-gray-700 leading-relaxed">
@@ -255,9 +255,9 @@ export default function SellingPage() {
 
                 {/* Bottom Line Section */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <Target className="w-6 h-6 text-green-600" />
-                  </div>
+                                  <div className="w-12 h-12 bg-lime-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <Target className="w-6 h-6 text-lime-600" />
+                </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-3">What's your bottom Line?</h4>
                     <p className="text-gray-700 leading-relaxed">
@@ -273,9 +273,9 @@ export default function SellingPage() {
 
                 {/* Setting the Price Section */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <DollarSign className="w-6 h-6 text-green-600" />
-                  </div>
+                                  <div className="w-12 h-12 bg-lime-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <DollarSign className="w-6 h-6 text-lime-600" />
+                </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-3">Setting the price</h4>
                     <p className="text-gray-700 leading-relaxed">
@@ -290,9 +290,9 @@ export default function SellingPage() {
 
                 {/* Plan of Action Section */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <CheckCircle className="w-6 h-6 text-green-600" />
-                  </div>
+                                  <div className="w-12 h-12 bg-lime-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <CheckCircle className="w-6 h-6 text-lime-600" />
+                </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-3">A Plan of Action for YOU</h4>
                     <p className="text-gray-700 leading-relaxed">
@@ -305,9 +305,9 @@ export default function SellingPage() {
 
                 {/* Partnership Section */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <Handshake className="w-6 h-6 text-green-600" />
-                  </div>
+                                  <div className="w-12 h-12 bg-lime-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <Handshake className="w-6 h-6 text-lime-600" />
+                </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-3">Forming a Partnership….</h4>
                     <p className="text-gray-700 leading-relaxed">
@@ -333,12 +333,12 @@ export default function SellingPage() {
 
         {/* Contact CTA */}
         <div className="text-center">
-          <div className="bg-gradient-to-r from-green-600 to-green-700 text-white p-8 rounded-lg">
-            <h3 className="text-2xl font-bold mb-4">Ready to Start Your Selling Journey?</h3>
-            <p className="text-lg mb-6 opacity-90">
+          <div className="text-center p-8">
+            <h3 className="text-2xl font-bold mb-4 text-gray-900">Ready to Start Your Selling Journey?</h3>
+            <p className="text-lg mb-6 text-gray-600">
               Let our experienced team help you get the best value for your home.
             </p>
-            <Button size="lg" variant="secondary" asChild>
+            <Button size="lg" className="bg-lime-500 hover:bg-lime-600 text-white" asChild>
               <Link href="/contact">
                 Contact Us Today
                 <ArrowRight className="w-4 h-4 ml-2" />

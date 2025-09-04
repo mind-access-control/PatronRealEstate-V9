@@ -5,25 +5,25 @@ import { Star } from "lucide-react";
 
 const reviews = [
   {
-    name: "Sarah Johnson",
+    name: "Claudia Gutierrez",
     rating: 5,
     comment:
-      "Patron Real Estate helped us find our dream home in just 2 weeks. Their expertise and dedication are unmatched!",
-    location: "Miami Beach",
+      "Gracias Fabiola Patron por ayudarme a obtener mi primera casa 🥰. Después de una experiencia frustrante con otros servicios que tardaban mucho en responder y al final no pudieron calificarme para un préstamo 😟. Fabiola fue atenta, profesional y logró ayudarme a calificar. 100% recomendada 👍❤️",
+    location: "Los Angeles",
   },
   {
-    name: "Michael Rodriguez",
+    name: "BethM",
     rating: 5,
     comment:
-      "Professional, responsive, and truly cares about their clients. Sold our house above asking price in record time.",
-    location: "Coral Gables",
+      "I am so thankful we found Fabiola. She has an amazing work ethic and took the time to talk with us and listen to what we wanted. She helped us sell our family home of 55 years in Tujunga. Has local resources to help with estates sales, junk removal, plumbing problems, so many things that need doing to sell a home these days and she was on it! Very detail oriented and a great advocate. I highly recommend Fabiola Patron!",
+    location: "Tujunga",
   },
   {
-    name: "Jennifer Smith",
+    name: "Michelle Pena",
     rating: 5,
     comment:
-      "The best real estate experience we've ever had. They made the entire process smooth and stress-free.",
-    location: "Brickell",
+      "I want to highly recommend working with Fabiola Patron if you're looking to sell your home or buy a home. She was truly a blessing to have on our team when selling my mother's townhome. Fabiola went above and beyond. She was there every step of the process. My mother's home was sold in less than two months from going on the market thanks to the dedication and commitment Fabiola provided. If you're looking for a trusting, professional, and dedicated realtor look no further. Fabiola Patron is the best!!!!",
+    location: "Los Angeles",
   },
 ];
 
@@ -78,7 +78,7 @@ export function ReviewsSection() {
           </p>
           <a
             href="/contact"
-            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200"
+            className="inline-block bg-lime-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-lime-600 transition-colors duration-200"
           >
             Get Started Today
           </a>

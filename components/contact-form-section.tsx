@@ -50,10 +50,11 @@ export function ContactFormSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-            Contact Us
+            Contact Fabiola Patron
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Ready to start your real estate journey? Get in touch with us today.
+            Ready to start your real estate journey? Get in touch with Fabiola
+            today.
           </p>
         </div>
 
@@ -62,37 +63,51 @@ export function ContactFormSection() {
             {/* Contact Information */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-                Get In Touch
+                Get In Touch with Fabiola
               </h3>
 
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Phone className="w-5 h-5 text-blue-600" />
+                  <div className="w-10 h-10 bg-lime-100 rounded-full flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-lime-600" />
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Phone</p>
-                    <p className="text-gray-600">(305) 555-0123</p>
+                    <p className="text-gray-600">(323) 350-3137</p>
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-blue-600" />
+                  <div className="w-10 h-10 bg-lime-100 rounded-full flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-lime-600" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-900">Phone</p>
+                    <p className="text-gray-600">(818) 353-4349</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-lime-100 rounded-full flex items-center justify-center">
+                    <Mail className="w-5 h-5 text-lime-600" />
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Email</p>
-                    <p className="text-gray-600">info@patronrealestate.com</p>
+                    <p className="text-gray-600">
+                      patronrealestateservices@gmail.com
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-blue-600" />
+                  <div className="w-10 h-10 bg-lime-100 rounded-full flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-lime-600" />
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Office</p>
-                    <p className="text-gray-600">Miami, FL</p>
+                    <p className="text-gray-600">
+                      10209 Tujunga Canyon Blvd #164, Tujunga, CA 91042
+                    </p>
                   </div>
                 </div>
               </div>
@@ -213,7 +228,7 @@ export function ContactFormSection() {
 
                   <Button
                     type="submit"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3"
+                    className="w-full bg-lime-500 hover:bg-lime-600 text-white font-semibold py-3"
                   >
                     <Send className="w-4 h-4 mr-2" />
                     Send Message

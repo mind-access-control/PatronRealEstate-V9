@@ -30,12 +30,19 @@ import {
 import { auth } from "@/lib/auth";
 
 const navigationItems = [
-  { name: "Dashboard", href: "/admin", icon: BarChart3 },
-  { name: "Properties", href: "/admin/properties", icon: Building },
   { name: "Videos", href: "/admin/videos", icon: Video },
-  { name: "Agents", href: "/admin/agents", icon: Users },
-  { name: "Leads", href: "/admin/leads", icon: MessageSquare },
-  { name: "Settings", href: "/admin/settings", icon: Settings },
+  { name: "Blog", href: "/admin/blog", icon: MessageSquare },
+  // Hidden items - kept for future use
+  { name: "Dashboard", href: "/admin", icon: BarChart3, hidden: true },
+  {
+    name: "Properties",
+    href: "/admin/properties",
+    icon: Building,
+    hidden: true,
+  },
+  { name: "Agents", href: "/admin/agents", icon: Users, hidden: true },
+  { name: "Leads", href: "/admin/leads", icon: MessageSquare, hidden: true },
+  { name: "Settings", href: "/admin/settings", icon: Settings, hidden: true },
 ];
 
 export default function AdminLayout({
@@ -168,26 +175,28 @@ export default function AdminLayout({
 
         <nav className="flex-1 px-4 py-6">
           <ul className="space-y-2">
-            {navigationItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = pathname === item.href;
-              return (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className={`flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-                      isActive
-                        ? "bg-emerald-100 text-emerald-900 border-r-2 border-emerald-600"
-                        : "hover:bg-muted"
-                    }`}
-                    onClick={() => setSidebarOpen(false)}
-                  >
-                    <Icon className="h-5 w-5" />
-                    {item.name}
-                  </Link>
-                </li>
-              );
-            })}
+            {navigationItems
+              .filter((item) => !item.hidden)
+              .map((item) => {
+                const Icon = item.icon;
+                const isActive = pathname === item.href;
+                return (
+                  <li key={item.name}>
+                    <Link
+                      href={item.href}
+                      className={`flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                        isActive
+                          ? "bg-emerald-100 text-emerald-900 border-r-2 border-emerald-600"
+                          : "hover:bg-muted"
+                      }`}
+                      onClick={() => setSidebarOpen(false)}
+                    >
+                      <Icon className="h-5 w-5" />
+                      {item.name}
+                    </Link>
+                  </li>
+                );
+              })}
           </ul>
         </nav>
 

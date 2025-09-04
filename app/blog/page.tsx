@@ -1,7 +1,5 @@
 "use client";
 
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { BlogCard } from "@/components/blog-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,21 +13,52 @@ import {
 import { Search } from "lucide-react";
 import { useState } from "react";
 
-// Real blog data with actual house images
+// Blog posts data
 const blogPosts = [
   {
     id: "1",
-    title:
-      "2024 Los Angeles Real Estate Market: Prices Up 15% in Premium Areas",
+    title: "🏡 Why Now Might Be the Best Time for Buyers in 2025",
     excerpt:
-      "Exclusive analysis reveals Beverly Hills, Santa Monica, and Malibu lead the market with unprecedented growth. Discover which neighborhoods offer the best investment opportunities.",
-    author: "Sarah Johnson",
-    date: "2024-01-15",
+      "After years of intense competition and sky-high prices, the U.S. housing market is finally showing signs of relief for homebuyers—and the timing couldn't be better.",
+    author: "Patron Real Estate Services",
+    date: "2025-06-17",
     category: "Market Analysis",
-    imageUrl:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=300&fit=crop&crop=center",
-    readTime: "8 min read",
+    imageUrl: "/placeholder.jpg",
+    readTime: "5 min read",
     featured: true,
+    content: `
+      After years of intense competition and sky-high prices, the U.S. housing market is finally showing signs of relief for homebuyers—and the timing couldn't be better.
+
+      According to a recent article from MarketWatch, housing inventory in the U.S. has climbed to over 1 million active listings, the highest level since before the pandemic. With more homes on the market and fewer bidding wars, buyers now have more room to breathe, think, and negotiate.
+
+      📉 Price Drops Are Back
+
+      One of the most telling signs of this shift? Roughly 1 in 5 listings have had a price cut, and 37% of newly built homes are also reducing prices. Builders and sellers alike are adjusting to slower market conditions—and savvy buyers are reaping the benefits.
+
+      🕰 Homes Are Sitting Longer
+
+      Another shift from the seller-dominated days of the past: homes are spending about 38 days on the market before going under contract. This gives buyers more time to view properties, do their homework, and even revisit homes before making an offer. Gone are the days of rushing in with a blind bid the same day a home is listed.
+
+      🔍 What This Means for Buyers
+
+      If you've been sitting on the sidelines waiting for the market to cool down—this might be your window of opportunity. While interest rates remain elevated, buyers now have more negotiating power, flexibility on terms, and the ability to avoid risky practices like waiving inspections or contingencies.
+
+      👀 Local Perspective
+
+      Here in Los Angeles, we're seeing similar trends, especially in neighborhoods where inventory is growing. If you're buying in areas like Altadena, Tujunga, Burbank, or surrounding parts of L.A., you may start to notice more listings with price reductions or seller incentives.
+
+      📲 Thinking About Buying or Selling?
+
+      Whether you're a first-time buyer or looking to sell and upgrade, I'm here to guide you through this evolving market with clarity, confidence, and strategy. Reach out anytime—I'd love to help you make your next move.
+    `,
+    contactInfo: {
+      email: "patronrealestateservices@gmail.com",
+      phone: "323.350.3137",
+      location:
+        "Serving Greater Los Angeles | Patron Real Estate Inc. | DRE #02178767",
+    },
+    disclaimer:
+      'This post references insights from a MarketWatch article published on June 17, 2025: "The housing market is finally buyer-friendly as more sellers slash prices." The article is not my own, but the observations shared align with current market activity across many L.A. neighborhoods.',
   },
   {
     id: "2",
@@ -37,11 +66,10 @@ const blogPosts = [
       "First-Time Homebuyer's Complete Guide: LA's Hidden Gems Under $800K",
     excerpt:
       "Skip the bidding wars! We've found 5 up-and-coming neighborhoods where first-time buyers can still find affordable homes with great potential for appreciation.",
-    author: "Michael Chen",
+    author: "Patron Real Estate Services",
     date: "2024-01-12",
     category: "Buying Tips",
-    imageUrl:
-      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop&crop=center",
+    imageUrl: "/placeholder.jpg",
     readTime: "12 min read",
     featured: false,
   },
@@ -50,11 +78,10 @@ const blogPosts = [
     title: "Staging Secrets: How We Sold a $2.5M Home in 3 Days",
     excerpt:
       "Professional stager reveals the exact techniques used to sell luxury homes at record speed. From lighting to furniture placement, learn what really works.",
-    author: "Lisa Rodriguez",
+    author: "Patron Real Estate Services",
     date: "2024-01-10",
     category: "Selling Tips",
-    imageUrl:
-      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=300&fit=crop&crop=center",
+    imageUrl: "/placeholder.jpg",
     readTime: "10 min read",
     featured: false,
   },
@@ -63,11 +90,10 @@ const blogPosts = [
     title: "Investment Goldmine: Multi-Family Properties in Downtown LA",
     excerpt:
       "Why savvy investors are flocking to downtown LA's multi-family market. ROI analysis shows 8-12% annual returns with minimal vacancy rates.",
-    author: "David Kim",
+    author: "Patron Real Estate Services",
     date: "2024-01-08",
     category: "Investment",
-    imageUrl:
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=300&fit=crop&crop=center",
+    imageUrl: "/placeholder.jpg",
     readTime: "15 min read",
     featured: false,
   },
@@ -76,11 +102,10 @@ const blogPosts = [
     title: "Neighborhood Deep Dive: Why Pasadena is LA's Best-Kept Secret",
     excerpt:
       "Historic charm meets modern convenience. Pasadena's real estate market is heating up with tech professionals and families seeking the perfect balance.",
-    author: "Sarah Johnson",
+    author: "Patron Real Estate Services",
     date: "2024-01-05",
     category: "Neighborhoods",
-    imageUrl:
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=300&fit=crop&crop=center",
+    imageUrl: "/placeholder.jpg",
     readTime: "7 min read",
     featured: false,
   },
@@ -90,64 +115,35 @@ const blogPosts = [
       "Home Maintenance Calendar: What to Do Every Month to Protect Your Investment",
     excerpt:
       "Prevent costly repairs with our month-by-month maintenance checklist. From HVAC to roof inspections, keep your home in top condition year-round.",
-    author: "Michael Chen",
+    author: "Patron Real Estate Services",
     date: "2024-01-03",
     category: "Home Care",
-    imageUrl:
-      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=300&fit=crop&crop=center",
+    imageUrl: "/placeholder.jpg",
     readTime: "14 min read",
     featured: false,
   },
   {
     id: "7",
-    title: "Luxury Market Report: $10M+ Homes Breaking Records in 2024",
+    title: "Market Trends: Los Angeles Real Estate in 2025",
     excerpt:
-      "Ultra-luxury real estate in LA is experiencing unprecedented demand. See which properties are setting new price records and why.",
-    author: "Emma Thompson",
+      "An in-depth analysis of current market conditions and predictions for the coming year in the Los Angeles real estate market.",
+    author: "Patron Real Estate Services",
     date: "2024-01-01",
     category: "Market Analysis",
-    imageUrl:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&h=300&fit=crop&crop=center",
-    readTime: "9 min read",
+    imageUrl: "/placeholder.jpg",
+    readTime: "8 min read",
     featured: false,
   },
   {
     id: "8",
-    title: "Mortgage Rate Guide: How to Lock in the Best Rate This Year",
+    title: "Investment Strategies for First-Time Real Estate Investors",
     excerpt:
-      "With rates fluctuating, timing is everything. Our mortgage experts share strategies to secure the lowest possible rate for your dream home.",
-    author: "Robert Martinez",
+      "Essential tips and strategies for those looking to enter the real estate investment market for the first time.",
+    author: "Patron Real Estate Services",
     date: "2023-12-28",
-    category: "Buying Tips",
-    imageUrl:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop&crop=center",
-    readTime: "11 min read",
-    featured: false,
-  },
-  {
-    id: "9",
-    title: "Smart Home Technology: What Buyers Want in 2024",
-    excerpt:
-      "From smart thermostats to security systems, discover which home automation features are driving up property values and attracting tech-savvy buyers.",
-    author: "Jennifer Lee",
-    date: "2023-12-25",
-    category: "Buying Tips",
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&crop=center",
-    readTime: "13 min read",
-    featured: false,
-  },
-  {
-    id: "10",
-    title: "Green Homes: Eco-Friendly Features That Pay Off",
-    excerpt:
-      "Solar panels, energy-efficient appliances, and sustainable materials are not just good for the planet—they're great for your property's resale value.",
-    author: "Carlos Rodriguez",
-    date: "2023-12-22",
     category: "Investment",
-    imageUrl:
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=300&fit=crop&crop=center",
-    readTime: "16 min read",
+    imageUrl: "/placeholder.jpg",
+    readTime: "12 min read",
     featured: false,
   },
 ];
@@ -156,7 +152,7 @@ export default function BlogPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortBy, setSortBy] = useState("newest");
-  const [visiblePosts, setVisiblePosts] = useState(6); // Show 6 posts initially
+  const [visiblePosts, setVisiblePosts] = useState(3); // Show 3 posts initially
 
   // Filter and sort posts (including featured)
   const filteredPosts = blogPosts.filter((post) => {
@@ -205,31 +201,94 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-primary text-primary-foreground py-20 mt-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="font-serif text-4xl md:text-5xl font-bold mb-6">
-              Real Estate Insights & News
-            </h1>
-            <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto">
-              Stay informed with the latest market trends, tips, and expert
-              advice
-            </p>
+        <section className="relative bg-white py-6 md:py-8 overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 bg-gradient-to-br from-lime-50 via-white to-lime-50"></div>
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="absolute top-3 left-3 w-16 h-16 bg-lime-200 rounded-full opacity-20"></div>
+            <div className="absolute top-12 right-8 w-12 h-12 bg-lime-300 rounded-full opacity-15"></div>
+            <div className="absolute bottom-6 left-1/4 w-8 h-8 bg-lime-100 rounded-full opacity-25"></div>
+          </div>
+
+          <div className="relative container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-10 h-10 bg-lime-100 rounded-full mb-3">
+                  <span className="text-base">📝</span>
+                </div>
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight">
+                  Real Estate
+                  <span className="block text-lime-600">Insights</span>
+                </h1>
+                <p className="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed mb-3">
+                  Expert analysis and market trends from Los Angeles'
+                  <span className="text-lime-600 font-semibold">
+                    {" "}
+                    trusted real estate professional
+                  </span>
+                </p>
+                <div className="flex flex-wrap justify-center gap-2 text-xs text-gray-500">
+                  <span className="flex items-center gap-1">
+                    <div className="w-1 h-1 bg-lime-500 rounded-full"></div>
+                    Market Analysis
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <div className="w-1 h-1 bg-lime-500 rounded-full"></div>
+                    Investment Tips
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <div className="w-1 h-1 bg-lime-500 rounded-full"></div>
+                    Local Insights
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* About the Blog */}
+        <section className="py-4 bg-gray-50">
+          <div className="max-w-3xl mx-auto px-4">
+            <div className="bg-white rounded-lg p-4 md:p-6 shadow-sm border border-gray-100">
+              <div className="text-center">
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                  Whether you're buying, selling, investing—or just love keeping
+                  up with all things real estate—this blog is for you. Here
+                  you'll find helpful articles, local market updates, home tips,
+                  and insights straight from my experience as a real estate
+                  broker in Los Angeles.
+                </p>
+                <div className="flex flex-wrap justify-center gap-4 text-xs">
+                  <span className="flex items-center gap-1 text-gray-600">
+                    <span className="text-lime-600">📊</span>
+                    Market Analysis
+                  </span>
+                  <span className="flex items-center gap-1 text-gray-600">
+                    <span className="text-lime-600">🏠</span>
+                    Home Tips
+                  </span>
+                  <span className="flex items-center gap-1 text-gray-600">
+                    <span className="text-lime-600">🎯</span>
+                    Investment Advice
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* Search and Filter */}
-        <section className="py-8 bg-muted/30">
+        <section className="py-8 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
               <div className="flex-1 max-w-md">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
                     placeholder="Search articles..."
-                    className="pl-10 cursor-pointer"
+                    className="pl-10"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
@@ -240,77 +299,29 @@ export default function BlogPage() {
                   value={selectedCategory}
                   onValueChange={setSelectedCategory}
                 >
-                  <SelectTrigger className="w-48 cursor-pointer hover:bg-accent transition-colors">
+                  <SelectTrigger className="w-48">
                     <SelectValue placeholder="Category" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem
-                      value="all"
-                      className="cursor-pointer hover:bg-accent"
-                    >
-                      All Categories
-                    </SelectItem>
-                    <SelectItem
-                      value="market-analysis"
-                      className="cursor-pointer hover:bg-accent"
-                    >
+                    <SelectItem value="all">All Categories</SelectItem>
+                    <SelectItem value="market-analysis">
                       Market Analysis
                     </SelectItem>
-                    <SelectItem
-                      value="buying-tips"
-                      className="cursor-pointer hover:bg-accent"
-                    >
-                      Buying Tips
-                    </SelectItem>
-                    <SelectItem
-                      value="selling-tips"
-                      className="cursor-pointer hover:bg-accent"
-                    >
-                      Selling Tips
-                    </SelectItem>
-                    <SelectItem
-                      value="investment"
-                      className="cursor-pointer hover:bg-accent"
-                    >
-                      Investment
-                    </SelectItem>
-                    <SelectItem
-                      value="neighborhoods"
-                      className="cursor-pointer hover:bg-accent"
-                    >
-                      Neighborhoods
-                    </SelectItem>
-                    <SelectItem
-                      value="home-care"
-                      className="cursor-pointer hover:bg-accent"
-                    >
-                      Home Care
-                    </SelectItem>
+                    <SelectItem value="buying-tips">Buying Tips</SelectItem>
+                    <SelectItem value="selling-tips">Selling Tips</SelectItem>
+                    <SelectItem value="investment">Investment</SelectItem>
+                    <SelectItem value="neighborhoods">Neighborhoods</SelectItem>
+                    <SelectItem value="home-care">Home Care</SelectItem>
                   </SelectContent>
                 </Select>
                 <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-48 cursor-pointer hover:bg-accent transition-colors">
+                  <SelectTrigger className="w-48">
                     <SelectValue placeholder="Sort by" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem
-                      value="newest"
-                      className="cursor-pointer hover:bg-accent"
-                    >
-                      Newest First
-                    </SelectItem>
-                    <SelectItem
-                      value="oldest"
-                      className="cursor-pointer hover:bg-accent"
-                    >
-                      Oldest First
-                    </SelectItem>
-                    <SelectItem
-                      value="popular"
-                      className="cursor-pointer hover:bg-accent"
-                    >
-                      Most Popular
-                    </SelectItem>
+                    <SelectItem value="newest">Newest First</SelectItem>
+                    <SelectItem value="oldest">Oldest First</SelectItem>
+                    <SelectItem value="popular">Most Popular</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -322,7 +333,7 @@ export default function BlogPage() {
         {featuredPost && (
           <section className="py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="font-serif text-2xl font-bold text-foreground mb-8">
+              <h2 className="text-2xl font-bold text-foreground mb-8">
                 Featured Article
               </h2>
               <BlogCard {...featuredPost} featured={true} />
@@ -333,7 +344,7 @@ export default function BlogPage() {
         {/* Regular Articles */}
         <section className="py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-serif text-2xl font-bold text-foreground mb-8">
+            <h2 className="text-2xl font-bold text-foreground mb-8">
               Latest Articles{" "}
               {postsToShow.length > 0 &&
                 `(${postsToShow.length} of ${
@@ -349,23 +360,22 @@ export default function BlogPage() {
               </div>
             ) : (
               <div className="text-center py-12">
-                <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Search className="w-8 h-8 text-muted-foreground" />
+                <div className="w-16 h-16 border-2 border-lime-300 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Search className="w-8 h-8 text-lime-600" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">
+                <h3 className="text-lg font-semibold mb-2 text-gray-900">
                   No articles found
                 </h3>
-                <p className="text-muted-foreground mb-4">
+                <p className="text-gray-600 mb-4">
                   Try adjusting your search terms or filters
                 </p>
                 <Button
-                  variant="outline"
+                  className="border-2 border-lime-300 text-lime-600 hover:bg-lime-50"
                   onClick={() => {
                     setSearchTerm("");
                     setSelectedCategory("all");
                     setSortBy("newest");
                   }}
-                  className="cursor-pointer hover:scale-105 transition-transform"
                 >
                   Clear All Filters
                 </Button>
@@ -378,9 +388,8 @@ export default function BlogPage() {
         {hasMorePosts && (
           <section className="py-8 text-center">
             <Button
-              variant="outline"
+              className="border-2 border-lime-300 text-lime-600 hover:bg-lime-50 bg-white"
               size="lg"
-              className="cursor-pointer hover:scale-105 transition-transform"
               onClick={loadMorePosts}
             >
               Load More Articles (+3)

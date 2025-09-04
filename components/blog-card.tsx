@@ -38,16 +38,31 @@ export function BlogCard({
 
   if (featured) {
     return (
-      <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-        <div className="md:flex">
-          <div className="md:w-1/2">
-            <img
-              src={imageUrl || "/placeholder.svg"}
-              alt={title}
-              className="w-full h-64 md:h-full object-cover"
-            />
-          </div>
-          <div className="md:w-1/2">
+      <Card
+        className="overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+        onClick={() => router.push(`/blog/${id}`)}
+      >
+        <div
+          className={
+            imageUrl && imageUrl !== "/placeholder.jpg" ? "md:flex" : ""
+          }
+        >
+          {imageUrl && imageUrl !== "/placeholder.jpg" && (
+            <div className="md:w-1/2">
+              <img
+                src={imageUrl}
+                alt={title}
+                className="w-full h-64 md:h-full object-cover"
+              />
+            </div>
+          )}
+          <div
+            className={
+              imageUrl && imageUrl !== "/placeholder.jpg"
+                ? "md:w-1/2"
+                : "w-full"
+            }
+          >
             <CardContent className="p-8 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-2 mb-4">
@@ -77,8 +92,11 @@ export function BlogCard({
                   </div>
                 </div>
                 <Button
-                  className="w-full cursor-pointer"
-                  onClick={() => router.push(`/blog/${id}`)}
+                  className="w-full"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    router.push(`/blog/${id}`);
+                  }}
                 >
                   Read Full Article
                 </Button>
@@ -91,17 +109,26 @@ export function BlogCard({
   }
 
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-      <div className="relative">
-        <img
-          src={imageUrl || "/placeholder.svg"}
-          alt={title}
-          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-        <Badge className="absolute top-3 left-3">{category}</Badge>
-      </div>
+    <Card
+      className="overflow-hidden hover:shadow-lg transition-shadow duration-300 group cursor-pointer"
+      onClick={() => router.push(`/blog/${id}`)}
+    >
+      {imageUrl && imageUrl !== "/placeholder.jpg" && (
+        <div className="relative">
+          <img
+            src={imageUrl}
+            alt={title}
+            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+          <Badge className="absolute top-3 left-3">{category}</Badge>
+        </div>
+      )}
       <CardContent className="p-6">
         <div className="space-y-4">
+          {!imageUrl ||
+            (imageUrl === "/placeholder.jpg" && (
+              <Badge className="w-fit">{category}</Badge>
+            ))}
           <h3 className="font-serif text-xl font-semibold text-foreground line-clamp-2 group-hover:text-primary transition-colors">
             {title}
           </h3>
@@ -122,8 +149,11 @@ export function BlogCard({
           </div>
           <Button
             variant="outline"
-            className="w-full bg-transparent cursor-pointer"
-            onClick={() => router.push(`/blog/${id}`)}
+            className="w-full bg-transparent"
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(`/blog/${id}`);
+            }}
           >
             Read More
           </Button>

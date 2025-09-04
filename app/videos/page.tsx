@@ -75,42 +75,62 @@ export default function VideosPage() {
   return (
     <main className="flex-1">
       {/* Hero Section */}
-      <section className="bg-primary text-primary-foreground py-20 mt-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-serif text-4xl md:text-5xl font-bold mb-6">
-            Real Estate Videos
-          </h1>
-          <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto">
-            Discover properties, expert tips, and market analysis through our
-            videos
-          </p>
-          <div className="flex items-center justify-center space-x-4 text-lg">
-            <div className="flex items-center space-x-2">
-              <Play className="w-6 h-6" />
-              <span>+100 videos</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Eye className="w-6 h-6" />
-              <span>+50k views</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Star className="w-6 h-6" />
-              <span>4.8/5 rating</span>
+      <section className="relative bg-white py-8 md:py-12 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-lime-50 via-white to-lime-50"></div>
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-5 left-5 w-20 h-20 bg-lime-200 rounded-full opacity-20"></div>
+          <div className="absolute top-20 right-10 w-16 h-16 bg-lime-300 rounded-full opacity-15"></div>
+          <div className="absolute bottom-10 left-1/4 w-12 h-12 bg-lime-100 rounded-full opacity-25"></div>
+        </div>
+
+        <div className="relative container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-lime-100 rounded-full mb-4">
+                <span className="text-lg">🎥</span>
+              </div>
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight">
+                Real Estate
+                <span className="block text-lime-600">Videos</span>
+              </h1>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6">
+                Discover properties, expert tips, and market analysis through
+                our
+                <span className="text-lime-600 font-semibold">
+                  {" "}
+                  curated video content
+                </span>
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
+                <div className="flex items-center gap-2">
+                  <Play className="w-4 h-4 text-lime-600" />
+                  <span>+100 videos</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Eye className="w-4 h-4 text-lime-600" />
+                  <span>+50k views</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Star className="w-4 h-4 text-lime-600" />
+                  <span>4.8/5 rating</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Search and Filters */}
-      <section className="py-8 bg-muted/30">
+      <section className="py-8 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
             <div className="flex-1 max-w-md">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
                   placeholder="Search videos..."
-                  className="pl-10 cursor-pointer"
+                  className="pl-10 border-2 border-gray-200 focus:border-lime-500 focus:ring-lime-500"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -121,113 +141,35 @@ export default function VideosPage() {
                 value={selectedCategory}
                 onValueChange={setSelectedCategory}
               >
-                <SelectTrigger className="w-48 cursor-pointer hover:bg-accent transition-colors">
+                <SelectTrigger className="w-48 border-2 border-gray-200 focus:border-lime-500 focus:ring-lime-500">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem
-                    value="all"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    All Categories
-                  </SelectItem>
-                  <SelectItem
-                    value="property-tours"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    Property Tours
-                  </SelectItem>
-                  <SelectItem
-                    value="selling-tips"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    Selling Tips
-                  </SelectItem>
-                  <SelectItem
-                    value="market-analysis"
-                    className="cursor-pointer hover:bg-accent"
-                  >
+                  <SelectItem value="all">All Categories</SelectItem>
+                  <SelectItem value="property-tours">Property Tours</SelectItem>
+                  <SelectItem value="selling-tips">Selling Tips</SelectItem>
+                  <SelectItem value="market-analysis">
                     Market Analysis
                   </SelectItem>
-                  <SelectItem
-                    value="buying-tips"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    Buying Tips
-                  </SelectItem>
-                  <SelectItem
-                    value="home-care"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    Home Care
-                  </SelectItem>
-                  <SelectItem
-                    value="investment"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    Investment
-                  </SelectItem>
-                  <SelectItem
-                    value="neighborhoods"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    Neighborhoods
-                  </SelectItem>
-                  <SelectItem
-                    value="negotiation"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    Negotiation
-                  </SelectItem>
-                  <SelectItem
-                    value="technology"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    Technology
-                  </SelectItem>
-                  <SelectItem
-                    value="financing"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    Financing
-                  </SelectItem>
+                  <SelectItem value="buying-tips">Buying Tips</SelectItem>
+                  <SelectItem value="home-care">Home Care</SelectItem>
+                  <SelectItem value="investment">Investment</SelectItem>
+                  <SelectItem value="neighborhoods">Neighborhoods</SelectItem>
+                  <SelectItem value="negotiation">Negotiation</SelectItem>
+                  <SelectItem value="technology">Technology</SelectItem>
+                  <SelectItem value="financing">Financing</SelectItem>
                 </SelectContent>
               </Select>
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-48 cursor-pointer hover:bg-accent transition-colors">
+                <SelectTrigger className="w-48 border-2 border-gray-200 focus:border-lime-500 focus:ring-lime-500">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem
-                    value="newest"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    Newest First
-                  </SelectItem>
-                  <SelectItem
-                    value="oldest"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    Oldest First
-                  </SelectItem>
-                  <SelectItem
-                    value="popular"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    Most Popular
-                  </SelectItem>
-                  <SelectItem
-                    value="rating"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    Highest Rated
-                  </SelectItem>
-                  <SelectItem
-                    value="duration"
-                    className="cursor-pointer hover:bg-accent"
-                  >
-                    Duration
-                  </SelectItem>
+                  <SelectItem value="newest">Newest First</SelectItem>
+                  <SelectItem value="oldest">Oldest First</SelectItem>
+                  <SelectItem value="popular">Most Popular</SelectItem>
+                  <SelectItem value="rating">Highest Rated</SelectItem>
+                  <SelectItem value="duration">Duration</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -239,7 +181,7 @@ export default function VideosPage() {
       {featuredVideo && (
         <section className="py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-serif text-2xl font-bold text-foreground mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">
               Featured Video
             </h2>
             <VideoCard {...featuredVideo} featured={true} />
@@ -250,7 +192,7 @@ export default function VideosPage() {
       {/* Regular Videos */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-2xl font-bold text-foreground mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-8">
             Recent Videos{" "}
             {videosToShow.length > 0 &&
               `(${videosToShow.length} of ${
@@ -266,21 +208,22 @@ export default function VideosPage() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-                <Search className="w-8 h-8 text-muted-foreground" />
+              <div className="w-16 h-16 border-2 border-lime-300 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                <Search className="w-8 h-8 text-lime-600" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">No videos found</h3>
-              <p className="text-muted-foreground mb-4">
+              <h3 className="text-lg font-semibold mb-2 text-gray-900">
+                No videos found
+              </h3>
+              <p className="text-gray-600 mb-4">
                 Try adjusting your search terms or filters
               </p>
               <Button
-                variant="outline"
+                className="border-2 border-lime-300 text-lime-600 hover:bg-lime-50"
                 onClick={() => {
                   setSearchTerm("");
                   setSelectedCategory("all");
                   setSortBy("newest");
                 }}
-                className="cursor-pointer hover:scale-105 transition-transform"
               >
                 Clear All Filters
               </Button>
@@ -293,9 +236,8 @@ export default function VideosPage() {
       {hasMoreVideos && (
         <section className="py-8 text-center">
           <Button
-            variant="outline"
+            className="border-2 border-lime-300 text-lime-600 hover:bg-lime-50 bg-white"
             size="lg"
-            className="cursor-pointer hover:scale-105 transition-transform"
             onClick={loadMoreVideos}
           >
             Load More Videos (+3)

@@ -52,7 +52,7 @@ export function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg border-b border-gray-200">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg border-b border-patron-darkGray-200">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -66,8 +66,8 @@ export function Header() {
                 href={item.href}
                 className={`font-medium transition-all duration-200 flex items-center space-x-1.5 px-2.5 py-2 rounded-lg cursor-pointer text-sm ${
                   isActive(item.href)
-                    ? "text-primary bg-primary/10 border-b-2 border-primary"
-                    : "text-gray-700 hover:text-primary hover:bg-gray-50"
+                    ? "text-white bg-lime-500 border-b-2 border-lime-600"
+                    : "text-gray-700 hover:text-white hover:bg-lime-500"
                 }`}
               >
                 <item.icon className="w-3.5 h-3.5" />
@@ -105,8 +105,8 @@ export function Header() {
                         href={item.href}
                         className={`flex items-center space-x-3 font-medium transition-colors duration-200 p-3 rounded-lg cursor-pointer ${
                           isActive(item.href)
-                            ? "text-primary bg-primary/10 border-l-4 border-primary"
-                            : "text-gray-700 hover:text-primary hover:bg-gray-50"
+                            ? "text-white bg-lime-500 border-l-4 border-lime-600"
+                            : "text-gray-700 hover:text-white hover:bg-lime-500"
                         }`}
                       >
                         <item.icon className="w-5 h-5 flex-shrink-0" />
@@ -121,12 +121,15 @@ export function Header() {
                   <h4 className="font-semibold text-gray-800 mb-3 text-sm uppercase tracking-wide px-1">
                     Quick Actions
                   </h4>
-                  <Button className="w-full cursor-pointer" asChild>
+                  <Button
+                    className="w-full cursor-pointer bg-lime-500 hover:bg-lime-600 text-white"
+                    asChild
+                  >
                     <Link href="/search">Search Properties</Link>
                   </Button>
                   <Button
                     variant="outline"
-                    className="w-full cursor-pointer"
+                    className="w-full cursor-pointer border-lime-500 text-lime-500 hover:bg-lime-500 hover:text-white"
                     asChild
                   >
                     <Link href="/about">About Us</Link>

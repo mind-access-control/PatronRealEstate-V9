@@ -33,7 +33,7 @@ export default function BuyingPage() {
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-grotesk font-bold text-gray-900 mb-6">
             Are you ready to buy your
-            <span className="block text-green-600">home?</span>
+            <span className="block text-lime-500">home?</span>
           </h1>
         </div>
 
@@ -42,7 +42,7 @@ export default function BuyingPage() {
           <Card className="bg-white shadow-xl border border-gray-200">
             <CardHeader className="text-center">
               <CardTitle className="flex items-center justify-center gap-2 text-2xl">
-                <Search className="w-8 h-8 text-green-600" />
+                <Search className="w-8 h-8 text-lime-600" />
                 Search Properties
               </CardTitle>
               <p className="text-gray-600">
@@ -53,15 +53,15 @@ export default function BuyingPage() {
             <CardContent className="p-6">
               <div className="space-y-6">
                 {/* MLS Integration Section */}
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
+                <div className="p-6 rounded-lg border-2 border-lime-200 bg-white shadow-sm">
                   <div className="space-y-4">
                     <div className="flex items-center gap-2">
-                      <MapPin className="w-5 h-5 text-green-600" />
-                      <h4 className="font-semibold text-green-900">
+                      <MapPin className="w-5 h-5 text-lime-600" />
+                      <h4 className="font-semibold text-lime-900">
                         MLS Listings
                       </h4>
                     </div>
-                    <p className="text-green-800 text-sm leading-relaxed">
+                    <p className="text-lime-800 text-sm leading-relaxed">
                       Access the comprehensive Multiple Listing Service (MLS)
                       database for additional property listings across the
                       region.
@@ -70,14 +70,14 @@ export default function BuyingPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {/* English MLS */}
                       <div className="space-y-2">
-                        <h5 className="font-semibold text-green-900 text-sm">
+                        <h5 className="font-semibold text-lime-900 text-sm">
                           English
                         </h5>
                         <div className="space-y-2">
                           <Button
                             variant="outline"
                             size="sm"
-                            className="w-full border-green-300 text-green-700 hover:bg-green-50 hover:border-green-400 cursor-pointer"
+                            className="w-full border-lime-300 text-lime-700 hover:bg-lime-50 hover:border-lime-400 cursor-pointer"
                             onClick={() =>
                               setMlsUrl(
                                 "https://www.crmls.org/servlet/lDisplayListings?LA=EN"
@@ -90,7 +90,7 @@ export default function BuyingPage() {
                           <Button
                             variant="outline"
                             size="sm"
-                            className="w-full border-green-200 text-green-600 hover:bg-green-50 hover:border-green-300 text-xs cursor-pointer"
+                            className="w-full border-lime-200 text-lime-600 hover:bg-lime-50 hover:border-lime-300 text-xs cursor-pointer"
                             onClick={() =>
                               setMlsUrl(
                                 "https://www.crmls.org/servlet/lDisplayListings?AGENT=G84001&LA=EN"
@@ -102,7 +102,7 @@ export default function BuyingPage() {
                           <Button
                             variant="outline"
                             size="sm"
-                            className="w-full border-green-200 text-green-600 hover:bg-green-50 hover:border-green-300 text-xs cursor-pointer"
+                            className="w-full border-lime-200 text-lime-600 hover:bg-lime-50 hover:border-lime-300 text-xs cursor-pointer"
                             onClick={() =>
                               setMlsUrl(
                                 "https://www.crmls.org/servlet/lDisplayListings?OFFICE=G8485&LA=EN"
@@ -116,14 +116,14 @@ export default function BuyingPage() {
 
                       {/* Spanish MLS */}
                       <div className="space-y-2">
-                        <h5 className="font-semibold text-green-900 text-sm">
+                        <h5 className="font-semibold text-lime-900 text-sm">
                           Español
                         </h5>
                         <div className="space-y-2">
                           <Button
                             variant="outline"
                             size="sm"
-                            className="w-full border-green-300 text-green-700 hover:bg-green-50 hover:border-green-400 cursor-pointer"
+                            className="w-full border-lime-300 text-lime-700 hover:bg-lime-50 hover:border-lime-400 cursor-pointer"
                             onClick={() =>
                               setMlsUrl(
                                 "https://www.crmls.org/servlet/lDisplayListings?LA=SP"
@@ -136,7 +136,7 @@ export default function BuyingPage() {
                           <Button
                             variant="outline"
                             size="sm"
-                            className="w-full border-green-200 text-green-600 hover:bg-green-50 hover:border-green-300 text-xs cursor-pointer"
+                            className="w-full border-lime-200 text-lime-600 hover:bg-lime-50 hover:border-lime-300 text-xs cursor-pointer"
                             onClick={() =>
                               setMlsUrl(
                                 "https://www.crmls.org/servlet/lDisplayListings?AGENT=G84001&LA=SP"
@@ -148,7 +148,7 @@ export default function BuyingPage() {
                           <Button
                             variant="outline"
                             size="sm"
-                            className="w-full border-green-200 text-green-600 hover:bg-green-50 hover:border-green-300 text-xs cursor-pointer"
+                            className="w-full border-lime-200 text-lime-600 hover:bg-lime-50 hover:border-lime-300 text-xs cursor-pointer"
                             onClick={() =>
                               setMlsUrl(
                                 "https://www.crmls.org/servlet/lDisplayListings?OFFICE=G8485&LA=SP"
@@ -161,8 +161,8 @@ export default function BuyingPage() {
                       </div>
                     </div>
 
-                    <div className="pt-2 border-t border-green-200">
-                      <p className="text-xs text-green-600">
+                    <div className="pt-2 border-t border-lime-200">
+                      <p className="text-xs text-lime-600">
                         💡 MLS listings are now integrated directly into this
                         page for your convenience.
                       </p>
@@ -305,8 +305,8 @@ export default function BuyingPage() {
               <div className="space-y-6">
                 {/* Location Questions */}
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <MapPin className="w-4 h-4 text-green-600" />
+                  <div className="w-10 h-10 border-2 border-lime-300 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <MapPin className="w-5 h-5 text-lime-600" />
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">
@@ -324,8 +324,8 @@ export default function BuyingPage() {
 
                 {/* Property Style Questions */}
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <Building2 className="w-4 h-4 text-green-600" />
+                  <div className="w-10 h-10 border-2 border-lime-300 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Building2 className="w-5 h-5 text-lime-600" />
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">
@@ -341,8 +341,8 @@ export default function BuyingPage() {
 
                 {/* Work from Home */}
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <Monitor className="w-4 h-4 text-green-600" />
+                  <div className="w-10 h-10 border-2 border-lime-300 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Monitor className="w-5 h-5 text-lime-600" />
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">
@@ -357,8 +357,8 @@ export default function BuyingPage() {
 
                 {/* Entertainment */}
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <UsersIcon className="w-4 h-4 text-green-600" />
+                  <div className="w-10 h-10 border-2 border-lime-300 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <UsersIcon className="w-5 h-5 text-lime-600" />
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">
@@ -373,8 +373,8 @@ export default function BuyingPage() {
 
                 {/* Amenities */}
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <TreePine className="w-4 h-4 text-green-600" />
+                  <div className="w-10 h-10 border-2 border-lime-300 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <TreePine className="w-5 h-5 text-lime-600" />
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">
@@ -388,8 +388,8 @@ export default function BuyingPage() {
 
                 {/* Budget */}
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <DollarSign className="w-4 h-4 text-green-600" />
+                  <div className="w-10 h-10 border-2 border-lime-300 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <DollarSign className="w-5 h-5 text-lime-600" />
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">
@@ -409,15 +409,15 @@ export default function BuyingPage() {
                 please{" "}
                 <Link
                   href="/contact"
-                  className="text-green-600 hover:text-green-700 underline font-medium"
+                  className="text-lime-600 hover:text-lime-700 underline font-medium"
                 >
                   click here
                 </Link>{" "}
                 to get in contact with a Patron team member.
               </p>
 
-              <div className="text-center p-6 bg-green-100 rounded-lg">
-                <h3 className="text-xl font-bold text-green-800 mb-2">
+              <div className="text-center p-6 border-2 border-lime-300 rounded-lg bg-white">
+                <h3 className="text-xl font-bold text-lime-600 mb-2">
                   Let us help you find your dream home!
                 </h3>
               </div>
@@ -436,8 +436,8 @@ export default function BuyingPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {/* Step 1 */}
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl font-bold text-green-600">1</span>
+                  <div className="w-16 h-16 border-3 border-lime-400 rounded-full flex items-center justify-center mx-auto mb-4 bg-white shadow-sm">
+                    <span className="text-2xl font-bold text-lime-600">1</span>
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-2">
                     Initial Consultation
@@ -450,8 +450,8 @@ export default function BuyingPage() {
 
                 {/* Step 2 */}
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl font-bold text-green-600">2</span>
+                  <div className="w-16 h-16 border-3 border-lime-400 rounded-full flex items-center justify-center mx-auto mb-4 bg-white shadow-sm">
+                    <span className="text-2xl font-bold text-lime-600">2</span>
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-2">
                     Property Search
@@ -464,8 +464,8 @@ export default function BuyingPage() {
 
                 {/* Step 3 */}
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl font-bold text-green-600">3</span>
+                  <div className="w-16 h-16 border-3 border-lime-400 rounded-full flex items-center justify-center mx-auto mb-4 bg-white shadow-sm">
+                    <span className="text-2xl font-bold text-lime-600">3</span>
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-2">
                     Property Viewing
@@ -478,8 +478,8 @@ export default function BuyingPage() {
 
                 {/* Step 4 */}
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl font-bold text-green-600">4</span>
+                  <div className="w-16 h-16 border-3 border-lime-400 rounded-full flex items-center justify-center mx-auto mb-4 bg-white shadow-sm">
+                    <span className="text-2xl font-bold text-lime-600">4</span>
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-2">
                     Offer & Negotiation
@@ -492,8 +492,8 @@ export default function BuyingPage() {
 
                 {/* Step 5 */}
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl font-bold text-green-600">5</span>
+                  <div className="w-16 h-16 border-3 border-lime-400 rounded-full flex items-center justify-center mx-auto mb-4 bg-white shadow-sm">
+                    <span className="text-2xl font-bold text-lime-600">5</span>
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-2">
                     Due Diligence
@@ -506,8 +506,8 @@ export default function BuyingPage() {
 
                 {/* Step 6 */}
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl font-bold text-green-600">6</span>
+                  <div className="w-16 h-16 border-3 border-lime-400 rounded-full flex items-center justify-center mx-auto mb-4 bg-white shadow-sm">
+                    <span className="text-2xl font-bold text-lime-600">6</span>
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-2">Closing</h4>
                   <p className="text-gray-600 text-sm">
@@ -517,16 +517,16 @@ export default function BuyingPage() {
                 </div>
               </div>
 
-              <div className="text-center mt-8 p-6 bg-green-100 rounded-lg">
-                <h4 className="text-lg font-bold text-green-800 mb-2">
+              <div className="text-center mt-8 p-6 border-2 border-lime-300 rounded-lg bg-white">
+                <h4 className="text-lg font-bold text-lime-600 mb-2">
                   Ready to Start?
                 </h4>
-                <p className="text-green-700 mb-4">
+                <p className="text-gray-600 mb-4">
                   Let us guide you through every step of the home buying process
                   with our 20+ years of experience.
                 </p>
                 <Button
-                  className="bg-green-600 hover:bg-green-700 text-white"
+                  className="bg-lime-600 hover:bg-lime-700 text-white"
                   asChild
                 >
                   <Link href="/contact">
@@ -541,13 +541,13 @@ export default function BuyingPage() {
 
         {/* Contact Form Section */}
         <div className="max-w-4xl mx-auto mt-16">
-          <Card className="bg-gradient-to-r from-green-600 to-green-700 text-white shadow-xl border-0">
+          <Card className="bg-white shadow-xl border-2 border-lime-300">
             <CardContent className="p-8">
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold mb-4">
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">
                   Ready to Start Your Home Buying Journey?
                 </h3>
-                <p className="text-lg opacity-90">
+                <p className="text-lg text-gray-600">
                   Contact us today to get personalized guidance and expert
                   assistance
                 </p>
@@ -555,24 +555,24 @@ export default function BuyingPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-4">
-                  <h4 className="text-lg font-semibold">
+                  <h4 className="text-lg font-semibold text-gray-900">
                     Why Choose Patron Real Estate?
                   </h4>
-                  <ul className="space-y-2 text-sm">
+                  <ul className="space-y-2 text-sm text-gray-700">
                     <li className="flex items-center gap-2">
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4 text-lime-600" />
                       20+ years of industry experience
                     </li>
                     <li className="flex items-center gap-2">
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4 text-lime-600" />
                       Expert knowledge of local markets
                     </li>
                     <li className="flex items-center gap-2">
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4 text-lime-600" />
                       Personalized guidance throughout the process
                     </li>
                     <li className="flex items-center gap-2">
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4 text-lime-600" />
                       Access to exclusive MLS listings
                     </li>
                   </ul>
@@ -581,8 +581,7 @@ export default function BuyingPage() {
                 <div className="text-center">
                   <Button
                     size="lg"
-                    variant="secondary"
-                    className="bg-white text-green-600 hover:bg-gray-100"
+                    className="bg-lime-500 hover:bg-lime-600 text-white"
                     asChild
                   >
                     <Link href="/contact">

@@ -1,865 +1,380 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Header } from "@/components/header";
-import CommunitiesMap from "@/components/communities-map";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Select } from "@/components/ui/select";
-import Link from "next/link";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Users,
   MapPin,
-  DollarSign,
-  School,
-  TrendingUp,
-  Clock,
-  Home,
+  Mountain,
+  TreePine,
+  Building2,
+  Heart,
   Star,
+  Calendar,
+  Users2,
+  Palette,
 } from "lucide-react";
 
 // Community interface
-interface Community {
-  id: number;
+interface LocalCommunity {
+  id: string;
   name: string;
-  description: string;
-  priceRange: string;
-  amenities: string[];
+  emoji: string;
   population: number;
-  image: string;
-  averagePrice: number;
-  walkScore: number;
-  transitScore: number;
-  crimeRate: string;
-  coordinates: { lat: number; lng: number };
+  description: string;
+  image?: string;
+  images?: string[];
+  highlights: string[];
+  demographics: string;
+  atmosphere: string;
 }
 
 // Local community data
-const communities = [
+const localCommunities: LocalCommunity[] = [
   {
-    id: 1,
-    name: "Beverly Hills",
-    description: "Luxury living with world-class shopping and dining",
-    priceRange: "over-2m",
-    amenities: ["shopping", "culture"],
-    population: 32000,
-    image: "/placeholder.jpg",
-    averagePrice: 2500000,
-    walkScore: 85,
-    transitScore: 70,
-    crimeRate: "Low",
-    coordinates: { lat: 34.0902, lng: -118.406 },
+    id: "tujunga",
+    name: "Tujunga",
+    emoji: "🌄",
+    population: 27000,
+    description:
+      "Tujunga's population centers around 27,000, creating a tight-knit community nestled in the foothills. With median age slightly higher, it draws families, retirees, and creatives seeking quiet charm. Tujunga's past as an early 20th-century cooperative colony is visible at Bolton Hall, now a history museum. The area includes McGroarty and Little Landers parks, known for hosting art, gardening, and wellness programs. While retaining pastoral origins and equestrian-friendly streets, Tujunga's spirit is rooted in community connection.",
+    image: "/image3.png",
+    highlights: [
+      "Bolton Hall Museum",
+      "McGroarty Park",
+      "Little Landers Park",
+      "Equestrian-friendly streets",
+    ],
+    demographics: "Families, retirees, creatives",
+    atmosphere: "Quiet charm, community connection",
   },
   {
-    id: 2,
-    name: "Santa Monica",
-    description: "Beachfront community with vibrant culture",
-    priceRange: "1m-2m",
-    amenities: ["beach", "culture"],
-    population: 92000,
-    image: "/placeholder.jpg",
-    averagePrice: 1500000,
-    walkScore: 90,
-    transitScore: 85,
-    crimeRate: "Low",
-    coordinates: { lat: 34.0106, lng: -118.496 },
+    id: "shadow-hills",
+    name: "Shadow Hills",
+    emoji: "🐴",
+    population: 13000,
+    description:
+      "With a population of roughly 13,000, Shadow Hills offers a semi-rural atmosphere inside city limits. Rooted in equestrian tradition, many properties include stables and riding trails. Architecturally, homes vary from Spanish-Colonial and Ranch to Mid‑Century designs and rustic cabins. The wide streets, open spaces, and equine culture draw families, creatives, and film crews seeking pastoral scenery. Shadow Hills' geography is dominated by large yards, horses, and a deep sense of serenity.",
+    image: "/image18.png",
+    highlights: [
+      "Equestrian trails",
+      "Spanish-Colonial homes",
+      "Ranch-style properties",
+      "Film location friendly",
+    ],
+    demographics: "Families, creatives, film crews",
+    atmosphere: "Semi-rural, equestrian culture",
   },
   {
-    id: 3,
-    name: "Manhattan Beach",
-    description: "Family-friendly beach community",
-    priceRange: "1m-2m",
-    amenities: ["beach", "family"],
-    population: 35000,
-    image: "/placeholder.jpg",
-    averagePrice: 1800000,
-    walkScore: 80,
-    transitScore: 65,
-    crimeRate: "Very Low",
-    coordinates: { lat: 33.8803, lng: -118.491 },
+    id: "la-crescenta",
+    name: "La Crescenta",
+    emoji: "🏞",
+    population: 17000,
+    description:
+      "This foothill enclave supports approximately 17,000 people. Predominantly family-oriented, La Crescenta blends a strong community atmosphere with a tranquil, canyon-edge lifestyle. The downtown area is anchored by Crescenta Valley High School, cafes, boutiques, and a historic library. Outdoor enthusiasts frequent nearby natural attractions including Haines Canyon, Cherry Canyon, and various trail systems within the Los Angeles National Forest.",
+    image: "/image17.png",
+    highlights: [
+      "Crescenta Valley High School",
+      "Haines Canyon",
+      "Cherry Canyon",
+      "Los Angeles National Forest",
+    ],
+    demographics: "Family-oriented, outdoor enthusiasts",
+    atmosphere: "Tranquil, canyon-edge lifestyle",
   },
   {
-    id: 4,
-    name: "Pasadena",
-    description: "Historic charm with cultural attractions",
-    priceRange: "under-1m",
-    amenities: ["culture", "family"],
-    population: 140000,
-    image: "/placeholder.jpg",
-    averagePrice: 800000,
-    walkScore: 75,
-    transitScore: 80,
-    crimeRate: "Medium",
-    coordinates: { lat: 34.1478, lng: -118.144 },
+    id: "altadena",
+    name: "Altadena",
+    emoji: "🌄",
+    population: 43000,
+    description:
+      "Nestled below the San Gabriel Mountains, Altadena is home to around 43,000 residents. The community embraces cultural richness, with a diverse mosaic of ages and backgrounds. Known for Craftsman bungalows, Spanish haciendas, Mid‑Century Modern homes, and modern infill, the architecture mirrors the eclectic spirit of its people. Visitors and residents cherish Eaton Canyon and Rancho San Antonio, offering miles of hiking trails, waterfalls, and weekend art walks. Seasonal events such as Christmas Tree Lane, a holiday tradition since the 1920s, highlight Altadena's neighborly spirit.",
+    image: "/image11.png",
+    highlights: [
+      "Eaton Canyon",
+      "Rancho San Antonio",
+      "Christmas Tree Lane",
+      "Craftsman bungalows",
+    ],
+    demographics: "Diverse mosaic, all ages",
+    atmosphere: "Cultural richness, neighborly spirit",
   },
   {
-    id: 5,
-    name: "Venice Beach",
-    description: "Bohemian atmosphere with artistic flair",
-    priceRange: "1m-2m",
-    amenities: ["beach", "culture"],
-    population: 41000,
-    image: "/placeholder.jpg",
-    averagePrice: 1200000,
-    walkScore: 95,
-    transitScore: 75,
-    crimeRate: "Medium",
-    coordinates: { lat: 33.983, lng: -118.471 },
+    id: "nela",
+    name: "Northeast Los Angeles (NELA)",
+    emoji: "🏙",
+    population: 244000,
+    description:
+      "NELA is a rich urban tapestry of multiple neighborhoods with a combined population near 244,000. Ethnically diverse (roughly 64% Latino, 17% White, 16% Asian), it spans ages and incomes. Canoe-shaped neighborhoods like Highland Park, Eagle Rock, and Cypress Park are connected by cultural vibrancy. Major community anchors include Occidental College (Eagle Rock), Figueroa Street and York Boulevard cultural districts, and murals and parks that dot the landscape. Dozens of new, independent cafés, galleries, brewpubs, and festivals like Highland Park's Day of the Dead and Eagle Rock's Art Walk emphasize the area's communal creativity.",
+    images: ["/image16.png", "/image2.png"],
+    highlights: [
+      "Occidental College",
+      "Figueroa Street",
+      "York Boulevard",
+      "Highland Park Day of the Dead",
+    ],
+    demographics: "64% Latino, 17% White, 16% Asian",
+    atmosphere: "Cultural vibrancy, communal creativity",
   },
   {
-    id: 6,
-    name: "Malibu",
-    description: "Exclusive coastal paradise",
-    priceRange: "over-2m",
-    amenities: ["beach", "family"],
-    population: 12000,
-    image: "/placeholder.jpg",
-    averagePrice: 3500000,
-    walkScore: 60,
-    transitScore: 45,
-    crimeRate: "Very Low",
-    coordinates: { lat: 34.0229, lng: -118.796 },
+    id: "sunland",
+    name: "Sunland",
+    emoji: "☀️",
+    population: 21000,
+    description:
+      "Sunland is a laid-back, nature-rich neighborhood tucked into the foothills of the Verdugo Mountains in Northeast Los Angeles. With a population of approximately 21,000, it's known for its peaceful residential streets, friendly atmosphere, and strong ties to outdoor living. The area attracts a mix of longtime residents, young families, and those drawn to the rustic charm of hillside living with city access. Demographically, Sunland is diverse and predominantly residential. The community features a blend of single-family households and multigenerational homes. English and Spanish are widely spoken, and residents range in profession from tradespeople and educators to creatives and small business owners. One of Sunland's most beloved assets is La Tuna Canyon Park, which offers miles of hiking and mountain biking trails with sweeping views of the San Fernando Valley. The nearby Angeles National Golf Club, nestled against the mountains, draws golfers from all over the region. For everyday leisure, residents enjoy neighborhood parks, community events, and casual hangouts at local cafés, family-owned restaurants, and the Sunland-Tujunga Branch Library. With its quiet ambiance, friendly neighbors, and easy access to both nature and the city, Sunland remains one of Los Angeles' hidden gems for those seeking balance and beauty in daily life.",
+    image: "/image13.png",
+    highlights: [
+      "La Tuna Canyon Park",
+      "Angeles National Golf Club",
+      "Sunland-Tujunga Branch Library",
+      "Verdugo Mountains",
+    ],
+    demographics: "Longtime residents, young families, diverse professionals",
+    atmosphere: "Laid-back, nature-rich, hidden gem",
   },
 ];
 
-// Filter options
-const priceRanges = [
+// Community involvement data
+const communityInvolvement = [
   {
-    value: "all",
-    label: "All Prices",
-    color: "bg-white border border-gray-300",
+    id: "hope-gardens",
+    name: "Hope Gardens",
+    description:
+      "Supporting families in transition through housing and community programs",
+    icon: Heart,
+    color: "text-lime-600",
   },
   {
-    value: "under-1m",
-    label: "Under $1M",
-    color: "bg-green-100 text-green-800",
+    id: "wcr",
+    name: "Women's Council of Realtors (WCR)",
+    description:
+      "Professional development and networking for women in real estate",
+    icon: Users2,
+    color: "text-lime-600",
   },
   {
-    value: "1m-2m",
-    label: "$1M - $2M",
-    color: "bg-yellow-100 text-yellow-800",
+    id: "festivals",
+    name: "Local Festivals & Events",
+    description:
+      "Participating in and supporting community celebrations and cultural events",
+    icon: Calendar,
+    color: "text-lime-600",
   },
-  { value: "over-2m", label: "Over $2M", color: "bg-red-100 text-red-800" },
-];
-
-const amenities = [
-  {
-    value: "all",
-    label: "All Amenities",
-    color: "bg-white border border-gray-300",
-  },
-  { value: "beach", label: "Beach Access", color: "bg-blue-100 text-blue-800" },
-  {
-    value: "shopping",
-    label: "Shopping",
-    color: "bg-purple-100 text-purple-800",
-  },
-  {
-    value: "culture",
-    label: "Culture",
-    color: "bg-indigo-100 text-indigo-800",
-  },
-  { value: "family", label: "Family", color: "bg-pink-100 text-pink-800" },
-  { value: "urban", label: "Urban", color: "bg-orange-100 text-orange-800" },
-];
-
-const populationRanges = [
-  {
-    value: "all",
-    label: "All Sizes",
-    color: "bg-white border border-gray-300",
-  },
-  {
-    value: "small",
-    label: "Small (<50K)",
-    color: "bg-green-100 text-green-800",
-  },
-  {
-    value: "medium",
-    label: "Medium (50K-100K)",
-    color: "bg-yellow-100 text-yellow-800",
-  },
-  { value: "large", label: "Large (>100K)", color: "bg-red-100 text-red-800" },
 ];
 
 export default function CommunitiesPage() {
-  const [selectedPriceRange, setSelectedPriceRange] = useState("all");
-  const [selectedAmenity, setSelectedAmenity] = useState("all");
-  const [selectedPopulation, setSelectedPopulation] = useState("all");
-  const [activeTab, setActiveTab] = useState("map");
-  const [selectedCommunityId, setSelectedCommunityId] = useState<number | null>(
-    null
-  );
-
-  // Helper function to get population range
-  const getPopulationRange = (population: number) => {
-    if (population < 50000) return "small";
-    if (population < 100000) return "medium";
-    return "large";
-  };
-
-  // Filter communities based on selected filters
-  const filteredCommunities = communities.filter((community) => {
-    const matchesPrice =
-      selectedPriceRange === "all" ||
-      community.priceRange === selectedPriceRange;
-    const matchesAmenity =
-      selectedAmenity === "all" ||
-      community.amenities.includes(selectedAmenity);
-    const matchesPopulation =
-      selectedPopulation === "all" ||
-      getPopulationRange(community.population) === selectedPopulation;
-
-    return matchesPrice && matchesAmenity && matchesPopulation;
-  });
-
-  // Clear all filters
-  const clearAllFilters = () => {
-    setSelectedPriceRange("all");
-    setSelectedAmenity("all");
-    setSelectedPopulation("all");
-    setSelectedCommunityId(null);
-  };
-
-  // Check if any filters are active
-  const hasActiveFilters =
-    selectedPriceRange !== "all" ||
-    selectedAmenity !== "all" ||
-    selectedPopulation !== "all";
-
-  // Handle community selection from Quick Overview
-  const handleCommunitySelect = (communityId: number) => {
-    console.log("handleCommunitySelect called with:", communityId);
-    setSelectedCommunityId(communityId);
-    setActiveTab("map"); // Switch to map tab to show the selection
-    console.log(
-      "State updated - selectedCommunityId:",
-      communityId,
-      "activeTab: map"
-    );
-  };
-
-  // Debug useEffect to monitor state changes
-  useEffect(() => {
-    console.log("State changed:", { selectedCommunityId, activeTab });
-  }, [selectedCommunityId, activeTab]);
+  const [activeTab, setActiveTab] = useState("tujunga");
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary to-primary/80 text-white py-12 md:py-20">
+      <section className="relative bg-gradient-to-br from-lime-50 to-white py-20 md:py-32">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 px-2">
-            Discover Your Perfect Community
-          </h1>
-          <p className="text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto px-2">
-            Explore the best neighborhoods with our interactive map and detailed
-            community insights
-          </p>
+          <div className="max-w-4xl mx-auto">
+            <div className="mb-8">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
+                Local Communities
+              </h1>
+              <div className="w-24 h-1 bg-lime-500 mx-auto mb-6"></div>
+              <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Discover the unique character and charm of Northeast Los Angeles
+                communities
+              </p>
+            </div>
+            <div className="flex justify-center items-center space-x-4 text-lime-600">
+              <MapPin className="w-6 h-6" />
+              <span className="text-lg font-medium">Northeast Los Angeles</span>
+              <MapPin className="w-6 h-6" />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Filter Section */}
-      <section className="py-8 bg-muted/30">
+      {/* Community Tabs Section */}
+      <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl font-bold text-center mb-8">
-              Filter Communities by Your Preferences
-            </h2>
-
-            {/* Price Range Filters */}
-            <div className="mb-6">
-              <h3 className="text-base md:text-lg font-semibold mb-3">
-                Price Range
-              </h3>
-              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                {priceRanges.map((range) => (
-                  <button
-                    key={range.value}
-                    onClick={() => setSelectedPriceRange(range.value)}
-                    className={`px-3 md:px-4 py-2 rounded-full font-medium transition-all cursor-pointer text-sm md:text-base ${
-                      selectedPriceRange === range.value
-                        ? "ring-2 ring-primary ring-offset-2"
-                        : "hover:scale-105"
-                    } ${range.color}`}
+            <Tabs
+              value={activeTab}
+              onValueChange={setActiveTab}
+              className="w-full"
+            >
+              <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mb-8">
+                {localCommunities.map((community) => (
+                  <TabsTrigger
+                    key={community.id}
+                    value={community.id}
+                    className="flex flex-col items-center space-y-2 p-4 text-sm"
                   >
-                    {range.label}
-                  </button>
+                    <span className="text-2xl">{community.emoji}</span>
+                    <span className="font-medium">{community.name}</span>
+                  </TabsTrigger>
                 ))}
-              </div>
-            </div>
+              </TabsList>
 
-            {/* Amenities Filters */}
-            <div className="mb-6">
-              <h3 className="text-base md:text-lg font-semibold mb-3">
-                Key Amenities
-              </h3>
-              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                {amenities.map((amenity) => (
-                  <button
-                    key={amenity.value}
-                    onClick={() => setSelectedAmenity(amenity.value)}
-                    className={`px-3 md:px-4 py-2 rounded-full font-medium transition-all cursor-pointer text-sm md:text-base ${
-                      selectedAmenity === amenity.value
-                        ? "ring-2 ring-primary ring-offset-2"
-                        : "hover:scale-105"
-                    } ${amenity.color}`}
-                  >
-                    {amenity.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Population Filters */}
-            <div className="mb-6">
-              <h3 className="text-base md:text-lg font-semibold mb-3">
-                Community Size
-              </h3>
-              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                {populationRanges.map((range) => (
-                  <button
-                    key={range.value}
-                    onClick={() => setSelectedPopulation(range.value)}
-                    className={`px-3 md:px-4 py-2 rounded-full font-medium transition-all cursor-pointer text-sm md:text-base ${
-                      selectedPopulation === range.value
-                        ? "ring-2 ring-primary ring-offset-2"
-                        : "hover:scale-105"
-                    } ${range.color}`}
-                  >
-                    {range.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Active Filters Summary */}
-            {hasActiveFilters && (
-              <div className="bg-white rounded-lg p-4 border border-gray-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-medium text-gray-700 mb-2">
-                      Active Filters:
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedPriceRange !== "all" && (
-                        <Badge variant="secondary" className="cursor-pointer">
-                          {
-                            priceRanges.find(
-                              (r) => r.value === selectedPriceRange
-                            )?.label
-                          }
-                        </Badge>
-                      )}
-                      {selectedAmenity !== "all" && (
-                        <Badge variant="secondary" className="cursor-pointer">
-                          {
-                            amenities.find((a) => a.value === selectedAmenity)
-                              ?.label
-                          }
-                        </Badge>
-                      )}
-                      {selectedPopulation !== "all" && (
-                        <Badge variant="secondary" className="cursor-pointer">
-                          {
-                            populationRanges.find(
-                              (r) => r.value === selectedPopulation
-                            )?.label
-                          }
-                        </Badge>
-                      )}
+              {localCommunities.map((community) => (
+                <TabsContent
+                  key={community.id}
+                  value={community.id}
+                  className="space-y-8 cursor-default pt-8"
+                >
+                  {/* Community Header */}
+                  <div className="text-center mb-12">
+                    <div className="flex items-center justify-center space-x-3 mb-4">
+                      <span className="text-4xl">{community.emoji}</span>
+                      <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                        {community.name}
+                      </h2>
+                    </div>
+                    <div className="flex items-center justify-center space-x-6 text-muted-foreground">
+                      <div className="flex items-center space-x-2">
+                        <Users className="w-5 h-5" />
+                        <span>
+                          {community.population.toLocaleString()} residents
+                        </span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <MapPin className="w-5 h-5" />
+                        <span>Northeast Los Angeles</span>
+                      </div>
                     </div>
                   </div>
-                  <Button
-                    onClick={clearAllFilters}
-                    variant="outline"
-                    size="sm"
-                    className="cursor-pointer"
-                  >
-                    Clear All
-                  </Button>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
 
-      {/* Results Summary */}
-      <section className="py-4 md:py-6 bg-white border-b">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <h3 className="text-lg md:text-xl font-semibold text-center md:text-left">
-                {filteredCommunities.length} of {communities.length} Communities
-                Found
-              </h3>
-              <div className="flex flex-wrap gap-2 justify-center md:justify-end">
-                <Button
-                  onClick={() => setActiveTab("map")}
-                  variant={activeTab === "map" ? "default" : "outline"}
-                  size="sm"
-                  className="cursor-pointer text-xs md:text-sm px-3 md:px-4"
-                >
-                  Interactive Map
-                </Button>
-                <Button
-                  onClick={() => setActiveTab("list")}
-                  variant={activeTab === "list" ? "default" : "outline"}
-                  size="sm"
-                  className="cursor-pointer text-xs md:text-sm px-3 md:px-4"
-                >
-                  Community List
-                </Button>
-                <Button
-                  onClick={() => setActiveTab("trends")}
-                  variant={activeTab === "trends" ? "default" : "outline"}
-                  size="sm"
-                  className="cursor-pointer text-xs md:text-sm px-3 md:px-4"
-                >
-                  Market Trends
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Content Tabs */}
-      <section className="py-6 md:py-8">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            {activeTab === "map" && (
-              <div>
-                <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">
-                  Interactive Community Map
-                </h2>
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                  <CommunitiesMap
-                    communities={filteredCommunities}
-                    selectedCommunityId={selectedCommunityId}
-                    onCommunitySelect={(community) =>
-                      setSelectedCommunityId(community?.id || null)
-                    }
-                  />
-                </div>
-
-                {/* Quick Community Overview */}
-                <div className="mt-6 md:mt-8">
-                  <h3 className="text-lg md:text-xl font-semibold mb-4">
-                    Quick Community Overview
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
-                    {filteredCommunities.slice(0, 3).map((community) => (
-                      <Card
-                        key={community.id}
-                        className="p-3 md:p-4 hover:shadow-lg transition-shadow cursor-pointer hover:scale-105 transition-transform"
-                        onClick={() => handleCommunitySelect(community.id)}
-                      >
-                        <div className="flex items-center space-x-3">
-                          <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                            <span className="text-primary font-bold text-base md:text-lg">
-                              {community.name.charAt(0)}
-                            </span>
+                  {/* Community Image(s) */}
+                  <div className="space-y-8 mt-12">
+                    {community.images ? (
+                      // Multiple images for NELA
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {community.images.map((image, index) => (
+                          <div
+                            key={index}
+                            className="relative rounded-lg overflow-hidden shadow-lg"
+                          >
+                            <img
+                              src={image}
+                              alt={`${community.name} community - ${index + 1}`}
+                              className="w-full h-auto max-h-96 object-contain cursor-default"
+                            />
                           </div>
-                          <div className="min-w-0 flex-1">
-                            <h4 className="font-semibold text-sm md:text-base truncate">
-                              {community.name}
-                            </h4>
-                            <p className="text-xs md:text-sm text-muted-foreground">
-                              {community.population.toLocaleString()} residents
-                            </p>
-                          </div>
-                        </div>
-                        <div className="mt-3 pt-3 border-t border-gray-100">
-                          <div className="flex items-center justify-between text-xs text-muted-foreground">
-                            <span>Click to view details</span>
-                            <span className="text-primary">→</span>
-                          </div>
-                        </div>
-                      </Card>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "list" && (
-              <div>
-                <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">
-                  Community List
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                  {filteredCommunities.map((community) => (
-                    <Card
-                      key={community.id}
-                      className="overflow-hidden hover:shadow-lg transition-all hover:scale-105 cursor-pointer border-2 hover:border-primary/30"
-                      onClick={() => handleCommunitySelect(community.id)}
-                    >
-                      <div className="aspect-video relative overflow-hidden">
-                        {/* Real House Image based on price range */}
+                        ))}
+                      </div>
+                    ) : (
+                      // Single image for other communities
+                      <div className="relative rounded-lg overflow-hidden shadow-lg">
                         <img
-                          src={(() => {
-                            switch (community.priceRange) {
-                              case "under-1m":
-                                return "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=225&fit=crop&crop=center";
-                              case "1m-2m":
-                                return "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=225&fit=crop&crop=center";
-                              case "over-2m":
-                                return "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=225&fit=crop&crop=center";
-                              default:
-                                return "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=225&fit=crop&crop=center";
-                            }
-                          })()}
+                          src={community.image}
                           alt={`${community.name} community`}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
+                          className="w-full h-auto max-h-96 object-contain cursor-default"
                         />
+                      </div>
+                    )}
+                  </div>
 
-                        {/* Overlay with community info */}
-                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                          <div className="text-center text-white">
-                            <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-2 border-2 border-white/30">
-                              <span className="text-white font-bold text-2xl">
-                                {community.name.charAt(0)}
+                  {/* Community Description */}
+                  <Card className="p-8 cursor-default">
+                    <p className="text-lg leading-relaxed text-muted-foreground mb-6">
+                      {community.description}
+                    </p>
+
+                    {/* Community Highlights */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <h3 className="text-xl font-semibold mb-4 flex items-center">
+                          <Star className="w-5 h-5 mr-2 text-lime-600" />
+                          Community Highlights
+                        </h3>
+                        <div className="space-y-2">
+                          {community.highlights.map((highlight, index) => (
+                            <div
+                              key={index}
+                              className="flex items-center space-x-2"
+                            >
+                              <div className="w-2 h-2 bg-lime-600 rounded-full"></div>
+                              <span className="text-muted-foreground">
+                                {highlight}
                               </span>
                             </div>
-                            <p className="text-sm font-medium text-white drop-shadow-lg">
-                              {community.name}
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold mb-4 flex items-center">
+                          <Users className="w-5 h-5 mr-2 text-lime-600" />
+                          Community Profile
+                        </h3>
+                        <div className="space-y-3">
+                          <div>
+                            <span className="font-medium text-foreground">
+                              Demographics:
+                            </span>
+                            <p className="text-muted-foreground">
+                              {community.demographics}
+                            </p>
+                          </div>
+                          <div>
+                            <span className="font-medium text-foreground">
+                              Atmosphere:
+                            </span>
+                            <p className="text-muted-foreground">
+                              {community.atmosphere}
                             </p>
                           </div>
                         </div>
-                        <div className="absolute top-2 right-2">
-                          <Badge
-                            variant={
-                              community.priceRange === "under-1m"
-                                ? "default"
-                                : community.priceRange === "1m-2m"
-                                ? "secondary"
-                                : "destructive"
-                            }
-                            className="text-xs"
-                          >
-                            {community.priceRange === "under-1m"
-                              ? "Under $1M"
-                              : community.priceRange === "1m-2m"
-                              ? "$1M-$2M"
-                              : "Over $2M"}
-                          </Badge>
-                        </div>
                       </div>
-                      <div className="p-6">
-                        <div className="flex items-center justify-between mb-3">
-                          <h3 className="text-xl font-semibold text-foreground">
-                            {community.name}
-                          </h3>
-                        </div>
-                        <p className="text-muted-foreground mb-4 line-clamp-2">
-                          {community.description}
-                        </p>
-
-                        {/* Amenities */}
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {community.amenities.slice(0, 3).map((amenity) => (
-                            <Badge
-                              key={amenity}
-                              variant="outline"
-                              className="text-xs cursor-pointer"
-                            >
-                              {amenity}
-                            </Badge>
-                          ))}
-                          {community.amenities.length > 3 && (
-                            <Badge
-                              variant="outline"
-                              className="text-xs text-muted-foreground"
-                            >
-                              +{community.amenities.length - 3} more
-                            </Badge>
-                          )}
-                        </div>
-
-                        {/* Community Stats */}
-                        <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
-                          <div className="flex items-center space-x-2">
-                            <Users className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-muted-foreground">
-                              {community.population.toLocaleString()}
-                            </span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <DollarSign className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-muted-foreground">
-                              ${(community.averagePrice / 1000000).toFixed(1)}M
-                            </span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <MapPin className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-muted-foreground">
-                              Walk: {community.walkScore}
-                            </span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <School className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-muted-foreground">
-                              Safety: {community.crimeRate}
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Action Hint */}
-                        <div className="pt-3 border-t border-gray-100">
-                          <div className="flex items-center justify-between text-xs text-muted-foreground">
-                            <span>Click to view details on map</span>
-                            <span className="text-primary">→</span>
-                          </div>
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-
-                {/* Empty State */}
-                {filteredCommunities.length === 0 && (
-                  <div className="text-center py-12">
-                    <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-                      <MapPin className="w-8 h-8 text-muted-foreground" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-2">
-                      No communities found
+                  </Card>
+                </TabsContent>
+              ))}
+            </Tabs>
+          </div>
+        </div>
+      </section>
+
+      {/* Community Involvement Section */}
+      <section className="py-12 md:py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Community Involvement
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                We're proud to be actively involved in our local communities
+                through various initiatives and partnerships
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {communityInvolvement.map((involvement) => {
+                const IconComponent = involvement.icon;
+                return (
+                  <Card
+                    key={involvement.id}
+                    className="p-8 text-center hover:shadow-lg transition-shadow bg-white border-2 border-lime-200"
+                  >
+                    <div
+                      className={`w-16 h-16 border-2 border-lime-300 bg-white rounded-full flex items-center justify-center mx-auto mb-6`}
+                    >
+                      <IconComponent className="w-8 h-8 text-lime-600" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-4">
+                      {involvement.name}
                     </h3>
-                    <p className="text-muted-foreground mb-4">
-                      Try adjusting your filters to see more communities
-                    </p>
-                    <Button onClick={clearAllFilters} variant="outline">
-                      Clear All Filters
-                    </Button>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {activeTab === "trends" && (
-              <div>
-                <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">
-                  Market Trends & Insights
-                </h2>
-
-                {/* Market Overview Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
-                  <Card className="p-6 text-center">
-                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <TrendingUp className="w-6 h-6 text-green-600" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">Price Growth</h3>
-                    <p className="text-2xl font-bold text-green-600">+5.2%</p>
-                    <p className="text-sm text-muted-foreground">
-                      Year over Year
+                    <p className="text-muted-foreground leading-relaxed">
+                      {involvement.description}
                     </p>
                   </Card>
-
-                  <Card className="p-6 text-center">
-                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <Clock className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">
-                      Days on Market
-                    </h3>
-                    <p className="text-2xl font-bold text-blue-600">28</p>
-                    <p className="text-sm text-muted-foreground">Average</p>
-                  </Card>
-
-                  <Card className="p-6 text-center">
-                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <Home className="w-6 h-6 text-purple-600" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">Inventory</h3>
-                    <p className="text-2xl font-bold text-purple-600">156</p>
-                    <p className="text-sm text-muted-foreground">
-                      Active Listings
-                    </p>
-                  </Card>
-
-                  <Card className="p-6 text-center">
-                    <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <DollarSign className="w-6 h-6 text-orange-600" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">Median Price</h3>
-                    <p className="text-2xl font-bold text-orange-600">$1.2M</p>
-                    <p className="text-sm text-muted-foreground">
-                      Current Market
-                    </p>
-                  </Card>
-                </div>
-
-                {/* Price Trends by Community */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6 md:mb-8">
-                  <Card className="p-6">
-                    <h3 className="text-xl font-semibold mb-4 flex items-center">
-                      <TrendingUp className="w-5 h-5 mr-2 text-primary" />
-                      Price Trends by Community
-                    </h3>
-                    <div className="space-y-4">
-                      {filteredCommunities.slice(0, 4).map((community) => {
-                        const priceChange =
-                          community.id % 3 === 0
-                            ? 3.2
-                            : community.id % 2 === 0
-                            ? 1.8
-                            : 4.5;
-                        const isPositive = priceChange > 0;
-                        return (
-                          <div
-                            key={community.id}
-                            className="flex items-center justify-between p-3 bg-muted/30 rounded-lg"
-                          >
-                            <div className="flex items-center space-x-3">
-                              <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                                <span className="text-primary font-bold text-sm">
-                                  {community.name.charAt(0)}
-                                </span>
-                              </div>
-                              <div>
-                                <p className="font-medium">{community.name}</p>
-                                <p className="text-sm text-muted-foreground">
-                                  $
-                                  {(community.averagePrice / 1000000).toFixed(
-                                    1
-                                  )}
-                                  M
-                                </p>
-                              </div>
-                            </div>
-                            <div className="text-right">
-                              <p
-                                className={`font-semibold ${
-                                  isPositive ? "text-green-600" : "text-red-600"
-                                }`}
-                              >
-                                {isPositive ? "+" : ""}
-                                {priceChange}%
-                              </p>
-                              <p className="text-xs text-muted-foreground">
-                                YoY
-                              </p>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </Card>
-
-                  <Card className="p-6">
-                    <h3 className="text-xl font-semibold mb-4 flex items-center">
-                      <Users className="w-5 h-5 mr-2 text-primary" />
-                      Community Growth & Demand
-                    </h3>
-                    <div className="space-y-4">
-                      {filteredCommunities.slice(0, 4).map((community) => {
-                        const demandScore = Math.floor(Math.random() * 40) + 60; // 60-100
-                        const growthRate = (Math.random() * 8 + 2).toFixed(1); // 2.0-10.0
-                        return (
-                          <div
-                            key={community.id}
-                            className="flex items-center justify-between p-3 bg-muted/30 rounded-lg"
-                          >
-                            <div className="flex items-center space-x-3">
-                              <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                                <span className="text-primary font-bold text-sm">
-                                  {community.name.charAt(0)}
-                                </span>
-                              </div>
-                              <div>
-                                <p className="font-medium">{community.name}</p>
-                                <p className="text-sm text-muted-foreground">
-                                  {community.population.toLocaleString()}{" "}
-                                  residents
-                                </p>
-                              </div>
-                            </div>
-                            <div className="text-right">
-                              <div className="flex items-center space-x-2">
-                                <div className="w-16 bg-gray-200 rounded-full h-2">
-                                  <div
-                                    className="bg-primary h-2 rounded-full"
-                                    style={{ width: `${demandScore}%` }}
-                                  ></div>
-                                </div>
-                                <span className="text-sm font-medium">
-                                  {demandScore}%
-                                </span>
-                              </div>
-                              <p className="text-xs text-muted-foreground">
-                                +{growthRate}% growth
-                              </p>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </Card>
-                </div>
-
-                {/* Market Insights */}
-                <Card className="p-6">
-                  <h3 className="text-xl font-semibold mb-4 flex items-center">
-                    <Star className="w-5 h-5 mr-2 text-primary" />
-                    Key Market Insights
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                    <div className="space-y-4">
-                      <div className="flex items-start space-x-3">
-                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                        <div>
-                          <h4 className="font-medium">Strong Buyer Demand</h4>
-                          <p className="text-sm text-muted-foreground">
-                            Inventory levels remain low while buyer interest
-                            continues to grow, creating a competitive market
-                            environment.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex items-start space-x-3">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-                        <div>
-                          <h4 className="font-medium">Price Stability</h4>
-                          <p className="text-sm text-muted-foreground">
-                            Despite market fluctuations, property values in
-                            these communities show consistent long-term growth.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="space-y-4">
-                      <div className="flex items-start space-x-3">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
-                        <div>
-                          <h4 className="font-medium">Investment Potential</h4>
-                          <p className="text-sm text-muted-foreground">
-                            High walk scores and amenities make these
-                            communities attractive for both living and
-                            investment.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex items-start space-x-3">
-                        <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
-                        <div>
-                          <h4 className="font-medium">Market Momentum</h4>
-                          <p className="text-sm text-muted-foreground">
-                            Quick sales and multiple offers indicate strong
-                            market momentum in premium locations.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              </div>
-            )}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
